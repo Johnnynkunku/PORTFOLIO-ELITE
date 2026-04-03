@@ -12,9 +12,9 @@ export const translations = {
     },
     hero: {
       status: "Disponible pour de nouveaux défis",
-      title: "Ingénierie de l'",
-      titleGradient: "Excellence Numérique",
-      description: "Je suis Johnny Nkunku, Ingénieur en Maintenance et Réseau & Développeur Full-Stack basé en RDC, spécialisé dans la création de systèmes distribués évolutifs, sécurisés et performants.",
+      title: "Je suis",
+      titleGradient: "Johnny Nkunku",
+      description: "Ingénieur IT, programmeur et développeur, passionné par le domaine informatique tel que les réseaux, la programmation, le cloud et l'intelligence artificielle.",
       viewProjects: "Voir les Projets",
       contactMe: "Me Contacter",
       scroll: "Défiler"
@@ -22,11 +22,13 @@ export const translations = {
     about: {
       subtitle: "À Propos de Moi",
       title: "L'Architecte derrière le Code",
-      p1: "Je suis Johnny Nkunku, Ingénieur en Maintenance et Réseau & Développeur Full-Stack basé en RDC, spécialisé dans la création de systèmes distribués évolutifs, sécurisés et performants. Avec plus de 6 ans d'expérience, je conçois des solutions innovantes et résilientes.",
-      p2: "Mon double parcours en développement logiciel et infrastructure IT me permet de combler le fossé entre le code et le matériel. Je crois en la puissance de l'automatisation, la nécessité de la sécurité et la beauté d'un code bien documenté.",
+      p1: "Je suis Johnny Nkunku, ingénieur IT, programmeur et développeur, passionné par le domaine informatique tel que les réseaux, la programmation, le cloud et l'intelligence artificielle. Je suis actuellement au début de mon parcours professionnel, avec une soif d'apprendre et de relever de nouveaux défis.",
+      p2: "Mon double parcours en développement logiciel et infrastructure IT me permet de combler le fossé entre le code et le matériel. Je me concentre sur l'acquisition de nouvelles compétences et la création de solutions innovantes.",
       stats: {
-        projects: "Projets Terminés",
-        experience: "Années d'Expérience"
+        projects: "Projets Réalisés",
+        projectsValue: "10+",
+        experience: "Niveau",
+        experienceValue: "Junior"
       }
     },
     projects: {
@@ -93,9 +95,9 @@ export const translations = {
     },
     hero: {
       status: "Available for new challenges",
-      title: "Engineering",
-      titleGradient: "Digital Excellence",
-      description: "I'm Johnny Nkunku, a Maintenance & Network Engineer and Full-Stack Developer based in DRC, specializing in building scalable, secure, and high-performance distributed systems.",
+      title: "I am",
+      titleGradient: "Johnny Nkunku",
+      description: "IT Engineer, programmer, and developer, passionate about the IT field such as networking, programming, cloud computing, and artificial intelligence.",
       viewProjects: "View Projects",
       contactMe: "Contact Me",
       scroll: "Scroll"
@@ -103,11 +105,13 @@ export const translations = {
     about: {
       subtitle: "About Me",
       title: "The Architect Behind the Code",
-      p1: "I'm Johnny Nkunku, a Maintenance & Network Engineer and Full-Stack Developer based in DRC, specializing in building scalable, secure, and high-performance distributed systems. With over 6 years of experience, I design innovative and resilient solutions.",
-      p2: "My dual background in software development and IT infrastructure allows me to bridge the gap between code and hardware. I believe in the power of automation, the necessity of security, and the beauty of well-documented code.",
+      p1: "I'm Johnny Nkunku, an IT Engineer, programmer, and developer, passionate about the IT field such as networking, programming, cloud computing, and artificial intelligence. I am currently at the beginning of my professional journey, eager to learn and take on new challenges.",
+      p2: "My dual background in software development and IT infrastructure allows me to bridge the gap between code and hardware. I am focused on acquiring new skills and building innovative solutions.",
       stats: {
         projects: "Projects Completed",
-        experience: "Years Experience"
+        projectsValue: "10+",
+        experience: "Level",
+        experienceValue: "Junior"
       }
     },
     projects: {
@@ -174,9 +178,9 @@ export const translations = {
     },
     hero: {
       status: "متاح لتحديات جديدة",
-      title: "هندسة",
-      titleGradient: "التميز الرقمي",
-      description: "أنا جوني نكونكو، مهندس صيانة وشبكات ومطور شامل مقيم في جمهورية الكونغو الديمقراطية، متخصص في بناء أنظمة موزعة قابلة للتطوير وآمنة وعالية الأداء.",
+      title: "أنا",
+      titleGradient: "جوني نكونكو",
+      description: "مهندس تقنية معلومات ومبرمج ومطور، شغوف بمجال المعلوماتية مثل الشبكات والبرمجة والسحابة والذكاء الاصطناعي.",
       viewProjects: "عرض المشاريع",
       contactMe: "اتصل بي",
       scroll: "تمرير"
@@ -184,11 +188,13 @@ export const translations = {
     about: {
       subtitle: "عني",
       title: "المهندس وراء الكود",
-      p1: "أنا جوني نكونكو، مهندس صيانة وشبكات ومطور شامل مقيم في جمهورية الكونغو الديمقراطية، متخصص في بناء أنظمة موزعة قابلة للتطوير وآمنة وعالية الأداء. مع أكثر من 6 سنوات من الخبرة، أصمم حلولاً مبتكرة ومرنة.",
-      p2: "خلفيتي المزدوجة في تطوير البرمجيات والبنية تحتية لتكنولوجيا المعلومات تسمح لي بسد الفجوة بين الكود والأجهزة. أؤمن بقوة الأتمتة، وضرورة الأمان، وجمال الكود الموثق جيداً.",
+      p1: "أنا جوني نكونكو، مهندس تقنية معلومات ومبرمج ومطور، شغوف بمجال المعلوماتية مثل الشبكات والبرمجة والسحابة والذكاء الاصطناعي. أنا حالياً في بداية مسيرتي المهنية، وأتطلع للتعلم ومواجهة تحديات جديدة.",
+      p2: "خلفيتي المزدوجة في تطوير البرمجيات والبنية تحتية لتكنولوجيا المعلومات تسمح لي بسد الفجوة بين الكود والأجهزة. أركز على اكتساب مهارات جديدة وبناء حلول مبتكرة.",
       stats: {
         projects: "مشاريع مكتملة",
-        experience: "سنوات الخبرة"
+        projectsValue: "+10",
+        experience: "المستوى",
+        experienceValue: "مبتدئ"
       }
     },
     projects: {
@@ -249,80 +255,80 @@ export const translations = {
 export const PROJECT_DATA = {
   fr: [
     {
-      title: "Architecture CloudScale",
-      description: "Une architecture de microservices à haute disponibilité déployée sur AWS utilisant Kubernetes et Terraform. Gère plus de 10k requêtes simultanées.",
-      tags: ["AWS", "Kubernetes", "Go", "Terraform"],
+      title: "Portfolio Personnel",
+      description: "Un portfolio moderne et réactif construit avec React, Tailwind CSS et Framer Motion pour présenter mes compétences et projets.",
+      tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/cloud/800/600"
+      image: "https://picsum.photos/seed/portfolio/800/600"
     },
     {
-      title: "Dashboard Nexus AI",
-      description: "Plateforme de visualisation de données en temps réel pour le suivi des performances LLM. Construit avec React, D3.js et Python FastAPI.",
-      tags: ["React", "D3.js", "FastAPI", "PostgreSQL"],
+      title: "Gestionnaire de Tâches",
+      description: "Une application de gestion de tâches avec des fonctionnalités de filtrage, de tri et de stockage local.",
+      tags: ["React", "Node.js", "MongoDB", "Express"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/ai/800/600"
+      image: "https://picsum.photos/seed/tasks/800/600"
     },
     {
-      title: "SecureVault Auth",
-      description: "Un fournisseur d'authentification biométrique utilisant WebAuthn et Zero-Knowledge Proofs pour une sécurité maximale.",
-      tags: ["TypeScript", "WebAuthn", "Rust", "Redis"],
+      title: "Système de Monitoring Réseau",
+      description: "Un outil simple pour surveiller l'état des périphériques réseau sur un réseau local.",
+      tags: ["Python", "Scapy", "Flask", "Networking"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/security/800/600"
+      image: "https://picsum.photos/seed/network/800/600"
     }
   ],
   en: [
     {
-      title: "CloudScale Architecture",
-      description: "A high-availability microservices architecture deployed on AWS using Kubernetes and Terraform. Handles 10k+ concurrent requests.",
-      tags: ["AWS", "Kubernetes", "Go", "Terraform"],
+      title: "Personal Portfolio",
+      description: "A modern, responsive portfolio built with React, Tailwind CSS, and Framer Motion to showcase my skills and projects.",
+      tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/cloud/800/600"
+      image: "https://picsum.photos/seed/portfolio/800/600"
     },
     {
-      title: "Nexus AI Dashboard",
-      description: "Real-time data visualization platform for LLM performance monitoring. Built with React, D3.js, and Python FastAPI.",
-      tags: ["React", "D3.js", "FastAPI", "PostgreSQL"],
+      title: "Task Manager",
+      description: "A task management application with filtering, sorting, and local storage features.",
+      tags: ["React", "Node.js", "MongoDB", "Express"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/ai/800/600"
+      image: "https://picsum.photos/seed/tasks/800/600"
     },
     {
-      title: "SecureVault Auth",
-      description: "A custom biometric-first authentication provider using WebAuthn and Zero-Knowledge Proofs for maximum security.",
-      tags: ["TypeScript", "WebAuthn", "Rust", "Redis"],
+      title: "Network Monitoring System",
+      description: "A simple tool to monitor the status of network devices on a local network.",
+      tags: ["Python", "Scapy", "Flask", "Networking"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/security/800/600"
+      image: "https://picsum.photos/seed/network/800/600"
     }
   ],
   ar: [
     {
-      title: "بنية CloudScale",
-      description: "بنية خدمات مصغرة عالية التوفر تم نشرها على AWS باستخدام Kubernetes و Terraform. تتعامل مع أكثر من 10 آلاف طلب متزامن.",
-      tags: ["AWS", "Kubernetes", "Go", "Terraform"],
+      title: "المعرض الشخصي",
+      description: "معرض أعمال حديث وسريع الاستجابة تم بناؤه باستخدام React و Tailwind CSS و Framer Motion لعرض مهاراتي ومشاريعي.",
+      tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/cloud/800/600"
+      image: "https://picsum.photos/seed/portfolio/800/600"
     },
     {
-      title: "لوحة تحكم Nexus AI",
-      description: "منصة لتصور البيانات في الوقت الفعلي لمراقبة أداء نماذج اللغة الكبيرة. بنيت باستخدام React و D3.js و Python FastAPI.",
-      tags: ["React", "D3.js", "FastAPI", "PostgreSQL"],
+      title: "مدير المهام",
+      description: "تطبيق لإدارة المهام مع ميزات التصفية والفرز والتخزين المحلي.",
+      tags: ["React", "Node.js", "MongoDB", "Express"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/ai/800/600"
+      image: "https://picsum.photos/seed/tasks/800/600"
     },
     {
-      title: "SecureVault Auth",
-      description: "مزود مصادقة بيومترية مخصص يستخدم WebAuthn و Zero-Knowledge Proofs لأقصى درجات الأمان.",
-      tags: ["TypeScript", "WebAuthn", "Rust", "Redis"],
+      title: "نظام مراقبة الشبكة",
+      description: "أداة بسيطة لمراقبة حالة أجهزة الشبكة على شبكة محلية.",
+      tags: ["Python", "Scapy", "Flask", "Networking"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/security/800/600"
+      image: "https://picsum.photos/seed/network/800/600"
     }
   ]
 };
@@ -330,67 +336,67 @@ export const PROJECT_DATA = {
 export const EXPERIENCE_DATA = {
   fr: [
     {
-      company: "TechNova Solutions",
-      role: "Ingénieur Full Stack Senior",
-      period: "2022 - Présent",
+      company: "Projets Indépendants & Freelance",
+      role: "Développeur Full Stack Junior",
+      period: "2025 - Présent",
       description: [
-        "Architecture et direction de la migration d'un monolithe hérité vers un écosystème de microservices distribués.",
-        "Réduction des coûts d'infrastructure de 40% grâce à une orchestration de conteneurs optimisée.",
-        "Mentorat d'une équipe de 8 développeurs et établissement des meilleures pratiques CI/CD."
+        "Conception et déploiement d'applications web modernes utilisant React et Node.js.",
+        "Mise en œuvre de solutions cloud pour des clients locaux en RDC.",
+        "Apprentissage continu des meilleures pratiques de développement et de sécurité."
       ]
     },
     {
-      company: "Global Systems Inc.",
-      role: "Ingénieur Infrastructure IT",
-      period: "2019 - 2022",
+      company: "Formation Académique & Stages",
+      role: "Stagiaire en Maintenance et Réseau",
+      period: "2024 - 2025",
       description: [
-        "Gestion de l'infrastructure réseau mondiale sur 5 centres de données.",
-        "Mise en œuvre de correctifs de sécurité automatisés et de scans de vulnérabilité.",
-        "Conception de protocoles de reprise après sinistre ayant réduit le RTO de 60%."
+        "Assistance dans la maintenance préventive et curative du matériel informatique.",
+        "Configuration de réseaux locaux et dépannage de premier niveau.",
+        "Participation à des projets de déploiement d'infrastructure IT."
       ]
     }
   ],
   en: [
     {
-      company: "TechNova Solutions",
-      role: "Senior Full Stack Engineer",
-      period: "2022 - Present",
+      company: "Independent Projects & Freelance",
+      role: "Junior Full Stack Developer",
+      period: "2025 - Present",
       description: [
-        "Architected and led the migration of a legacy monolith to a distributed microservices ecosystem.",
-        "Reduced infrastructure costs by 40% through optimized container orchestration.",
-        "Mentored a team of 8 developers and established CI/CD best practices."
+        "Designing and deploying modern web applications using React and Node.js.",
+        "Implementing cloud solutions for local clients in DRC.",
+        "Continuous learning of development and security best practices."
       ]
     },
     {
-      company: "Global Systems Inc.",
-      role: "IT Infrastructure Engineer",
-      period: "2019 - 2022",
+      company: "Academic Training & Internships",
+      role: "Maintenance & Network Intern",
+      period: "2024 - 2025",
       description: [
-        "Managed global network infrastructure across 5 data centers.",
-        "Implemented automated security patching and vulnerability scanning.",
-        "Designed disaster recovery protocols that reduced RTO by 60%."
+        "Assisting in preventive and corrective maintenance of computer hardware.",
+        "Configuring local networks and first-level troubleshooting.",
+        "Participating in IT infrastructure deployment projects."
       ]
     }
   ],
   ar: [
     {
-      company: "TechNova Solutions",
-      role: "مهندس تطوير شامل أول",
-      period: "2022 - الحاضر",
+      company: "مشاريع مستقلة وعمل حر",
+      role: "مطور شامل مبتدئ",
+      period: "2025 - الحاضر",
       description: [
-        "هندسة وقيادة عملية الانتقال من نظام أحادي قديم إلى نظام بيئي للخدمات المصغرة الموزعة.",
-        "تقليل تكاليف البنية التحتية بنسبة 40% من خلال تحسين تنسيق الحاويات.",
-        "توجيه فريق مكون من 8 مطورين وتأسيس أفضل ممارسات CI/CD."
+        "تصميم ونشر تطبيقات ويب حديثة باستخدام React و Node.js.",
+        "تنفيذ حلول سحابية للعملاء المحليين في جمهورية الكونغو الديمقراطية.",
+        "التعلم المستمر لأفضل ممارسات التطوير والأمان."
       ]
     },
     {
-      company: "Global Systems Inc.",
-      role: "مهندس بنية تحتية لتكنولوجيا المعلومات",
-      period: "2019 - 2022",
+      company: "التدريب الأكاديمي والتدريب المهني",
+      role: "متدرب صيانة وشبكات",
+      period: "2024 - 2025",
       description: [
-        "إدارة البنية التحتية العالمية للشبكة عبر 5 مراكز بيانات.",
-        "تنفيذ عمليات ترقيع أمني مؤتمتة وفحص الثغرات الأمنية.",
-        "تصميم بروتوكولات التعافي من الكوارث التي قللت وقت التعافي بنسبة 60%."
+        "المساعدة في الصيانة الوقائية والعلاجية لأجهزة الكمبيوتر.",
+        "تكوين الشبكات المحلية واستكشاف الأخطاء وإصلاحها من المستوى الأول.",
+        "المشاركة في مشاريع نشر البنية التحتية لتكنولوجيا المعلومات."
       ]
     }
   ]

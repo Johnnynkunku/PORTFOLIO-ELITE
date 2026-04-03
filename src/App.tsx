@@ -15,7 +15,10 @@ import {
   Cloud,
   Languages,
   Download,
-  Sparkles
+  Sparkles,
+  ArrowUp,
+  Copy,
+  Check
 } from 'lucide-react';
 import { cn } from './lib/utils';
 import { Language, translations, PROJECT_DATA, EXPERIENCE_DATA } from './translations';
@@ -52,8 +55,8 @@ const Navbar = ({
 
   return (
     <nav className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-      isScrolled ? "bg-slate-950/80 backdrop-blur-lg border-b border-white/10 py-3" : "bg-transparent"
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6",
+      isScrolled ? "bg-slate-950/40 backdrop-blur-xl border-b border-white/5 py-3" : "bg-transparent py-6"
     )} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <motion.div 
@@ -166,6 +169,7 @@ const Hero = ({ language }: { language: Language }) => {
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-brand-500/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50 contrast-150" />
       </div>
 
@@ -201,14 +205,26 @@ const Hero = ({ language }: { language: Language }) => {
               />
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  y: [0, -10, 0]
+                }}
+                transition={{ 
+                  delay: 0.8, 
+                  duration: 0.5,
+                  y: {
+                    repeat: Infinity,
+                    duration: 3,
+                    ease: "easeInOut"
+                  }
+                }}
                 className={cn(
                   "absolute -top-4 md:-top-8 text-brand-400 z-20",
                   language === 'ar' ? "-left-4 md:-left-8" : "-right-4 md:-right-8"
                 )}
               >
-                <Sparkles size={32} className="md:w-12 md:h-12 animate-pulse" />
+                <Sparkles size={32} className="md:w-12 md:h-12" />
               </motion.div>
             </span>
           </motion.h1>
@@ -264,35 +280,37 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group relative glass rounded-3xl overflow-hidden"
+      whileHover={{ y: -10 }}
+      className="group relative glass rounded-3xl overflow-hidden border border-white/5 hover:border-brand-500/30 transition-all duration-500"
     >
-      <div className="aspect-video overflow-hidden">
+      <div className="aspect-video overflow-hidden relative">
         <img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           referrerPolicy="no-referrer"
         />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
       <div className="p-8">
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag: string) => (
-            <span key={tag} className="text-[10px] font-mono px-2 py-1 bg-white/5 rounded border border-white/10 text-slate-400">
+            <span key={tag} className="text-[10px] font-mono px-2 py-1 bg-white/5 rounded-full border border-white/10 text-slate-400 group-hover:border-brand-500/20 group-hover:text-brand-300 transition-colors">
               {tag}
             </span>
           ))}
         </div>
         <h3 className="text-2xl font-bold mb-3 group-hover:text-brand-400 transition-colors">{project.title}</h3>
-        <p className="text-slate-400 text-sm leading-relaxed mb-6">
+        <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-2 group-hover:line-clamp-none transition-all duration-500">
           {project.description}
         </p>
         <div className="flex items-center gap-4">
-          <a href={project.link} className="text-white hover:text-brand-400 transition-colors flex items-center gap-1 text-sm font-semibold">
+          <a href={project.link} className="px-4 py-2 bg-white/5 hover:bg-brand-500 text-white rounded-full transition-all flex items-center gap-2 text-xs font-bold border border-white/10 hover:border-brand-500">
             {t.projects.liveDemo} <ExternalLink size={14} />
           </a>
           {project.github && (
-            <a href={project.github} className="text-slate-400 hover:text-white transition-colors flex items-center gap-1 text-sm font-semibold">
-              {t.projects.source} <Github size={14} />
+            <a href={project.github} className="p-2 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-full transition-all border border-white/10">
+              <Github size={18} />
             </a>
           )}
         </div>
@@ -303,18 +321,19 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
 
 const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: string[]; icon: any; key?: string | number }) => (
   <motion.div 
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="glass p-8 rounded-3xl"
+    whileHover={{ y: -5 }}
+    className="glass p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group"
   >
-    <div className="w-12 h-12 bg-brand-500/10 rounded-2xl flex items-center justify-center mb-6 text-brand-400">
+    <div className="w-12 h-12 bg-brand-500/10 rounded-2xl flex items-center justify-center mb-6 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500">
       <Icon size={24} />
     </div>
-    <h3 className="text-xl font-bold mb-4">{title}</h3>
+    <h3 className="text-xl font-bold mb-4 group-hover:text-brand-400 transition-colors">{title}</h3>
     <div className="flex flex-wrap gap-2">
       {skills.map(skill => (
-        <span key={skill} className="px-3 py-1 bg-white/5 rounded-full text-xs text-slate-300 border border-white/5">
+        <span key={skill} className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-medium text-slate-400 border border-white/5 group-hover:border-brand-500/20 group-hover:text-brand-300 transition-colors">
           {skill}
         </span>
       ))}
@@ -374,6 +393,14 @@ export default function App() {
     restDelta: 0.001
   });
 
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('johnnynkunku@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   if (showCV) {
     return <CV language={language} onBack={() => setShowCV(false)} />;
   }
@@ -409,11 +436,11 @@ export default function App() {
             </p>
             <div className="grid grid-cols-2 gap-4 md:gap-8 mb-10">
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">50+</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{t.about.stats.projectsValue}</div>
                 <div className="text-[10px] md:text-sm text-slate-500 uppercase tracking-wider">{t.about.stats.projects}</div>
               </div>
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">6+</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{t.about.stats.experienceValue}</div>
                 <div className="text-[10px] md:text-sm text-slate-500 uppercase tracking-wider">{t.about.stats.experience}</div>
               </div>
             </div>
@@ -529,15 +556,24 @@ export default function App() {
               </p>
               
               <div className="space-y-4 md:space-y-6">
-                <a href="mailto:johnnynkunku@gmail.com" className="flex items-center gap-4 text-white hover:text-brand-400 transition-colors group">
+                <div className="flex items-center gap-4 text-white group">
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-brand-500/20 transition-colors">
                     <Mail size={18} />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <div className="text-[10px] text-slate-500 uppercase tracking-wider">{t.contact.email}</div>
-                    <div className="text-sm md:text-base font-semibold truncate max-w-[200px] sm:max-w-none">johnnynkunku@gmail.com</div>
+                    <div className="flex items-center gap-2">
+                      <div className="text-sm md:text-base font-semibold truncate max-w-[150px] sm:max-w-none">johnnynkunku@gmail.com</div>
+                      <button 
+                        onClick={copyEmail}
+                        className="p-1.5 bg-white/5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+                        title="Copy Email"
+                      >
+                        {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
+                      </button>
+                    </div>
                   </div>
-                </a>
+                </div>
                 <div className="flex items-center gap-4 text-white group">
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-brand-500/20 transition-colors">
                     <Globe size={18} />
@@ -583,14 +619,27 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/5">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-slate-500 text-sm">
-            {t.footer.rights}
-          </div>
-          <div className="flex gap-8">
-            <a href="#" className="text-slate-500 hover:text-white transition-colors text-sm">{t.footer.privacy}</a>
-            <a href="#" className="text-slate-500 hover:text-white transition-colors text-sm">{t.footer.terms}</a>
+      <footer className="py-12 border-t border-white/5 relative">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex flex-col gap-4">
+              <div className="text-slate-500 text-sm">
+                {t.footer.rights}
+              </div>
+              <div className="flex gap-6">
+                <a href="#" className="text-slate-500 hover:text-white transition-colors text-xs">{t.footer.privacy}</a>
+                <a href="#" className="text-slate-500 hover:text-white transition-colors text-xs">{t.footer.terms}</a>
+              </div>
+            </div>
+            
+            <motion.button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              whileHover={{ y: -5 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center shadow-lg shadow-brand-500/20 hover:bg-brand-600 transition-colors"
+            >
+              <ArrowUp size={20} />
+            </motion.button>
           </div>
         </div>
       </footer>
