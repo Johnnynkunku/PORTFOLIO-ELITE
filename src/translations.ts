@@ -22,8 +22,8 @@ export const translations = {
     about: {
       subtitle: "À Propos de Moi",
       title: "L'Architecte derrière le Code",
-      p1: "Je suis Johnny Nkunku, ingénieur IT, programmeur et développeur, passionné par le domaine informatique tel que les réseaux, la programmation, le cloud et l'intelligence artificielle. Je suis actuellement au début de mon parcours professionnel, avec une soif d'apprendre et de relever de nouveaux défis.",
-      p2: "Mon double parcours en développement logiciel et infrastructure IT me permet de combler le fossé entre le code et le matériel. Je me concentre sur l'acquisition de nouvelles compétences et la création de solutions innovantes.",
+      p1: "Je suis Johnny Nkunku, originaire de Muanda, ingénieur IT et programmeur full-stack. Mon parcours est unique : formé en mécanique générale et automobile, j'ai ensuite pivoté vers l'informatique avec une licence en maintenance et réseaux à l'ISETC Muanda (promotion 2025).",
+      p2: "Cette double compétence en mécanique et en informatique me permet d'avoir une vision globale des systèmes, du matériel au logiciel. Je suis passionné par l'innovation et la création de solutions techniques robustes.",
       stats: {
         projects: "Projets Réalisés",
         projectsValue: "10+",
@@ -57,6 +57,8 @@ export const translations = {
       title: "Construisons Quelque Chose de Grand",
       description: "Je suis toujours ouvert à la discussion sur de nouveaux projets, des idées créatives ou des opportunités de faire partie de vos visions.",
       email: "Email",
+      phone: "Téléphone",
+      phoneValue: "+(243) 842 676 790",
       location: "Localisation",
       locationValue: "Kinshasa, RDC (Disponible à distance)",
       form: {
@@ -80,7 +82,39 @@ export const translations = {
       title: "Curriculum Vitae",
       personalInfo: "Informations Personnelles",
       education: "Formation",
+      educationList: [
+        {
+          degree: "Licence en Maintenance et Réseaux",
+          institution: "ISETC Muanda",
+          period: "2021 - 2025 (En cours)"
+        },
+        {
+          degree: "Certification Cisco IT",
+          institution: "Cisco Networking Academy",
+          period: "2024"
+        },
+        {
+          degree: "Formation en Mécanique Automobile",
+          institution: "INPP",
+          period: "2022"
+        },
+        {
+          degree: "Diplôme d'État en Mécanique Générale",
+          institution: "ITP Banana (Muanda)",
+          period: "2017 - 2021"
+        }
+      ],
+      credly: "Profil Credly",
+      credlyLink: "https://www.credly.com/users/johnny-nkunku",
       languages: "Langues",
+      languageList: {
+        french: "Français",
+        frenchLevel: "Natif",
+        english: "Anglais",
+        englishLevel: "Basique",
+        arabic: "Arabe",
+        arabicLevel: "Intermédiaire"
+      },
       interests: "Centres d'intérêt"
     }
   },
@@ -105,8 +139,8 @@ export const translations = {
     about: {
       subtitle: "About Me",
       title: "The Architect Behind the Code",
-      p1: "I'm Johnny Nkunku, an IT Engineer, programmer, and developer, passionate about the IT field such as networking, programming, cloud computing, and artificial intelligence. I am currently at the beginning of my professional journey, eager to learn and take on new challenges.",
-      p2: "My dual background in software development and IT infrastructure allows me to bridge the gap between code and hardware. I am focused on acquiring new skills and building innovative solutions.",
+      p1: "I'm Johnny Nkunku, originally from Muanda, an IT engineer and full-stack programmer. My journey is unique: trained in general and automotive mechanics, I then pivoted to IT with a bachelor's degree in maintenance and networks at ISETC Muanda (class of 2025).",
+      p2: "This dual expertise in mechanics and IT allows me to have a global vision of systems, from hardware to software. I am passionate about innovation and creating robust technical solutions.",
       stats: {
         projects: "Projects Completed",
         projectsValue: "10+",
@@ -140,6 +174,8 @@ export const translations = {
       title: "Let's Build Something Great",
       description: "I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.",
       email: "Email",
+      phone: "Phone",
+      phoneValue: "+(243) 842 676 790",
       location: "Location",
       locationValue: "Kinshasa, DRC (Remote Friendly)",
       form: {
@@ -163,7 +199,39 @@ export const translations = {
       title: "Curriculum Vitae",
       personalInfo: "Personal Information",
       education: "Education",
+      educationList: [
+        {
+          degree: "Bachelor's in Maintenance and Networks",
+          institution: "ISETC Muanda",
+          period: "2021 - 2025 (Ongoing)"
+        },
+        {
+          degree: "Cisco IT Certification",
+          institution: "Cisco Networking Academy",
+          period: "2024"
+        },
+        {
+          degree: "Automotive Mechanics Training",
+          institution: "INPP",
+          period: "2022"
+        },
+        {
+          degree: "State Diploma in General Mechanics",
+          institution: "ITP Banana (Muanda)",
+          period: "2017 - 2021"
+        }
+      ],
+      credly: "Credly Profile",
+      credlyLink: "https://www.credly.com/users/johnny-nkunku",
       languages: "Languages",
+      languageList: {
+        french: "French",
+        frenchLevel: "Native",
+        english: "English",
+        englishLevel: "Basic",
+        arabic: "Arabic",
+        arabicLevel: "Intermediate"
+      },
       interests: "Interests"
     }
   },
@@ -188,8 +256,8 @@ export const translations = {
     about: {
       subtitle: "عني",
       title: "المهندس وراء الكود",
-      p1: "أنا جوني نكونكو، مهندس تقنية معلومات ومبرمج ومطور، شغوف بمجال المعلوماتية مثل الشبكات والبرمجة والسحابة والذكاء الاصطناعي. أنا حالياً في بداية مسيرتي المهنية، وأتطلع للتعلم ومواجهة تحديات جديدة.",
-      p2: "خلفيتي المزدوجة في تطوير البرمجيات والبنية تحتية لتكنولوجيا المعلومات تسمح لي بسد الفجوة بين الكود والأجهزة. أركز على اكتساب مهارات جديدة وبناء حلول مبتكرة.",
+      p1: "أنا جوني نكونكو، أصلاً من مواندا، مهندس تقنية معلومات ومبرمج شامل. رحلتي فريدة: تدربت في الميكانيكا العامة وميكانيكا السيارات، ثم انتقلت إلى تكنولوجيا المعلومات مع درجة الليسانس في الصيانة والشبكات في ISETC Muanda (دفعة 2025).",
+      p2: "هذه الخبرة المزدوجة في الميكانيكا وتكنولوجيا المعلومات تسمح لي بامتلاك رؤية شاملة للأنظمة، من الأجهزة إلى البرمجيات. أنا شغوف بالابتكار وإنشاء حلول تقنية قوية.",
       stats: {
         projects: "مشاريع مكتملة",
         projectsValue: "+10",
@@ -223,6 +291,8 @@ export const translations = {
       title: "لنبنِ شيئاً عظيماً",
       description: "أنا دائماً منفتح لمناقشة المشاريع الجديدة، الأفكار الإبداعية أو الفرص لتكون جزءاً من رؤاكم.",
       email: "البريد الإلكتروني",
+      phone: "الهاتف",
+      phoneValue: "+(243) 842 676 790",
       location: "الموقع",
       locationValue: "كينشاسا، جمهورية الكونغو الديمقراطية (متاح للعمل عن بعد)",
       form: {
@@ -246,7 +316,39 @@ export const translations = {
       title: "السيرة الذاتية",
       personalInfo: "المعلومات الشخصية",
       education: "التعليم",
+      educationList: [
+        {
+          degree: "ليسانس في الصيانة والشبكات",
+          institution: "ISETC Muanda",
+          period: "2021 - 2025 (قيد الدراسة)"
+        },
+        {
+          degree: "شهادة سيسكو في تقنية المعلومات",
+          institution: "أكاديمية سيسكو للشبكات",
+          period: "2024"
+        },
+        {
+          degree: "تدريب في ميكانيكا السيارات",
+          institution: "INPP",
+          period: "2022"
+        },
+        {
+          degree: "دبلوم الدولة في الميكانيكا العامة",
+          institution: "ITP Banana (Muanda)",
+          period: "2017 - 2021"
+        }
+      ],
+      credly: "ملف Credly",
+      credlyLink: "https://www.credly.com/users/johnny-nkunku",
       languages: "اللغات",
+      languageList: {
+        french: "الفرنسية",
+        frenchLevel: "أصلي",
+        english: "الإنجليزية",
+        englishLevel: "أساسي",
+        arabic: "العربية",
+        arabicLevel: "متوسط"
+      },
       interests: "الاهتمامات"
     }
   }

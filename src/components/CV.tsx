@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
 
 export default function CV({ language, onBack }: { language: Language; onBack: () => void }) {
@@ -31,9 +31,20 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           </div>
           <div className="relative z-10 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black mb-3 tracking-tighter">Johnny Nkunku</h1>
-            <p className="text-brand-400 text-xl md:text-2xl font-bold uppercase tracking-widest">{language === 'ar' ? 'مهندس صيانة وشبكات ومطور شامل' : 'Ingénieur Maintenance & Full-Stack'}</p>
+            <p className="text-brand-400 text-xl md:text-2xl font-bold uppercase tracking-widest">
+              {language === 'ar' ? 'مهندس تقنية معلومات ومبرمج شامل' : 
+               language === 'en' ? 'IT Engineer & Full-Stack Programmer' : 
+               'Ingénieur IT & Programmeur Full-Stack'}
+            </p>
             <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4 sm:gap-8 text-sm md:text-base text-slate-400 font-medium">
               <span className="flex items-center gap-3"><Mail size={18} className="text-brand-500 shrink-0"/> johnnynkunku@gmail.com</span>
+              <span className="flex items-center gap-3"><Phone size={18} className="text-brand-500 shrink-0"/> {t.contact.phoneValue}</span>
+              <a href="https://github.com/Johnnynkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
+                <Github size={18} className="text-brand-500 shrink-0"/> github.com/Johnnynkunku
+              </a>
+              <a href="https://linkedin.com/in/johnny-nkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
+                <Linkedin size={18} className="text-brand-500 shrink-0"/> linkedin.com/in/johnny-nkunku
+              </a>
               <span className="flex items-center gap-3"><MapPin size={18} className="text-brand-500 shrink-0"/> Kinshasa, RDC</span>
             </div>
           </div>
@@ -64,6 +75,36 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
             </div>
           </section>
 
+          <section>
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter">{t.cv.education}</h2>
+              <div className="h-px flex-1 bg-slate-100" />
+            </div>
+            <div className="grid sm:grid-cols-2 gap-8">
+              {(t.cv as any).educationList.map((edu: any, i: number) => (
+                <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 group hover:border-brand-500 transition-colors">
+                  <div className="w-10 h-10 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-600 mb-4 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                    <GraduationCap size={20} />
+                  </div>
+                  <h3 className="text-lg font-black text-slate-900 mb-1">{edu.degree}</h3>
+                  <p className="text-slate-500 text-sm font-bold mb-2">{edu.institution}</p>
+                  <span className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-widest">{edu.period}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8">
+              <a 
+                href={(t.cv as any).credlyLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-brand-600 transition-all shadow-lg shadow-slate-900/10"
+              >
+                <ExternalLink size={16} className="text-brand-400" />
+                {(t.cv as any).credly}
+              </a>
+            </div>
+          </section>
+
           <div className="grid sm:grid-cols-2 gap-12 md:gap-20">
             <section>
               <div className="flex items-center gap-4 mb-8">
@@ -80,13 +121,13 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
             </section>
             <section>
               <div className="flex items-center gap-4 mb-8">
-                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter">{language === 'ar' ? 'لغات' : 'Langues'}</h2>
+                <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter">{(t.cv as any).languages}</h2>
                 <div className="h-px flex-1 bg-slate-100" />
               </div>
               <div className="space-y-4 text-sm md:text-base text-slate-600 font-bold">
-                <div className="flex justify-between items-center"><span>Français</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">Natif</span></div>
-                <div className="flex justify-between items-center"><span>English</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">Avancé</span></div>
-                <div className="flex justify-between items-center"><span>Arabe</span> <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-xs uppercase tracking-widest">Basique</span></div>
+                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.french}</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.frenchLevel}</span></div>
+                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.english}</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.englishLevel}</span></div>
+                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.arabic}</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.arabicLevel}</span></div>
               </div>
             </section>
           </div>

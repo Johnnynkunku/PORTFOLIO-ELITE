@@ -192,7 +192,7 @@ const Hero = ({ language }: { language: Language }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-6 leading-[1.1] relative"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold tracking-tight mb-6 leading-[1.1] relative"
           >
             {t.hero.title}{" "}
             <span className="relative inline-block">
@@ -233,10 +233,24 @@ const Hero = ({ language }: { language: Language }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed"
           >
             {t.hero.description}
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <a href="#projects" className="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold transition-all shadow-lg shadow-brand-500/25">
+              {t.hero.viewProjects}
+            </a>
+            <a href="#contact" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full font-bold transition-all">
+              {t.hero.contactMe}
+            </a>
+          </motion.div>
         </div>
       </div>
 
@@ -419,56 +433,91 @@ export default function App() {
       <Hero language={language} />
 
       {/* About Section */}
-      <section id="about" className="py-16 md:py-24 container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="order-2 md:order-1"
-          >
-            <SectionTitle title={t.about.title} subtitle={t.about.subtitle} language={language} />
-            <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-6">
-              {t.about.p1}
-            </p>
-            <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-8">
-              {t.about.p2}
-            </p>
-            <div className="grid grid-cols-2 gap-4 md:gap-8 mb-10">
-              <div>
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{t.about.stats.projectsValue}</div>
-                <div className="text-[10px] md:text-sm text-slate-500 uppercase tracking-wider">{t.about.stats.projects}</div>
-              </div>
-              <div>
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{t.about.stats.experienceValue}</div>
-                <div className="text-[10px] md:text-sm text-slate-500 uppercase tracking-wider">{t.about.stats.experience}</div>
-              </div>
-            </div>
-            <button 
-              onClick={() => setShowCV(true)}
-              className="px-8 py-4 bg-white text-slate-950 hover:bg-slate-200 rounded-full font-bold transition-all flex items-center gap-2"
+      <section id="about" className="py-24 md:py-32 relative overflow-hidden">
+        {/* Background Decorations */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-brand-500/10 rounded-full blur-[100px] -ml-32" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] -mr-48 -mb-48" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1"
             >
-              <Download size={18} />
-              {t.nav.resume}
-            </button>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative order-1 md:order-2"
-          >
-            <div className="aspect-square rounded-3xl overflow-hidden glass p-3 md:p-4 max-w-md mx-auto">
-              <img 
-                src="input_file_0.png" 
-                alt="Johnny Nkunku" 
-                className="w-full h-full object-cover rounded-2xl brightness-110 contrast-110 shadow-[0_0_50px_rgba(51,84,255,0.3)]"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-24 h-24 md:w-32 md:h-32 bg-brand-500 rounded-3xl -z-10 blur-2xl opacity-50" />
-          </motion.div>
+              <SectionTitle title={t.about.title} subtitle={t.about.subtitle} language={language} />
+              <div className="space-y-6">
+                <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
+                  {t.about.p1}
+                </p>
+                <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
+                  {t.about.p2}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-8 mt-12 mb-12">
+                <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-500/30 transition-colors group">
+                  <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-brand-400 transition-colors">{t.about.stats.projectsValue}</div>
+                  <div className="text-xs font-black text-slate-500 uppercase tracking-widest">{t.about.stats.projects}</div>
+                </div>
+                <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-500/30 transition-colors group">
+                  <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-brand-400 transition-colors">{t.about.stats.experienceValue}</div>
+                  <div className="text-xs font-black text-slate-500 uppercase tracking-widest">{t.about.stats.experience}</div>
+                </div>
+              </div>
+
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowCV(true)}
+                className="px-10 py-5 bg-white text-slate-950 hover:bg-brand-500 hover:text-white rounded-full font-black uppercase tracking-widest text-sm transition-all flex items-center gap-3 shadow-xl shadow-white/5"
+              >
+                <Download size={20} />
+                {t.nav.resume}
+              </motion.button>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: isRtl ? -50 : 50 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative order-1 lg:order-2"
+            >
+              <div className="relative group">
+                {/* Main Image Frame */}
+                <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl">
+                  <img 
+                    src="input_file_0.png" 
+                    alt="Johnny Nkunku" 
+                    className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale group-hover:grayscale-0 transition-all duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute -top-6 -right-6 w-32 h-32 bg-brand-500/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl" />
+                
+                {/* Experience Badge */}
+                <motion.div 
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -bottom-6 -right-6 z-20 glass px-6 py-4 rounded-3xl border border-white/10 shadow-2xl flex items-center gap-4"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-brand-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+                    <Cpu size={24} />
+                  </div>
+                  <div>
+                    <div className="text-white font-black text-lg leading-none">2025</div>
+                    <div className="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">Promotion</div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -572,6 +621,17 @@ export default function App() {
                         {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
                       </button>
                     </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 text-white group">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-brand-500/20 transition-colors">
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-slate-500 uppercase tracking-wider">{t.contact.phone}</div>
+                    <div className="text-sm md:text-base font-semibold">{t.contact.phoneValue}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 text-white group">
