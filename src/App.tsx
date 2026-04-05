@@ -175,7 +175,7 @@ const Hero = ({ language }: { language: Language }) => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -234,7 +234,7 @@ const Hero = ({ language }: { language: Language }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl leading-relaxed"
           >
             {t.hero.description}
           </motion.p>
@@ -243,7 +243,7 @@ const Hero = ({ language }: { language: Language }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-start gap-4"
           >
             <a href="#projects" className="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold transition-all shadow-lg shadow-brand-500/25">
               {t.hero.viewProjects}
