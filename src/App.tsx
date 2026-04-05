@@ -18,7 +18,8 @@ import {
   Sparkles,
   ArrowUp,
   Copy,
-  Check
+  Check,
+  Settings
 } from 'lucide-react';
 import { cn } from './lib/utils';
 import { Language, translations, PROJECT_DATA, EXPERIENCE_DATA } from './translations';
@@ -408,6 +409,32 @@ export default function App() {
   });
 
   const [copied, setCopied] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isBottomArrowVisible, setIsBottomArrowVisible] = useState(false);
+  const footerArrowRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+    };
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsBottomArrowVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (footerArrowRef.current) {
+      observer.observe(footerArrowRef.current);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
 
   const copyEmail = () => {
     navigator.clipboard.writeText('johnnynkunku@gmail.com');
@@ -432,6 +459,21 @@ export default function App() {
       
       <Hero language={language} />
 
+      {/* Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && !isBottomArrowVisible && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-8 right-8 z-[100] w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-brand-500/40 hover:bg-brand-600 transition-all"
+          >
+            <ArrowUp size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* About Section */}
       <section id="about" className="py-24 md:py-32 relative overflow-hidden">
         {/* Background Decorations */}
@@ -439,13 +481,13 @@ export default function App() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] -mr-48 -mb-48" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
             <motion.div
               initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1"
+              className="order-2 md:order-1"
             >
               <SectionTitle title={t.about.title} subtitle={t.about.subtitle} language={language} />
               <div className="space-y-6">
@@ -484,7 +526,7 @@ export default function App() {
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative order-1 lg:order-2"
+              className="relative order-1 md:order-2"
             >
               <div className="relative group">
                 {/* Main Image Frame */}
@@ -546,11 +588,12 @@ export default function App() {
       {/* Skills Section */}
       <section id="skills" className="py-24 container mx-auto px-6">
         <SectionTitle title={t.skills.title} subtitle={t.skills.subtitle} language={language} />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <SkillCategory title={t.skills.categories.frontend} skills={translations[language].skills.categories.frontend === 'Frontend' ? ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] : ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion']} icon={Globe} />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <SkillCategory title={t.skills.categories.frontend} skills={['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion']} icon={Globe} />
           <SkillCategory title={t.skills.categories.backend} skills={['Node.js', 'Go', 'Python', 'PostgreSQL', 'Redis']} icon={Server} />
           <SkillCategory title={t.skills.categories.infrastructure} skills={['Docker', 'Kubernetes', 'AWS', 'Terraform', 'CI/CD']} icon={Cloud} />
           <SkillCategory title={t.skills.categories.systems} skills={['Git', 'Linux', 'Nginx', 'Grafana', 'Prometheus']} icon={Cpu} />
+          <SkillCategory title={language === 'ar' ? 'الميكانيكا' : 'Mécanique'} skills={['Maintenance Auto', 'Diagnostic', 'Ingénierie', 'Réparation']} icon={Settings} />
         </div>
       </section>
 
@@ -693,6 +736,7 @@ export default function App() {
             </div>
             
             <motion.button
+              ref={footerArrowRef}
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               whileHover={{ y: -5 }}
               whileTap={{ scale: 0.9 }}

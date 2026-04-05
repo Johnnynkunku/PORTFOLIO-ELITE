@@ -456,6 +456,16 @@ export const EXPERIENCE_DATA = {
         "Configuration de réseaux locaux et dépannage de premier niveau.",
         "Participation à des projets de déploiement d'infrastructure IT."
       ]
+    },
+    {
+      company: "INPP & ITP Banana",
+      role: "Technicien en Mécanique",
+      period: "2017 - 2022",
+      description: [
+        "Maintenance générale et automobile.",
+        "Diagnostic technique et réparation de systèmes mécaniques.",
+        "Base solide en ingénierie physique et structurelle."
+      ]
     }
   ],
   en: [
@@ -478,6 +488,16 @@ export const EXPERIENCE_DATA = {
         "Configuring local networks and first-level troubleshooting.",
         "Participating in IT infrastructure deployment projects."
       ]
+    },
+    {
+      company: "INPP & ITP Banana",
+      role: "Mechanics Technician",
+      period: "2017 - 2022",
+      description: [
+        "General and automotive maintenance.",
+        "Technical diagnosis and repair of mechanical systems.",
+        "Solid foundation in physical and structural engineering."
+      ]
     }
   ],
   ar: [
@@ -499,6 +519,16 @@ export const EXPERIENCE_DATA = {
         "المساعدة في الصيانة الوقائية والعلاجية لأجهزة الكمبيوتر.",
         "تكوين الشبكات المحلية واستكشاف الأخطاء وإصلاحها من المستوى الأول.",
         "المشاركة في مشاريع نشر البنية التحتية لتكنولوجيا المعلومات."
+      ]
+    },
+    {
+      company: "INPP & ITP Banana",
+      role: "فني ميكانيكا",
+      period: "2017 - 2022",
+      description: [
+        "الصيانة العامة وميكانيكا السيارات.",
+        "التشخيص الفني وإصلاح الأنظمة الميكانيكية.",
+        "أساس متين في الهندسة الفيزيائية والإنشائية."
       ]
     }
   ]
