@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FormEvent } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
+import emailjs from '@emailjs/browser';
 import { 
   Github, 
   Linkedin, 
@@ -396,6 +397,125 @@ const CustomCursor = () => {
   );
 };
 
+const ContactForm = ({ language, t }: { language: Language, t: any }) => {
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (isSending) return;
+
+    // Honeypot check
+    const formData = new FormData(formRef.current!);
+    if (formData.get('bot_field')) {
+      console.log('Bot detected');
+      setStatus('success'); // Pretend it worked to fool the bot
+      return;
+    }
+
+    setIsSending(true);
+    setStatus('idle');
+
+    try {
+      // Basic security: simple honeypot or validation could be added here
+      // For now, we'll use emailjs
+      // Note: User needs to provide their own Service ID, Template ID, and Public Key
+      // I'll use placeholders and instructions
+      
+      const result = await emailjs.sendForm(
+        'service_id', // Replace with your Service ID
+        'template_id', // Replace with your Template ID
+        formRef.current!,
+        'public_key' // Replace with your Public Key
+      );
+
+      if (result.text === 'OK') {
+        setStatus('success');
+        formRef.current?.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setStatus('error');
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  return (
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot field - hidden from users */}
+      <input type="text" name="bot_field" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+      
+      <div className="grid sm:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.name}</label>
+          <input 
+            required
+            name="user_name"
+            type="text" 
+            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors" 
+            placeholder={t.contact.form.placeholderName} 
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.email}</label>
+          <input 
+            required
+            name="user_email"
+            type="email" 
+            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors" 
+            placeholder={t.contact.form.placeholderEmail} 
+          />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.message}</label>
+        <textarea 
+          required
+          name="message"
+          rows={4} 
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors resize-none" 
+          placeholder={t.contact.form.placeholderMessage} 
+        />
+      </div>
+      <button 
+        type="submit" 
+        disabled={isSending}
+        className={cn(
+          "w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2",
+          isSending ? "bg-slate-700 cursor-not-allowed" : "bg-brand-500 hover:bg-brand-600 text-white"
+        )}
+      >
+        {isSending ? (
+          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        ) : t.contact.form.send}
+      </button>
+
+      {status === 'success' && (
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-green-400 text-sm text-center font-medium"
+        >
+          {language === 'ar' ? 'تم إرسال الرسالة بنجاح!' : language === 'en' ? 'Message sent successfully!' : 'Message envoyé avec succès !'}
+        </motion.p>
+      )}
+      {status === 'error' && (
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-red-400 text-sm text-center font-medium"
+        >
+          {language === 'ar' ? 'حدث خطأ ما. حاول مرة أخرى.' : language === 'en' ? 'Something went wrong. Try again.' : 'Une erreur est survenue. Réessayez.'}
+        </motion.p>
+      )}
+    </form>
+  );
+};
+
 export default function App() {
   const [language, setLanguage] = useState<Language>('fr');
   const [showCV, setShowCV] = useState(false);
@@ -536,6 +656,9 @@ export default function App() {
                     alt="Johnny Nkunku" 
                     className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale group-hover:grayscale-0 transition-all duration-700"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/800/1000";
+                    }}
                   />
                 </div>
 
@@ -554,7 +677,9 @@ export default function App() {
                   </div>
                   <div>
                     <div className="text-white font-black text-lg leading-none">2025</div>
-                    <div className="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">Promotion</div>
+                    <div className="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">
+                      {language === 'ar' ? 'خريج' : language === 'en' ? 'Graduate' : 'Diplômé'}
+                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -698,25 +823,7 @@ export default function App() {
               </div>
             </div>
 
-            <form className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.name}</label>
-                  <input type="text" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors" placeholder={t.contact.form.placeholderName} />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.email}</label>
-                  <input type="email" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors" placeholder={t.contact.form.placeholderEmail} />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.message}</label>
-                <textarea rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors resize-none" placeholder={t.contact.form.placeholderMessage} />
-              </div>
-              <button type="button" className="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-2xl font-bold transition-all">
-                {t.contact.form.send}
-              </button>
-            </form>
+            <ContactForm language={language} t={t} />
           </div>
         </div>
       </section>

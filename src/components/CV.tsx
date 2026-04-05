@@ -1,21 +1,31 @@
+import { useRef } from 'react';
 import { motion } from 'motion/react';
 import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
+import { useReactToPrint } from 'react-to-print';
 
 export default function CV({ language, onBack }: { language: Language; onBack: () => void }) {
   const t = translations[language];
   const isRtl = language === 'ar';
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: componentRef,
+    documentTitle: `Johnny_Nkunku_CV_${language.toUpperCase()}`,
+  });
+
   return (
     <div className="min-h-screen bg-white text-slate-900 p-4 md:p-8 lg:p-12 font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="max-w-4xl mx-auto mb-6 md:mb-8 flex justify-between items-center print:hidden">
         <button onClick={onBack} className="flex items-center gap-2 text-slate-600 hover:text-brand-600 transition-colors text-sm md:text-base">
           <ArrowLeft size={18} className={isRtl ? "rotate-180" : ""} /> {t.cv.back}
         </button>
-        <button onClick={() => window.print()} className="flex items-center gap-2 bg-brand-600 text-white px-4 md:px-6 py-2 rounded-full hover:bg-brand-700 transition-colors shadow-lg text-sm md:text-base">
+        <button onClick={() => handlePrint()} className="flex items-center gap-2 bg-brand-600 text-white px-4 md:px-6 py-2 rounded-full hover:bg-brand-700 transition-colors shadow-lg text-sm md:text-base">
           <Download size={18} /> {t.cv.download}
         </button>
       </div>
       <motion.div 
+        ref={componentRef}
         initial={{ opacity: 0, y: 40 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -27,7 +37,14 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-[100px] -mr-32 -mt-32" />
           
           <div className="w-40 h-40 rounded-3xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl relative z-10">
-            <img src="input_file_0.png" alt="Johnny Nkunku" className="w-full h-full object-cover brightness-110 contrast-110" />
+            <img 
+              src="input_file_0.png" 
+              alt="Johnny Nkunku" 
+              className="w-full h-full object-cover brightness-110 contrast-110"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/400/400";
+              }}
+            />
           </div>
           <div className="relative z-10 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black mb-3 tracking-tighter">Johnny Nkunku</h1>
