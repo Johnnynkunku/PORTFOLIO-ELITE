@@ -1,18 +1,51 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2 } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
-import { useReactToPrint } from 'react-to-print';
+// @ts-ignore
+import html2pdf from 'html2pdf.js';
 
 export default function CV({ language, onBack }: { language: Language; onBack: () => void }) {
   const t = translations[language];
   const isRtl = language === 'ar';
   const componentRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
 
-  const handlePrint = useReactToPrint({
-    contentRef: componentRef,
-    documentTitle: `Johnny_Nkunku_CV_${language.toUpperCase()}`,
-  });
+  const onDownload = async () => {
+    if (!componentRef.current || isDownloading) return;
+    
+    setIsDownloading(true);
+    console.log('Generating PDF for download...');
+
+    try {
+      const element = componentRef.current;
+      const opt = {
+        margin: [0.2, 0.2] as [number, number],
+        filename: `Johnny_Nkunku_CV_${language.toUpperCase()}.pdf`,
+        image: { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true,
+          letterRendering: true,
+          scrollY: 0,
+          windowWidth: 1200
+        },
+        jsPDF: { unit: 'in' as const, format: 'a4' as const, orientation: 'portrait' as const },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      // Temporarily remove some classes for better PDF generation if needed
+      // but here we just run it
+      await html2pdf().set(opt).from(element).save();
+      console.log('PDF generated successfully');
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      // Fallback to standard print if PDF generation fails
+      window.print();
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 p-4 md:p-8 lg:p-12 font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
@@ -20,8 +53,17 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
         <button onClick={onBack} className="flex items-center gap-2 text-slate-600 hover:text-brand-600 transition-colors text-sm md:text-base">
           <ArrowLeft size={18} className={isRtl ? "rotate-180" : ""} /> {t.cv.back}
         </button>
-        <button onClick={() => handlePrint()} className="flex items-center gap-2 bg-brand-600 text-white px-4 md:px-6 py-2 rounded-full hover:bg-brand-700 transition-colors shadow-lg text-sm md:text-base">
-          <Download size={18} /> {t.cv.download}
+        <button 
+          onClick={onDownload} 
+          disabled={isDownloading}
+          className="flex items-center gap-2 bg-brand-600 text-white px-4 md:px-6 py-2 rounded-full hover:bg-brand-700 active:scale-95 transition-all shadow-lg text-sm md:text-base font-bold disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+          {isDownloading ? (
+            <Loader2 size={18} className="animate-spin" />
+          ) : (
+            <Download size={18} />
+          )}
+          {isDownloading ? (language === 'ar' ? 'جاري التحميل...' : 'Downloading...') : t.cv.download}
         </button>
       </div>
       <motion.div 

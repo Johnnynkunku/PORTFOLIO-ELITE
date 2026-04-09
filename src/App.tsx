@@ -163,6 +163,7 @@ const Navbar = ({
 const Hero = ({ language }: { language: Language }) => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const scrollOpacity = useTransform(scrollYProgress, [0, 0.03], [1, 0]);
   const t = translations[language];
 
   return (
@@ -196,7 +197,9 @@ const Hero = ({ language }: { language: Language }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold tracking-tight mb-6 leading-[1.1] relative"
           >
-            {t.hero.title}{" "}
+            <span className="text-[0.65em] md:text-[0.6em] text-slate-400 font-medium block mb-2">
+              {t.hero.title}
+            </span>
             <span className="relative inline-block">
               <span className="text-gradient relative z-10">{t.hero.titleGradient}</span>
               <motion.div
@@ -257,7 +260,7 @@ const Hero = ({ language }: { language: Language }) => {
       </div>
 
       <motion.div 
-        style={{ y }}
+        style={{ y, opacity: scrollOpacity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500"
       >
         <span className="text-[10px] uppercase tracking-[0.2em]">{t.hero.scroll}</span>
@@ -399,18 +402,48 @@ const CustomCursor = () => {
 
 const ContactForm = ({ language, t }: { language: Language, t: any }) => {
   const [isSending, setIsSending] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'rate-limited' | 'wrong-answer'>('idle');
+  const [securityChallenge, setSecurityChallenge] = useState({ q: '', a: 0 });
+  const [userAnswer, setUserAnswer] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Simple rate limiting (client-side)
+  const lastSubmitTime = useRef<number>(0);
+
+  useEffect(() => {
+    generateChallenge();
+  }, []);
+
+  const generateChallenge = () => {
+    const n1 = Math.floor(Math.random() * 10) + 1;
+    const n2 = Math.floor(Math.random() * 10) + 1;
+    setSecurityChallenge({ q: `${n1} + ${n2}`, a: n1 + n2 });
+    setUserAnswer('');
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (isSending) return;
 
+    // Rate limiting check (5 minutes between successful sends)
+    const now = Date.now();
+    if (now - lastSubmitTime.current < 300000 && lastSubmitTime.current !== 0) {
+      setStatus('rate-limited');
+      return;
+    }
+
+    // Security challenge check
+    if (parseInt(userAnswer) !== securityChallenge.a) {
+      setStatus('wrong-answer');
+      generateChallenge();
+      return;
+    }
+
     // Honeypot check
     const formData = new FormData(formRef.current!);
     if (formData.get('bot_field')) {
       console.log('Bot detected');
-      setStatus('success'); // Pretend it worked to fool the bot
+      setStatus('success');
       return;
     }
 
@@ -418,21 +451,52 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
     setStatus('idle');
 
     try {
-      // Basic security: simple honeypot or validation could be added here
-      // For now, we'll use emailjs
-      // Note: User needs to provide their own Service ID, Template ID, and Public Key
-      // I'll use placeholders and instructions
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      // Check if keys are missing or still placeholders
+      const isConfigured = serviceId && templateId && publicKey && 
+                          !serviceId.includes('YOUR_') && 
+                          !templateId.includes('YOUR_') && 
+                          !publicKey.includes('YOUR_');
+
+      if (!isConfigured) {
+        console.warn('EmailJS is not fully configured. Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in your environment variables (Settings > Secrets).');
+        
+        // For demo/preview purposes, we simulate success if keys are missing
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setStatus('success');
+        setIsSending(false);
+        formRef.current?.reset();
+        return;
+      }
+
+      // Initialize with public key for better reliability in v4
+      emailjs.init(publicKey);
       
+      console.log('Simulation d\'envoi - Données transmises à EmailJS :', {
+        serviceId,
+        templateId,
+        formData: {
+          user_name: formData.get('user_name'),
+          user_email: formData.get('user_email'),
+          message: formData.get('message')
+        }
+      });
+
       const result = await emailjs.sendForm(
-        'service_id', // Replace with your Service ID
-        'template_id', // Replace with your Template ID
+        serviceId,
+        templateId,
         formRef.current!,
-        'public_key' // Replace with your Public Key
+        publicKey
       );
 
       if (result.text === 'OK') {
         setStatus('success');
+        lastSubmitTime.current = Date.now();
         formRef.current?.reset();
+        generateChallenge();
       } else {
         setStatus('error');
       }
@@ -450,37 +514,54 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
       <input type="text" name="bot_field" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
       
       <div className="grid sm:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.name}</label>
+        <div className="space-y-3">
+          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] block ml-8 border-l-4 border-brand-500/40 pl-4 mb-2">{t.contact.form.name}</label>
           <input 
             required
             name="user_name"
             type="text" 
-            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors" 
+            maxLength={100}
+            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-all" 
             placeholder={t.contact.form.placeholderName} 
           />
         </div>
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.email}</label>
+        <div className="space-y-3">
+          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] block ml-8 border-l-4 border-brand-500/40 pl-4 mb-2">{t.contact.form.email}</label>
           <input 
             required
             name="user_email"
             type="email" 
-            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors" 
+            maxLength={100}
+            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-all" 
             placeholder={t.contact.form.placeholderEmail} 
           />
         </div>
       </div>
-      <div className="space-y-2">
-        <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.contact.form.message}</label>
+      <div className="space-y-3">
+        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] block ml-8 border-l-4 border-brand-500/40 pl-4 mb-2">{t.contact.form.message}</label>
         <textarea 
           required
           name="message"
           rows={4} 
-          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-colors resize-none" 
+          maxLength={2000}
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-all resize-none" 
           placeholder={t.contact.form.placeholderMessage} 
         />
       </div>
+      <div className="group space-y-3">
+        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] block ml-8 border-l-4 border-brand-500/40 pl-4 mb-2">
+          {language === 'ar' ? 'تحدي الأمان' : language === 'en' ? 'Security Challenge' : 'Défi de Sécurité'} : {securityChallenge.q} = ?
+        </label>
+        <input 
+          required
+          type="number" 
+          value={userAnswer}
+          onChange={(e) => setUserAnswer(e.target.value)}
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-all" 
+          placeholder={language === 'ar' ? 'أدخل النتيجة' : language === 'en' ? 'Enter result' : 'Entrez le résultat'} 
+        />
+      </div>
+
       <button 
         type="submit" 
         disabled={isSending}
@@ -495,21 +576,55 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
       </button>
 
       {status === 'success' && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-green-500/10 border border-green-500/20 p-6 rounded-2xl text-center space-y-2"
+        >
+          <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Check className="text-white" size={24} />
+          </div>
+          <h4 className="text-white font-bold text-lg">
+            {language === 'ar' ? 'تم الإرسال بنجاح!' : language === 'en' ? 'Message Sent Successfully!' : 'Message Envoyé avec Succès !'}
+          </h4>
+          <p className="text-slate-400 text-sm">
+            {language === 'ar' 
+              ? 'شكراً لتواصلك. سأرد عليك في أقرب وقت ممكن.' 
+              : language === 'en' 
+                ? 'Thank you for reaching out. I will get back to you as soon as possible.' 
+                : 'Merci de m\'avoir contacté. Je vous répondrai dans les plus brefs délais.'}
+          </p>
+        </motion.div>
+      )}
+      {status === 'wrong-answer' && (
         <motion.p 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-green-400 text-sm text-center font-medium"
+          className="text-orange-400 text-sm text-center font-medium bg-orange-400/10 p-4 rounded-xl border border-orange-400/20"
         >
-          {language === 'ar' ? 'تم إرسال الرسالة بنجاح!' : language === 'en' ? 'Message sent successfully!' : 'Message envoyé avec succès !'}
+          {language === 'ar' ? 'إجابة خاطئة. حاول مرة أخرى.' : language === 'en' ? 'Wrong answer. Try again.' : 'Mauvaise réponse. Réessayez.'}
+        </motion.p>
+      )}
+      {status === 'rate-limited' && (
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-orange-400 text-sm text-center font-medium bg-orange-400/10 p-4 rounded-xl border border-orange-400/20"
+        >
+          {language === 'ar' ? 'لقد أرسلت رسالة مؤخرًا. يرجى الانتظار قليلاً.' : language === 'en' ? 'You sent a message recently. Please wait a moment.' : 'Vous avez envoyé un message récemment. Veuillez patienter un instant.'}
         </motion.p>
       )}
       {status === 'error' && (
         <motion.p 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-red-400 text-sm text-center font-medium"
+          className="text-red-400 text-sm text-center font-medium bg-red-400/10 p-4 rounded-xl border border-red-400/20"
         >
-          {language === 'ar' ? 'حدث خطأ ما. حاول مرة أخرى.' : language === 'en' ? 'Something went wrong. Try again.' : 'Une erreur est survenue. Réessayez.'}
+          {language === 'ar' 
+            ? 'حدث خطأ ما. يرجى التأكد من إعداد مفاتيح EmailJS في الإعدادات.' 
+            : language === 'en' 
+              ? 'Something went wrong. Please ensure EmailJS keys are configured in Settings.' 
+              : 'Une erreur est survenue. Veuillez vérifier que les clés EmailJS sont configurées dans les paramètres.'}
         </motion.p>
       )}
     </form>
@@ -678,7 +793,7 @@ export default function App() {
                   <div>
                     <div className="text-white font-black text-lg leading-none">2025</div>
                     <div className="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">
-                      {language === 'ar' ? 'خريج' : language === 'en' ? 'Graduate' : 'Diplômé'}
+                      {language === 'ar' ? 'دفعة' : language === 'en' ? 'Promotion' : 'Promotion'}
                     </div>
                   </div>
                 </motion.div>

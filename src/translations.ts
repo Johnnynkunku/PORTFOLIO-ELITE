@@ -22,7 +22,7 @@ export const translations = {
     about: {
       subtitle: "À Propos de Moi",
       title: "L'Architecte derrière le Code",
-      p1: "Je suis Johnny Nkunku, originaire de Muanda, ingénieur IT et programmeur full-stack. Mon parcours est unique : formé en mécanique générale et automobile, j'ai ensuite pivoté vers l'informatique avec une licence en maintenance et réseaux à l'ISETC Muanda (diplômé en 2025).",
+      p1: "Je suis Johnny Nkunku, originaire de Muanda, ingénieur IT et programmeur full-stack. Mon parcours est unique : formé en mécanique générale et automobile, j'ai ensuite pivoté vers l'informatique avec une licence en maintenance et réseaux à l'ISETC Muanda (promotion 2025).",
       p2: "Cette double compétence en mécanique et en informatique me permet d'avoir une vision globale des systèmes, du matériel au logiciel. Je suis passionné par l'innovation et la création de solutions techniques robustes.",
       stats: {
         projects: "Projets Réalisés",
@@ -99,7 +99,7 @@ export const translations = {
           period: "2022"
         },
         {
-          degree: "Diplôme d'État en Mécanique Générale",
+          degree: "Promotion d'État en Mécanique Générale",
           institution: "ITP Banana (Muanda)",
           period: "2017 - 2021"
         }
@@ -139,7 +139,7 @@ export const translations = {
     about: {
       subtitle: "About Me",
       title: "The Architect Behind the Code",
-      p1: "I'm Johnny Nkunku, originally from Muanda, an IT engineer and full-stack programmer. My journey is unique: trained in general and automotive mechanics, I then pivoted to IT with a bachelor's degree in maintenance and networks at ISETC Muanda (graduated in 2025).",
+      p1: "I'm Johnny Nkunku, originally from Muanda, an IT engineer and full-stack programmer. My journey is unique: trained in general and automotive mechanics, I then pivoted to IT with a bachelor's degree in maintenance and networks at ISETC Muanda (Class of 2025).",
       p2: "This dual expertise in mechanics and IT allows me to have a global vision of systems, from hardware to software. I am passionate about innovation and creating robust technical solutions.",
       stats: {
         projects: "Projects Completed",
@@ -216,7 +216,7 @@ export const translations = {
           period: "2022"
         },
         {
-          degree: "State Diploma in General Mechanics",
+          degree: "State Promotion in General Mechanics",
           institution: "ITP Banana (Muanda)",
           period: "2017 - 2021"
         }
@@ -256,7 +256,7 @@ export const translations = {
     about: {
       subtitle: "عني",
       title: "المهندس وراء الكود",
-      p1: "أنا جوني نكونكو، أصلاً من مواندا، مهندس تقنية معلومات ومبرمج شامل. رحلتي فريدة: تدربت في الميكانيكا العامة وميكانيكا السيارات، ثم انتقلت إلى تكنولوجيا المعلومات مع درجة الليسانس في الصيانة والشبكات في ISETC Muanda (خريج عام 2025).",
+      p1: "أنا جوني نكونكو، أصلاً من مواندا، مهندس تقنية معلومات ومبرمج شامل. رحلتي فريدة: تدربت في الميكانيكا العامة وميكانيكا السيارات، ثم انتقلت إلى تكنولوجيا المعلومات مع درجة الليسانس في الصيانة والشبكات في ISETC Muanda (دفعة 2025).",
       p2: "هذه الخبرة المزدوجة في الميكانيكا وتكنولوجيا المعلومات تسمح لي بامتلاك رؤية شاملة للأنظمة، من الأجهزة إلى البرمجيات. أنا شغوف بالابتكار وإنشاء حلول تقنية قوية.",
       stats: {
         projects: "مشاريع مكتملة",
@@ -333,7 +333,7 @@ export const translations = {
           period: "2022"
         },
         {
-          degree: "دبلوم الدولة في الميكانيكا العامة",
+          degree: "دفعة الدولة في الميكانيكا العامة",
           institution: "ITP Banana (Muanda)",
           period: "2017 - 2021"
         }
