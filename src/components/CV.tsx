@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
 // @ts-ignore
 import html2pdf from 'html2pdf.js';
@@ -74,9 +74,8 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
         className="max-w-4xl mx-auto bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] rounded-3xl overflow-hidden border border-slate-100 print:shadow-none print:border-none relative"
       >
         <div className="absolute top-0 left-0 w-full h-2 bg-brand-500" />
-        <div className="bg-slate-950 text-white p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-[100px] -mr-32 -mt-32" />
+        <div className="bg-[#020617] text-white p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#3354ff1a] rounded-full -mr-32 -mt-32 print:hidden" />
           
           <div className="w-40 h-40 rounded-3xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl relative z-10">
             <img 
@@ -104,6 +103,9 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               <a href="https://linkedin.com/in/johnny-nkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
                 <Linkedin size={18} className="text-brand-500 shrink-0"/> linkedin.com/in/johnny-nkunku
               </a>
+              <a href={(t.cv as any).credlyLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
+                <Award size={18} className="text-brand-500 shrink-0"/> {(t.cv as any).credly}
+              </a>
               <span className="flex items-center gap-3"><MapPin size={18} className="text-brand-500 shrink-0"/> Kinshasa, RDC</span>
             </div>
           </div>
@@ -117,9 +119,12 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
             <div className="space-y-10">
               {EXPERIENCE_DATA[language].map((exp, i) => (
                 <div key={i} className="relative group">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                  <div className="mb-4">
                     <h3 className="text-xl font-black text-slate-900 group-hover:text-brand-600 transition-colors">{exp.role} @ {exp.company}</h3>
-                    <span className="text-xs font-black font-mono text-slate-400 bg-slate-50 px-3 py-1 rounded-full border border-slate-100 uppercase tracking-widest">{exp.period}</span>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="w-8 h-0.5 bg-brand-500/20 rounded-full" />
+                      <span className="text-[10px] font-black font-mono text-brand-600 uppercase tracking-widest">{exp.period}</span>
+                    </div>
                   </div>
                   <ul className="space-y-3 text-slate-600">
                     {exp.description.map((item, j) => (
@@ -141,8 +146,8 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
             </div>
             <div className="grid sm:grid-cols-2 gap-8">
               {(t.cv as any).educationList.map((edu: any, i: number) => (
-                <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 group hover:border-brand-500 transition-colors">
-                  <div className="w-10 h-10 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-600 mb-4 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                <div key={i} className="bg-[#f8fafc] p-6 rounded-2xl border border-[#f1f5f9] group hover:border-brand-500 transition-colors">
+                  <div className="w-10 h-10 bg-[#3354ff1a] rounded-xl flex items-center justify-center text-brand-600 mb-4 group-hover:bg-brand-500 group-hover:text-white transition-colors">
                     <GraduationCap size={20} />
                   </div>
                   <h3 className="text-lg font-black text-slate-900 mb-1">{edu.degree}</h3>
@@ -150,17 +155,6 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
                   <span className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-widest">{edu.period}</span>
                 </div>
               ))}
-            </div>
-            <div className="mt-8">
-              <a 
-                href={(t.cv as any).credlyLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-brand-600 transition-all shadow-lg shadow-slate-900/10"
-              >
-                <ExternalLink size={16} className="text-brand-400" />
-                {(t.cv as any).credly}
-              </a>
             </div>
           </section>
 
@@ -172,7 +166,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               </div>
               <div className="flex flex-wrap gap-3">
                 {['React', 'Next.js', 'TypeScript', 'Node.js', 'Go', 'Python', 'PostgreSQL', 'Docker', 'AWS'].map(skill => (
-                  <span key={skill} className="px-4 py-2 bg-slate-50 text-slate-700 rounded-xl text-xs font-black uppercase tracking-widest border border-slate-100">
+                  <span key={skill} className="px-4 py-2 bg-[#f8fafc] text-slate-700 rounded-xl text-xs font-black uppercase tracking-widest border border-[#f1f5f9]">
                     {skill}
                   </span>
                 ))}
@@ -184,9 +178,9 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
                 <div className="h-px flex-1 bg-slate-100" />
               </div>
               <div className="space-y-4 text-sm md:text-base text-slate-600 font-bold">
-                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.french}</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.frenchLevel}</span></div>
-                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.english}</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.englishLevel}</span></div>
-                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.arabic}</span> <span className="px-3 py-1 bg-brand-50 text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.arabicLevel}</span></div>
+                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.french}</span> <span className="px-3 py-1 bg-[#f0f4ff] text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.frenchLevel}</span></div>
+                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.english}</span> <span className="px-3 py-1 bg-[#f0f4ff] text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.englishLevel}</span></div>
+                <div className="flex justify-between items-center"><span>{(t.cv as any).languageList.arabic}</span> <span className="px-3 py-1 bg-[#f0f4ff] text-brand-600 rounded-lg text-xs uppercase tracking-widest">{(t.cv as any).languageList.arabicLevel}</span></div>
               </div>
             </section>
           </div>
