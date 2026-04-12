@@ -767,7 +767,7 @@ export default function App() {
                 {/* Main Image Frame */}
                 <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl">
                   <img 
-                    src="input_file_0.png" 
+                    src="profile.png" 
                     alt="Johnny Nkunku" 
                     className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale group-hover:grayscale-0 transition-all duration-700"
                     referrerPolicy="no-referrer"

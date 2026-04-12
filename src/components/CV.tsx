@@ -79,7 +79,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           
           <div className="w-40 h-40 rounded-3xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl relative z-10">
             <img 
-              src="input_file_0.png" 
+              src="profile.png" 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover brightness-110 contrast-110"
               onError={(e) => {
@@ -104,7 +104,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
                 <Linkedin size={18} className="text-brand-500 shrink-0"/> linkedin.com/in/johnny-nkunku
               </a>
               <a href={(t.cv as any).credlyLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
-                <Award size={18} className="text-brand-500 shrink-0"/> {(t.cv as any).credly}
+                <Award size={18} className="text-brand-500 shrink-0"/> credly.com/users/johnny-nkunku
               </a>
               <span className="flex items-center gap-3"><MapPin size={18} className="text-brand-500 shrink-0"/> Kinshasa, RDC</span>
             </div>
