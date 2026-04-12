@@ -88,7 +88,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
             />
           </div>
           <div className="relative z-10 text-center md:text-left flex-1 w-full">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 tracking-tighter break-words text-justify md:text-left">Johnny Nkunku</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 tracking-tighter break-words">Johnny Nkunku</h1>
             <p className="text-brand-400 text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-widest leading-tight">
               {language === 'ar' ? 'مهندس تقنية معلومات ومبرمج شامل' : 
                language === 'en' ? 'IT Engineer & Full-Stack Programmer' : 
