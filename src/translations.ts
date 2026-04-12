@@ -26,7 +26,7 @@ export const translations = {
       p2: "Cette double compétence en mécanique et en informatique me permet d'avoir une vision globale des systèmes, du matériel au logiciel. Je suis passionné par l'innovation et la création de solutions techniques robustes.",
       stats: {
         projects: "Projets Réalisés",
-        projectsValue: "10+",
+        projectsValue: "2+",
         experience: "Niveau",
         experienceValue: "Junior"
       }
@@ -143,7 +143,7 @@ export const translations = {
       p2: "This dual expertise in mechanics and IT allows me to have a global vision of systems, from hardware to software. I am passionate about innovation and creating robust technical solutions.",
       stats: {
         projects: "Projects Completed",
-        projectsValue: "10+",
+        projectsValue: "2+",
         experience: "Level",
         experienceValue: "Junior"
       }
@@ -260,7 +260,7 @@ export const translations = {
       p2: "هذه الخبرة المزدوجة في الميكانيكا وتكنولوجيا المعلومات تسمح لي بامتلاك رؤية شاملة للأنظمة، من الأجهزة إلى البرمجيات. أنا شغوف بالابتكار وإنشاء حلول تقنية قوية.",
       stats: {
         projects: "مشاريع مكتملة",
-        projectsValue: "+10",
+        projectsValue: "+2",
         experience: "المستوى",
         experienceValue: "مبتدئ"
       }

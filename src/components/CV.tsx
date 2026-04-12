@@ -77,36 +77,36 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
         <div className="bg-[#020617] text-white p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#3354ff1a] rounded-full -mr-32 -mt-32 print:hidden" />
           
-          <div className="w-40 h-40 rounded-3xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl relative z-10">
+          <div className="w-48 h-48 md:w-56 md:h-56 rounded-3xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl relative z-10">
             <img 
               src="profile.png" 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover brightness-110 contrast-110"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/400/400";
+                (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
               }}
             />
           </div>
-          <div className="relative z-10 text-center md:text-left">
-            <h1 className="text-4xl md:text-6xl font-black mb-3 tracking-tighter">Johnny Nkunku</h1>
-            <p className="text-brand-400 text-xl md:text-2xl font-bold uppercase tracking-widest">
+          <div className="relative z-10 text-center md:text-left flex-1 w-full">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 tracking-tighter break-words text-justify md:text-left">Johnny Nkunku</h1>
+            <p className="text-brand-400 text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-widest leading-tight">
               {language === 'ar' ? 'مهندس تقنية معلومات ومبرمج شامل' : 
                language === 'en' ? 'IT Engineer & Full-Stack Programmer' : 
                'Ingénieur IT & Programmeur Full-Stack'}
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4 sm:gap-8 text-sm md:text-base text-slate-400 font-medium">
-              <span className="flex items-center gap-3"><Mail size={18} className="text-brand-500 shrink-0"/> johnnynkunku@gmail.com</span>
-              <span className="flex items-center gap-3"><Phone size={18} className="text-brand-500 shrink-0"/> {t.contact.phoneValue}</span>
-              <a href="https://github.com/Johnnynkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
+            <div className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-y-4 gap-x-6 sm:gap-x-8 text-sm md:text-base text-slate-400 font-medium">
+              <span className="flex items-center gap-3 justify-center md:justify-start"><Mail size={18} className="text-brand-500 shrink-0"/> <span className="break-all">johnnynkunku@gmail.com</span></span>
+              <span className="flex items-center gap-3 justify-center md:justify-start"><Phone size={18} className="text-brand-500 shrink-0"/> {t.contact.phoneValue}</span>
+              <a href="https://github.com/Johnnynkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 justify-center md:justify-start hover:text-brand-500 transition-colors">
                 <Github size={18} className="text-brand-500 shrink-0"/> github.com/Johnnynkunku
               </a>
-              <a href="https://linkedin.com/in/johnny-nkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
+              <a href="https://linkedin.com/in/johnny-nkunku" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 justify-center md:justify-start hover:text-brand-500 transition-colors">
                 <Linkedin size={18} className="text-brand-500 shrink-0"/> linkedin.com/in/johnny-nkunku
               </a>
-              <a href={(t.cv as any).credlyLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-brand-500 transition-colors">
+              <a href={(t.cv as any).credlyLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 justify-center md:justify-start hover:text-brand-500 transition-colors">
                 <Award size={18} className="text-brand-500 shrink-0"/> credly.com/users/johnny-nkunku
               </a>
-              <span className="flex items-center gap-3"><MapPin size={18} className="text-brand-500 shrink-0"/> Kinshasa, RDC</span>
+              <span className="flex items-center gap-3 justify-center md:justify-start"><MapPin size={18} className="text-brand-500 shrink-0"/> Kinshasa, RDC</span>
             </div>
           </div>
         </div>

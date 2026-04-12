@@ -195,7 +195,7 @@ const Hero = ({ language }: { language: Language }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold tracking-tight mb-6 leading-[1.1] relative"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold tracking-tight mb-6 leading-[1.1] relative"
           >
             <span className="text-[0.65em] md:text-[0.6em] text-slate-400 font-medium block mb-2">
               {t.hero.title}
