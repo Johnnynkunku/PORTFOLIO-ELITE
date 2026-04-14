@@ -15,41 +15,35 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
     if (!componentRef.current || isDownloading) return;
     
     setIsDownloading(true);
-    console.log('Generating PDF for download...');
-
     try {
       const element = componentRef.current;
       
-      // Clone the element to modify it for PDF without affecting the UI
-      const clone = element.cloneNode(true) as HTMLElement;
-      clone.style.boxShadow = 'none';
-      clone.style.border = 'none';
-      clone.style.borderRadius = '0';
-      clone.style.width = '210mm'; // A4 width
+      // Temporary styles to ensure single page fit
+      const originalStyle = element.style.cssText;
+      element.style.width = '210mm';
+      element.style.padding = '20px';
       
       const opt = {
-        margin: 0,
+        margin: [5, 5, 5, 5],
         filename: `Johnny_Nkunku_CV_${language.toUpperCase()}.pdf`,
-        image: { type: 'jpeg', quality: 1.0 },
+        image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
           scale: 2, 
           useCORS: true,
           letterRendering: true,
           scrollY: 0,
-          windowWidth: 1200,
-          backgroundColor: '#ffffff'
+          windowWidth: 1024
         },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        pagebreak: { mode: 'avoid-all' }
       };
 
-      await html2pdf().set(opt).from(clone).save();
-      console.log('PDF generated successfully');
+      await html2pdf().set(opt).from(element).save();
+      
+      // Restore original styles
+      element.style.cssText = originalStyle;
     } catch (error) {
       console.error('PDF generation error:', error);
-      alert(language === 'ar' ? 'حدث خطأ أثناء إنشاء ملف PDF. سيتم فتح نافذة الطباعة بدلاً من ذلك.' : 
-            language === 'en' ? 'An error occurred while generating the PDF. Opening print dialog instead.' : 
-            'Une erreur est survenue lors de la génération du PDF. Ouverture de la fenêtre d\'impression à la place.');
       window.print();
     } finally {
       setIsDownloading(false);
@@ -62,6 +56,32 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#0f172a] p-4 md:p-8 lg:p-12 font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media print {
+          @page { margin: 0; size: A4; }
+          body { background: white !important; padding: 0 !important; margin: 0 !important; -webkit-print-color-adjust: exact; }
+          .print\\:hidden { display: none !important; }
+          .min-h-screen { min-height: 0 !important; padding: 0 !important; background: white !important; }
+          .max-w-4xl { 
+            max-width: 100% !important; 
+            width: 210mm !important; 
+            margin: 0 auto !important; 
+            border: none !important; 
+            box-shadow: none !important; 
+            border-radius: 0 !important;
+            transform: scale(0.85);
+            transform-origin: top center;
+          }
+          .shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] { box-shadow: none !important; }
+          .rounded-3xl { border-radius: 0 !important; }
+          .p-4, .md\\:p-8, .lg\\:p-12 { padding: 0 !important; }
+          .p-8, .md\\:p-16 { padding: 25px !important; }
+          .space-y-12, .md\\:space-y-16 { space-y: 20px !important; }
+          .mb-8 { margin-bottom: 15px !important; }
+          .mt-8 { margin-top: 15px !important; }
+          h1 { font-size: 3rem !important; }
+        }
+      `}} />
       <div className="max-w-4xl mx-auto mb-6 md:mb-8 flex flex-wrap justify-between items-center gap-4 print:hidden">
         <button onClick={onBack} className="flex items-center gap-2 text-[#475569] hover:text-[#1a2eff] transition-colors text-sm md:text-base">
           <ArrowLeft size={18} className={isRtl ? "rotate-180" : ""} /> {t.cv.back}
@@ -69,7 +89,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
         <div className="flex items-center gap-3">
           <button 
             onClick={onPrint}
-            className="flex items-center gap-2 bg-[#f1f5f9] text-[#0f172a] px-4 md:px-6 py-2 rounded-full hover:bg-[#e2e8f0] active:scale-95 transition-all shadow-sm text-sm md:text-base font-bold"
+            className="flex items-center gap-2 bg-[#f1f5f9] text-[#0f172a] px-4 md:px-6 py-2 rounded-full hover:bg-[#e2e8f0] active:scale-95 transition-all shadow-sm text-sm md:text-base font-bold relative z-20"
           >
             <Printer size={18} />
             {language === 'ar' ? 'طباعة' : language === 'en' ? 'Print' : 'Imprimer'}

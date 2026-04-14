@@ -18,6 +18,7 @@ import {
   Download,
   Sparkles,
   ArrowUp,
+  ChevronDown,
   Copy,
   Check,
   Settings
@@ -167,7 +168,7 @@ const Hero = ({ language }: { language: Language }) => {
   const t = translations[language];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-brand-500/20 rounded-full blur-[120px]" />
@@ -182,11 +183,11 @@ const Hero = ({ language }: { language: Language }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-brand-300 mb-6"
+            className="inline-flex items-center gap-2 px-2.5 py-1 md:px-3 md:py-1 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-medium text-brand-300 mb-6"
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-1.5 w-1.5 md:h-2 md:w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 md:h-2 md:w-2 bg-brand-500"></span>
             </span>
             {t.hero.status}
           </motion.div>
@@ -261,10 +262,13 @@ const Hero = ({ language }: { language: Language }) => {
 
       <motion.div 
         style={{ y, opacity: scrollOpacity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-500 z-20 pointer-events-none"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em]">{t.hero.scroll}</span>
-        <div className="w-px h-12 bg-linear-to-b from-slate-500 to-transparent" />
+        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] mb-1">{t.hero.scroll}</span>
+        <div className="flex flex-col items-center">
+          <div className="w-px h-8 md:h-12 bg-linear-to-b from-slate-500 to-transparent" />
+          <ChevronDown size={14} className="-mt-1 animate-bounce" />
+        </div>
       </motion.div>
     </section>
   );
@@ -308,6 +312,7 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
           alt={project.title} 
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           referrerPolicy="no-referrer"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
@@ -765,16 +770,18 @@ export default function App() {
             >
               <div className="relative group">
                 {/* Main Image Frame */}
-                <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl">
+                <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl bg-brand-500/10 group-hover:bg-brand-500/20 transition-colors duration-700">
                   <img 
                     src="profile.png" 
                     alt="Johnny Nkunku" 
-                    className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/800/1000";
                     }}
                   />
+                  {/* Background Glow inside the frame */}
+                  <div className="absolute inset-0 bg-linear-to-tr from-brand-500/20 to-transparent opacity-50 group-hover:opacity-20 transition-opacity duration-700" />
                 </div>
 
                 {/* Decorative Elements */}
