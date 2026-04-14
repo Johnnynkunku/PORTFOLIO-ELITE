@@ -810,20 +810,8 @@ export default function App() {
         </div>
 
         {/* Horizontal Marquee */}
-        <div 
-          className="relative mt-12 overflow-hidden group/marquee"
-          onMouseEnter={() => {}} // Placeholder for future pause logic if needed
-        >
-          <motion.div 
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ 
-              duration: 35, 
-              repeat: Infinity, 
-              ease: "linear",
-              repeatType: "loop"
-            }}
-            className="flex gap-6 px-6 w-max hover:[animation-play-state:paused]"
-          >
+        <div className="relative mt-12 overflow-hidden group/marquee">
+          <div className="flex gap-6 px-6 w-max animate-marquee hover:pause group-hover/marquee:pause">
             {/* Double the list for seamless loop */}
             {[...t.testimonials.list, ...t.testimonials.list].map((testimonial: any, i: number) => (
               <div
@@ -883,7 +871,7 @@ export default function App() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
           
           {/* Fade Overlays */}
           <div className="absolute top-0 left-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none" />

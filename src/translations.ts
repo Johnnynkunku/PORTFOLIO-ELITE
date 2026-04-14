@@ -84,7 +84,7 @@ export const translations = {
       education: "Formation",
       educationList: [
         {
-          degree: "Licence en Maintenance et Réseaux",
+          degree: "Promotion en Maintenance et Réseaux",
           institution: "Ingénierie des Systèmes Informatiques",
           period: "2021 - 2025"
         },
@@ -247,7 +247,7 @@ export const translations = {
       education: "Education",
       educationList: [
         {
-          degree: "Bachelor's in Maintenance and Networks",
+          degree: "Class of 2025 - Maintenance and Networks",
           institution: "Computer Systems Engineering",
           period: "2021 - 2025"
         },
@@ -410,7 +410,7 @@ export const translations = {
       education: "التعليم",
       educationList: [
         {
-          degree: "ليسانس في الصيانة والشبكات",
+          degree: "دفعة 2025 - صيانة وشبكات",
           institution: "هندسة نظم المعلومات",
           period: "2021 - 2025"
         },
