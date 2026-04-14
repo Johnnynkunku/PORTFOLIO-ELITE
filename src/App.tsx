@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useAnimationControls } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { 
   Github, 
@@ -807,58 +807,87 @@ export default function App() {
         
         <div className="container mx-auto px-6 relative z-10">
           <SectionTitle title={t.testimonials.title} subtitle={t.testimonials.subtitle} language={language} />
-          <div className="grid md:grid-cols-3 gap-8">
-            {t.testimonials.list.map((testimonial: any, i: number) => (
-              <motion.div
+        </div>
+
+        {/* Horizontal Marquee */}
+        <div 
+          className="relative mt-12 overflow-hidden group/marquee"
+          onMouseEnter={() => {}} // Placeholder for future pause logic if needed
+        >
+          <motion.div 
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ 
+              duration: 35, 
+              repeat: Infinity, 
+              ease: "linear",
+              repeatType: "loop"
+            }}
+            className="flex gap-6 px-6 w-max hover:[animation-play-state:paused]"
+          >
+            {/* Double the list for seamless loop */}
+            {[...t.testimonials.list, ...t.testimonials.list].map((testimonial: any, i: number) => (
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass p-8 rounded-[32px] border border-white/5 relative group hover:border-brand-500/30 transition-all duration-500 flex flex-col"
+                className="glass p-8 rounded-[32px] border border-white/5 relative group hover:border-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 flex flex-col w-[320px] sm:w-[450px] shrink-0"
               >
-                <div className="absolute top-6 right-8 text-brand-500/10 group-hover:text-brand-500/20 transition-colors">
-                  <Quote size={48} fill="currentColor" />
+                <div className="absolute top-6 right-8 text-brand-500/5 group-hover:text-brand-500/20 group-hover:scale-110 transition-all duration-500">
+                  <Quote size={56} fill="currentColor" />
                 </div>
                 
-                {/* Author Info at Top */}
+                {/* Author Info */}
                 <div className="flex items-center gap-4 mb-6 relative z-10">
-                  <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-brand-500/50 transition-colors duration-500 shrink-0">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name} 
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
+                  <div className="relative shrink-0">
+                    <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-brand-500/50 transition-colors duration-500 shadow-inner bg-slate-800">
+                      <img 
+                        key={testimonial.image}
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="eager"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          // Use a reliable fallback if Unsplash fails
+                          target.src = `https://picsum.photos/seed/${testimonial.name}/200/200`;
+                          target.onerror = null; // Prevent infinite loops
+                        }}
+                      />
+                    </div>
                   </div>
                   <div>
-                    <div className="text-white font-bold text-lg leading-tight">{testimonial.name}</div>
-                    <div className="text-brand-400 text-xs font-medium mt-1">{testimonial.role}</div>
+                    <div className="text-white font-bold text-lg leading-tight group-hover:text-brand-400 transition-colors">{testimonial.name}</div>
+                    <div className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">{testimonial.role}</div>
                   </div>
                 </div>
 
-                <p className="text-slate-300 text-base italic mb-6 leading-relaxed relative z-10 flex-1">
+                <p className="text-slate-300 text-sm sm:text-base italic leading-relaxed relative z-10 tracking-tight flex-1 mb-8">
                   "{testimonial.content}"
                 </p>
 
-                {/* 6-Star Rating System */}
-                <div className="flex gap-1 mt-auto">
-                  {[...Array(6)].map((_, index) => (
-                    <Star 
-                      key={index} 
-                      size={14} 
-                      className={cn(
-                        "transition-all duration-300",
-                        index < testimonial.rating 
-                          ? "text-yellow-400 fill-yellow-400" 
-                          : "text-slate-700 fill-transparent"
-                      )} 
-                    />
-                  ))}
+                <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
+                  {/* 6-Star Rating System */}
+                  <div className="flex gap-1">
+                    {[...Array(6)].map((_, index) => (
+                      <Star 
+                        key={index} 
+                        size={12} 
+                        className={cn(
+                          "transition-all duration-500",
+                          index < testimonial.rating 
+                            ? "text-yellow-400 fill-yellow-400 scale-110" 
+                            : "text-slate-800 fill-transparent opacity-30"
+                        )} 
+                      />
+                    ))}
+                  </div>
+                  <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Verified Feedback</div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
+          
+          {/* Fade Overlays */}
+          <div className="absolute top-0 left-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 bottom-0 w-24 sm:w-48 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none" />
         </div>
       </section>
 

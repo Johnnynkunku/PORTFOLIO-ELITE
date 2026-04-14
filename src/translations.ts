@@ -127,25 +127,39 @@ export const translations = {
       title: "Ce qu'ils disent",
       list: [
         {
-          name: "Marc-André K.",
-          role: "Directeur Technique @ TechFlow",
-          content: "J'ai travaillé avec Johnny sur la refonte de notre infrastructure. Ce qui m'a frappé, c'est sa capacité à anticiper les pannes réseaux avant même qu'elles n'arrivent. Un vrai talent brut qui ne se contente pas de coder, mais qui comprend l'architecture globale.",
+          name: "Isaac T.",
+          role: "CTO @ InnovateRDC",
+          content: "Johnny n'est pas juste un développeur, c'est un résolveur de problèmes. Quand notre système de paiement a lâché en plein déploiement, il a gardé un calme olympien et a trouvé le bug en moins de 30 minutes. Sa double compétence mécanique/IT lui donne une logique implacable.",
           rating: 6,
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "Amina B.",
-          role: "Product Lead",
-          content: "Au-delà de ses compétences en Full-Stack, Johnny apporte une rigueur issue de son passé en mécanique qui fait toute la différence. Ses livrables sont propres, documentés et surtout, il respecte les délais, ce qui est rare de nos jours.",
+          name: "Fatoumata S.",
+          role: "Senior UX Designer",
+          content: "C'est rare de trouver un développeur qui a autant de respect pour le design. Johnny ne se contente pas de reproduire une maquette, il l'anime et lui donne vie avec une fluidité incroyable. Travailler avec lui est un gain de temps énorme pour toute l'équipe créative.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
+        },
+        {
+          name: "Samuel M.",
+          role: "Fondateur de Start-up",
+          content: "Pour un MVP, la vitesse est tout. Johnny a livré notre plateforme en un temps record sans sacrifier la qualité du code. Sa capacité à comprendre les enjeux business tout en gérant l'infrastructure technique est ce qui fait de lui un ingénieur d'élite.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "David O.",
-          role: "Développeur Senior",
-          content: "Johnny a cette curiosité insatiable. On l'a vu apprendre Go en une semaine pour nous débloquer sur un microservice. C'est le genre de profil 'T-shaped' qu'on s'arrache dans les startups.",
+          name: "Koffi A.",
+          role: "Lead Backend",
+          content: "L'expertise de Johnny en Go et en architecture microservices nous a permis de scaler notre trafic par 10 en moins de deux mois. Un ingénieur rigoureux et passionné.",
           rating: 6,
-          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=256&h=256&q=80"
+        },
+        {
+          name: "Binta D.",
+          role: "Directrice de Projet",
+          content: "Johnny possède une vision 360° du produit. Il ne se contente pas de livrer des fonctionnalités, il propose des améliorations UX qui boostent réellement l'engagement utilisateur.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
     }
@@ -276,25 +290,39 @@ export const translations = {
       title: "What They Say",
       list: [
         {
-          name: "Marc-André K.",
-          role: "Technical Director @ TechFlow",
-          content: "I worked with Johnny on our infrastructure redesign. What struck me was his ability to anticipate network failures before they even happened. A real raw talent who doesn't just code, but understands the global architecture.",
+          name: "Isaac T.",
+          role: "CTO @ InnovateRDC",
+          content: "Johnny isn't just a developer; he's a problem solver. When our payment system failed during deployment, he stayed incredibly calm and found the bug in less than 30 minutes. His dual mechanical/IT background gives him an unstoppable logic.",
           rating: 6,
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "Amina B.",
-          role: "Product Lead",
-          content: "Beyond his Full-Stack skills, Johnny brings a rigor from his mechanical background that makes all the difference. His deliverables are clean, documented, and most importantly, he meets deadlines, which is rare these days.",
+          name: "Fatoumata S.",
+          role: "Senior UX Designer",
+          content: "It's rare to find a developer who has so much respect for design. Johnny doesn't just replicate a mockup; he animates it and brings it to life with incredible fluidity. Working with him is a huge time-saver for the entire creative team.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
+        },
+        {
+          name: "Samuel M.",
+          role: "Startup Founder",
+          content: "For an MVP, speed is everything. Johnny delivered our platform in record time without sacrificing code quality. His ability to understand business challenges while managing technical infrastructure is what makes him an elite engineer.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "David O.",
-          role: "Senior Developer",
-          content: "Johnny has this insatiable curiosity. We saw him learn Go in a week to unblock us on a microservice. He's the kind of 'T-shaped' profile that startups fight for.",
+          name: "Koffi A.",
+          role: "Lead Backend",
+          content: "Johnny's expertise in Go and microservices architecture allowed us to scale our traffic 10x in less than two months. A rigorous and passionate engineer.",
           rating: 6,
-          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=256&h=256&q=80"
+        },
+        {
+          name: "Binta D.",
+          role: "Project Director",
+          content: "Johnny has a 360° vision of the product. He doesn't just deliver features; he suggests UX improvements that truly boost user engagement.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
     }
@@ -425,25 +453,39 @@ export const translations = {
       title: "ماذا يقولون",
       list: [
         {
-          name: "مارك أندريه ك.",
-          role: "مدير تقني @ TechFlow",
-          content: "لقد عملت مع جوني في إعادة تصميم بنيتنا التحتية. ما لفت انتباهي هو قدرته على توقع أعطال الشبكة قبل حدوثها. موهبة خام حقيقية لا تكتفي بالبرمجة فحسب، بل تفهم الهندسة العالمية.",
+          name: "إسحاق ت.",
+          role: "مدير تقني @ InnovateRDC",
+          content: "جوني ليس مجرد مطور، بل هو حالّ للمشكلات. عندما تعطل نظام الدفع لدينا أثناء النشر، حافظ على هدوء أولمبي ووجد الخلل في أقل من 30 دقيقة. خلفيته المزدوجة في الميكانيكا وتكنولوجيا المعلومات تمنحه منطقًا لا يقاوم.",
           rating: 6,
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "أمينة ب.",
-          role: "قائدة منتج",
-          content: "بعيدًا عن مهاراته الشاملة، يجلب جوني صرامة من خلفيته الميكانيكية تصنع كل الفرق. مخرجاته نظيفة وموثقة، والأهم من ذلك أنه يلتزم بالمواعيد النهائية، وهو أمر نادر هذه الأيام.",
+          name: "فطوماتا س.",
+          role: "مصممة تجربة مستخدم أولى",
+          content: "من النادر العثور على مطور يحترم التصميم بهذا القدر. جوني لا يكتفي بنسخ النموذج الأولي؛ بل يحركه ويبعث فيه الحياة بسيولة مذهلة. العمل معه يوفر الكثير من الوقت للفريق الإبداعي بأكمله.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
+        },
+        {
+          name: "صموئيل م.",
+          role: "مؤسس شركة ناشئة",
+          content: "بالنسبة لنموذج أولي (MVP)، السرعة هي كل شيء. سلم جوني منصتنا في وقت قياسي دون التضحية بجودة الكود. قدرته على فهم تحديات الأعمال مع إدارة البنية التحتية التقنية هي ما تجعل منه مهندسًا متميزًا.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "ديفيد أ.",
-          role: "مطور أول",
-          content: "جوني لديه هذا الفضول الذي لا يشبع. رأيناه يتعلم لغة Go في أسبوع لفك حظرنا في خدمة مصغرة. إنه نوع الملف الشخصي 'T-shaped' الذي تتصارع عليه الشركات الناشئة.",
+          name: "كوفي أ.",
+          role: "قائد الواجهة الخلفية",
+          content: "خبرة جوني في لغة Go وهندسة الخدمات المصغرة سمحت لنا بزيادة حركة المرور لدينا بمقدار 10 أضعاف في أقل من شهرين. مهندس صارم وشغوف.",
           rating: 6,
-          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&h=200&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=256&h=256&q=80"
+        },
+        {
+          name: "بينتا د.",
+          role: "مديرة مشروع",
+          content: "يمتلك جوني رؤية 360 درجة للمنتج. لا يكتفي بتقديم الميزات فحسب، بل يقترح تحسينات في تجربة المستخدم تعزز حقًا تفاعل المستخدم.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
     }
