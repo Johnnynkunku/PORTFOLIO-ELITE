@@ -171,8 +171,8 @@ const Hero = ({ language }: { language: Language }) => {
     <section className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-brand-500/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-brand-500/15 rounded-full blur-[80px]" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-[80px]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50 contrast-150" />
       </div>
@@ -250,11 +250,11 @@ const Hero = ({ language }: { language: Language }) => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap justify-start gap-4"
           >
-            <a href="#projects" className="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold transition-all shadow-lg shadow-brand-500/25">
-              {t.hero.viewProjects}
+            <a href="#contact" className="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2">
+              {t.hero.contactMe} <ChevronRight size={18} />
             </a>
-            <a href="#contact" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full font-bold transition-all">
-              {t.hero.contactMe}
+            <a href="#projects" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full font-bold transition-all">
+              {t.hero.viewProjects}
             </a>
           </motion.div>
         </div>
@@ -316,7 +316,7 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
         />
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
-      <div className="p-8">
+      <div className="p-5 sm:p-8">
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag: string) => (
             <span key={tag} className="text-[10px] font-mono px-2 py-1 bg-white/5 rounded-full border border-white/10 text-slate-400 group-hover:border-brand-500/20 group-hover:text-brand-300 transition-colors">
@@ -349,7 +349,7 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: s
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     whileHover={{ y: -5 }}
-    className="glass p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group"
+    className="glass p-5 sm:p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group"
   >
     <div className="w-12 h-12 bg-brand-500/10 rounded-2xl flex items-center justify-center mb-6 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500">
       <Icon size={24} />
@@ -407,40 +407,20 @@ const CustomCursor = () => {
 
 const ContactForm = ({ language, t }: { language: Language, t: any }) => {
   const [isSending, setIsSending] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'rate-limited' | 'wrong-answer'>('idle');
-  const [securityChallenge, setSecurityChallenge] = useState({ q: '', a: 0 });
-  const [userAnswer, setUserAnswer] = useState('');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'rate-limited'>('idle');
   const formRef = useRef<HTMLFormElement>(null);
 
   // Simple rate limiting (client-side)
   const lastSubmitTime = useRef<number>(0);
 
-  useEffect(() => {
-    generateChallenge();
-  }, []);
-
-  const generateChallenge = () => {
-    const n1 = Math.floor(Math.random() * 10) + 1;
-    const n2 = Math.floor(Math.random() * 10) + 1;
-    setSecurityChallenge({ q: `${n1} + ${n2}`, a: n1 + n2 });
-    setUserAnswer('');
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (isSending) return;
 
-    // Rate limiting check (5 minutes between successful sends)
+    // Rate limiting check (30 seconds between successful sends)
     const now = Date.now();
-    if (now - lastSubmitTime.current < 300000 && lastSubmitTime.current !== 0) {
+    if (now - lastSubmitTime.current < 30000 && lastSubmitTime.current !== 0) {
       setStatus('rate-limited');
-      return;
-    }
-
-    // Security challenge check
-    if (parseInt(userAnswer) !== securityChallenge.a) {
-      setStatus('wrong-answer');
-      generateChallenge();
       return;
     }
 
@@ -469,27 +449,15 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
       if (!isConfigured) {
         console.warn('EmailJS is not fully configured. Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in your environment variables (Settings > Secrets).');
         
-        // For demo/preview purposes, we simulate success if keys are missing
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setStatus('success');
+        // Show error status instead of simulating success
+        setStatus('error');
         setIsSending(false);
-        formRef.current?.reset();
         return;
       }
 
       // Initialize with public key for better reliability in v4
       emailjs.init(publicKey);
       
-      console.log('Simulation d\'envoi - Données transmises à EmailJS :', {
-        serviceId,
-        templateId,
-        formData: {
-          user_name: formData.get('user_name'),
-          user_email: formData.get('user_email'),
-          message: formData.get('message')
-        }
-      });
-
       const result = await emailjs.sendForm(
         serviceId,
         templateId,
@@ -501,7 +469,6 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
         setStatus('success');
         lastSubmitTime.current = Date.now();
         formRef.current?.reset();
-        generateChallenge();
       } else {
         setStatus('error');
       }
@@ -551,19 +518,6 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
           maxLength={2000}
           className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-all resize-none" 
           placeholder={t.contact.form.placeholderMessage} 
-        />
-      </div>
-      <div className="group space-y-3">
-        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] block ml-8 border-l-4 border-brand-500/40 pl-4 mb-2">
-          {language === 'ar' ? 'تحدي الأمان' : language === 'en' ? 'Security Challenge' : 'Défi de Sécurité'} : {securityChallenge.q} = ?
-        </label>
-        <input 
-          required
-          type="number" 
-          value={userAnswer}
-          onChange={(e) => setUserAnswer(e.target.value)}
-          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-hidden focus:border-brand-500 transition-all" 
-          placeholder={language === 'ar' ? 'أدخل النتيجة' : language === 'en' ? 'Enter result' : 'Entrez le résultat'} 
         />
       </div>
 
@@ -717,8 +671,8 @@ export default function App() {
       {/* About Section */}
       <section id="about" className="py-24 md:py-32 relative overflow-hidden">
         {/* Background Decorations */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-brand-500/10 rounded-full blur-[100px] -ml-32" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] -mr-48 -mb-48" />
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-brand-500/10 rounded-full blur-[80px] -ml-32" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] -mr-48 -mb-48" />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
@@ -885,7 +839,7 @@ export default function App() {
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-24 container mx-auto px-6">
         <div className="glass rounded-[30px] md:rounded-[40px] p-8 md:p-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-brand-500/10 rounded-full blur-[80px] md:blur-[100px] -mr-32 -mt-32 md:-mr-48 md:-mt-48" />
+          <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-brand-500/10 rounded-full blur-[60px] md:blur-[80px] -mr-32 -mt-32 md:-mr-48 md:-mt-48" />
           
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 relative z-10">
             <div>
