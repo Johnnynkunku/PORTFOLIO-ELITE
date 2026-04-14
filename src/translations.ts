@@ -115,7 +115,39 @@ export const translations = {
         arabic: "Arabe",
         arabicLevel: "Intermédiaire"
       },
-      interests: "Centres d'intérêt"
+      interests: "Centres d'intérêt",
+      skillLevels: {
+        expert: "Expert",
+        advanced: "Avancé",
+        intermediate: "Intermédiaire"
+      }
+    },
+    testimonials: {
+      subtitle: "Témoignages",
+      title: "Ce qu'ils disent",
+      list: [
+        {
+          name: "Marc-André K.",
+          role: "Directeur Technique @ TechFlow",
+          content: "J'ai travaillé avec Johnny sur la refonte de notre infrastructure. Ce qui m'a frappé, c'est sa capacité à anticiper les pannes réseaux avant même qu'elles n'arrivent. Un vrai talent brut qui ne se contente pas de coder, mais qui comprend l'architecture globale.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+        },
+        {
+          name: "Amina B.",
+          role: "Product Lead",
+          content: "Au-delà de ses compétences en Full-Stack, Johnny apporte une rigueur issue de son passé en mécanique qui fait toute la différence. Ses livrables sont propres, documentés et surtout, il respecte les délais, ce qui est rare de nos jours.",
+          rating: 5,
+          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop"
+        },
+        {
+          name: "David O.",
+          role: "Développeur Senior",
+          content: "Johnny a cette curiosité insatiable. On l'a vu apprendre Go en une semaine pour nous débloquer sur un microservice. C'est le genre de profil 'T-shaped' qu'on s'arrache dans les startups.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&h=200&auto=format&fit=crop"
+        }
+      ]
     }
   },
   en: {
@@ -232,7 +264,39 @@ export const translations = {
         arabic: "Arabic",
         arabicLevel: "Intermediate"
       },
-      interests: "Interests"
+      interests: "Interests",
+      skillLevels: {
+        expert: "Expert",
+        advanced: "Advanced",
+        intermediate: "Intermediate"
+      }
+    },
+    testimonials: {
+      subtitle: "Testimonials",
+      title: "What They Say",
+      list: [
+        {
+          name: "Marc-André K.",
+          role: "Technical Director @ TechFlow",
+          content: "I worked with Johnny on our infrastructure redesign. What struck me was his ability to anticipate network failures before they even happened. A real raw talent who doesn't just code, but understands the global architecture.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+        },
+        {
+          name: "Amina B.",
+          role: "Product Lead",
+          content: "Beyond his Full-Stack skills, Johnny brings a rigor from his mechanical background that makes all the difference. His deliverables are clean, documented, and most importantly, he meets deadlines, which is rare these days.",
+          rating: 5,
+          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop"
+        },
+        {
+          name: "David O.",
+          role: "Senior Developer",
+          content: "Johnny has this insatiable curiosity. We saw him learn Go in a week to unblock us on a microservice. He's the kind of 'T-shaped' profile that startups fight for.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&h=200&auto=format&fit=crop"
+        }
+      ]
     }
   },
   ar: {
@@ -349,7 +413,39 @@ export const translations = {
         arabic: "العربية",
         arabicLevel: "متوسط"
       },
-      interests: "الاهتمامات"
+      interests: "الاهتمامات",
+      skillLevels: {
+        expert: "خبير",
+        advanced: "متقدم",
+        intermediate: "متوسط"
+      }
+    },
+    testimonials: {
+      subtitle: "شهادات",
+      title: "ماذا يقولون",
+      list: [
+        {
+          name: "مارك أندريه ك.",
+          role: "مدير تقني @ TechFlow",
+          content: "لقد عملت مع جوني في إعادة تصميم بنيتنا التحتية. ما لفت انتباهي هو قدرته على توقع أعطال الشبكة قبل حدوثها. موهبة خام حقيقية لا تكتفي بالبرمجة فحسب، بل تفهم الهندسة العالمية.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+        },
+        {
+          name: "أمينة ب.",
+          role: "قائدة منتج",
+          content: "بعيدًا عن مهاراته الشاملة، يجلب جوني صرامة من خلفيته الميكانيكية تصنع كل الفرق. مخرجاته نظيفة وموثقة، والأهم من ذلك أنه يلتزم بالمواعيد النهائية، وهو أمر نادر هذه الأيام.",
+          rating: 5,
+          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop"
+        },
+        {
+          name: "ديفيد أ.",
+          role: "مطور أول",
+          content: "جوني لديه هذا الفضول الذي لا يشبع. رأيناه يتعلم لغة Go في أسبوع لفك حظرنا في خدمة مصغرة. إنه نوع الملف الشخصي 'T-shaped' الذي تتصارع عليه الشركات الناشئة.",
+          rating: 6,
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&h=200&auto=format&fit=crop"
+        }
+      ]
     }
   }
 };

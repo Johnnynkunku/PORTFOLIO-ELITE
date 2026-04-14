@@ -21,7 +21,9 @@ import {
   ChevronDown,
   Copy,
   Check,
-  Settings
+  Settings,
+  Star,
+  Quote
 } from 'lucide-react';
 import { cn } from './lib/utils';
 import { Language, translations, PROJECT_DATA, EXPERIENCE_DATA } from './translations';
@@ -108,6 +110,7 @@ const Navbar = ({
         <button 
           className="md:hidden text-slate-200"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -798,6 +801,67 @@ export default function App() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-24 bg-slate-900/30 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <SectionTitle title={t.testimonials.title} subtitle={t.testimonials.subtitle} language={language} />
+          <div className="grid md:grid-cols-3 gap-8">
+            {t.testimonials.list.map((testimonial: any, i: number) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass p-8 rounded-[32px] border border-white/5 relative group hover:border-brand-500/30 transition-all duration-500 flex flex-col"
+              >
+                <div className="absolute top-6 right-8 text-brand-500/10 group-hover:text-brand-500/20 transition-colors">
+                  <Quote size={48} fill="currentColor" />
+                </div>
+                
+                {/* Author Info at Top */}
+                <div className="flex items-center gap-4 mb-6 relative z-10">
+                  <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-brand-500/50 transition-colors duration-500 shrink-0">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name} 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-white font-bold text-lg leading-tight">{testimonial.name}</div>
+                    <div className="text-brand-400 text-xs font-medium mt-1">{testimonial.role}</div>
+                  </div>
+                </div>
+
+                <p className="text-slate-300 text-base italic mb-6 leading-relaxed relative z-10 flex-1">
+                  "{testimonial.content}"
+                </p>
+
+                {/* 6-Star Rating System */}
+                <div className="flex gap-1 mt-auto">
+                  {[...Array(6)].map((_, index) => (
+                    <Star 
+                      key={index} 
+                      size={14} 
+                      className={cn(
+                        "transition-all duration-300",
+                        index < testimonial.rating 
+                          ? "text-yellow-400 fill-yellow-400" 
+                          : "text-slate-700 fill-transparent"
+                      )} 
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section id="experience" className="py-16 md:py-24 bg-slate-900/50">
         <div className="container mx-auto px-6">
@@ -861,6 +925,7 @@ export default function App() {
                         onClick={copyEmail}
                         className="p-1.5 bg-white/5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
                         title="Copy Email"
+                        aria-label="Copy email address"
                       >
                         {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
                       </button>
@@ -924,6 +989,7 @@ export default function App() {
               whileHover={{ y: -5 }}
               whileTap={{ scale: 0.9 }}
               className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center shadow-lg shadow-brand-500/20 hover:bg-brand-600 transition-colors"
+              aria-label="Back to top"
             >
               <ArrowUp size={20} />
             </motion.button>

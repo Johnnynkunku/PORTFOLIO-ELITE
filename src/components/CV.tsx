@@ -115,6 +115,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           <button 
             onClick={onPrint}
             className="flex items-center gap-2 bg-[#f1f5f9] text-[#0f172a] px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#e2e8f0] active:scale-95 transition-all shadow-sm text-[10px] sm:text-xs md:text-sm font-bold relative z-20"
+            aria-label="Print CV"
           >
             <Printer size={16} />
             {language === 'ar' ? 'طباعة' : language === 'en' ? 'Print' : 'Imprimer'}
@@ -123,6 +124,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
             onClick={onDownload} 
             disabled={isDownloading}
             className="flex items-center gap-2 bg-[#1a2eff] text-white px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#0011ff] active:scale-95 transition-all shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] text-[10px] sm:text-xs md:text-sm font-bold disabled:opacity-70 disabled:cursor-not-allowed"
+            aria-label="Download CV as PDF"
           >
             {isDownloading ? (
               <Loader2 size={16} className="animate-spin" />
@@ -231,12 +233,37 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
                 <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter">{t.skills.title}</h2>
                 <div className="h-px flex-1 bg-[#f1f5f9]" />
               </div>
-              <div className="flex flex-wrap gap-3">
-                {['React', 'Next.js', 'TypeScript', 'Node.js', 'Go', 'Python', 'PostgreSQL', 'Docker', 'AWS'].map(skill => (
-                  <span key={skill} className="px-4 py-2 bg-[#f8fafc] text-[#334155] rounded-xl text-xs font-black uppercase tracking-widest border border-[#f1f5f9]">
-                    {skill}
-                  </span>
-                ))}
+              <div className="space-y-6">
+                <div>
+                  <div className="text-[10px] font-black text-[#94a3b8] uppercase tracking-[0.2em] mb-3">{(t.cv as any).skillLevels.expert}</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['React', 'TypeScript', 'Node.js', 'Tailwind CSS'].map(skill => (
+                      <span key={skill} className="px-3 py-1.5 bg-[#f0f4ff] text-[#1a2eff] rounded-lg text-[10px] font-black uppercase tracking-widest border border-[#dbeafe]">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[10px] font-black text-[#94a3b8] uppercase tracking-[0.2em] mb-3">{(t.cv as any).skillLevels.advanced}</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Go', 'PostgreSQL', 'Docker', 'Next.js'].map(skill => (
+                      <span key={skill} className="px-3 py-1.5 bg-[#f8fafc] text-[#334155] rounded-lg text-[10px] font-black uppercase tracking-widest border border-[#f1f5f9]">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[10px] font-black text-[#94a3b8] uppercase tracking-[0.2em] mb-3">{(t.cv as any).skillLevels.intermediate}</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Python', 'AWS', 'Kubernetes', 'Terraform'].map(skill => (
+                      <span key={skill} className="px-3 py-1.5 bg-[#f8fafc] text-[#64748b] rounded-lg text-[10px] font-black uppercase tracking-widest border border-[#f1f5f9]">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </section>
             <section>
