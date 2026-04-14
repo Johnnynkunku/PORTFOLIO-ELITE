@@ -802,7 +802,7 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-slate-900/30 relative overflow-hidden">
+      <section id="testimonials" className="py-24 bg-slate-900/30 relative overflow-x-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="container mx-auto px-6 relative z-10">
@@ -810,27 +810,27 @@ export default function App() {
         </div>
 
         {/* Horizontal Marquee */}
-        <div className="relative mt-12 overflow-hidden group/marquee">
-          <div className="flex gap-6 px-6 w-max animate-marquee hover:pause group-hover/marquee:pause">
+        <div className="relative mt-12 py-12">
+          <div className="flex gap-6 px-6 w-max animate-marquee hover:[animation-play-state:paused] cursor-pointer">
             {/* Double the list for seamless loop */}
             {[...t.testimonials.list, ...t.testimonials.list].map((testimonial: any, i: number) => (
               <div
                 key={i}
-                className="glass p-8 rounded-[32px] border border-white/5 relative group hover:border-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 flex flex-col w-[320px] sm:w-[450px] shrink-0"
+                className="glass p-8 rounded-[32px] border border-white/10 relative group/card hover:border-brand-500 hover:bg-white/5 hover:shadow-[0_20px_60px_-12px_rgba(26,46,255,0.5)] transition-all duration-500 flex flex-col w-[320px] sm:w-[450px] shrink-0 hover:scale-105 hover:-translate-y-4 cursor-default z-10 hover:z-20"
               >
-                <div className="absolute top-6 right-8 text-brand-500/5 group-hover:text-brand-500/20 group-hover:scale-110 transition-all duration-500">
+                <div className="absolute top-6 right-8 text-brand-500/5 group-hover/card:text-brand-500/20 group-hover/card:scale-110 transition-all duration-500">
                   <Quote size={56} fill="currentColor" />
                 </div>
                 
                 {/* Author Info */}
                 <div className="flex items-center gap-4 mb-6 relative z-10">
                   <div className="relative shrink-0">
-                    <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-brand-500/50 transition-colors duration-500 shadow-inner bg-slate-800">
+                    <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white/10 group-hover/card:border-brand-500/50 transition-colors duration-500 shadow-inner bg-slate-800">
                       <img 
                         key={testimonial.image}
                         src={testimonial.image} 
                         alt={testimonial.name} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                         loading="eager"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -842,12 +842,12 @@ export default function App() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-white font-bold text-lg leading-tight group-hover:text-brand-400 transition-colors">{testimonial.name}</div>
-                    <div className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">{testimonial.role}</div>
+                    <div className="text-white font-bold text-lg leading-tight group-hover/card:text-brand-400 transition-colors">{testimonial.name}</div>
+                    <div className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1 group-hover/card:text-brand-500 transition-colors">{testimonial.role}</div>
                   </div>
                 </div>
 
-                <p className="text-slate-300 text-sm sm:text-base italic leading-relaxed relative z-10 tracking-tight flex-1 mb-8">
+                <p className="text-slate-300 text-sm sm:text-base italic leading-relaxed relative z-10 tracking-tight flex-1 mb-8 group-hover/card:text-white transition-colors">
                   "{testimonial.content}"
                 </p>
 
@@ -867,7 +867,7 @@ export default function App() {
                       />
                     ))}
                   </div>
-                  <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Verified Feedback</div>
+                  <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest group-hover/card:text-brand-500 transition-colors">Verified Feedback</div>
                 </div>
               </div>
             ))}

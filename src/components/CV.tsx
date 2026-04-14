@@ -18,69 +18,15 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
     setIsDownloading(true);
     try {
       const element = componentRef.current;
-      
-      // Create a hidden clone for PDF generation
-      const clone = element.cloneNode(true) as HTMLElement;
-      document.body.appendChild(clone);
-      
-      // Apply strict A4 styles to the clone
-      clone.style.width = '210mm';
-      clone.style.position = 'fixed';
-      clone.style.left = '-9999px';
-      clone.style.top = '0';
-      clone.style.backgroundColor = 'white';
-      clone.style.color = '#0f172a';
-      clone.style.transform = 'scale(1)';
-      clone.style.transformOrigin = 'top center';
-      clone.style.visibility = 'visible';
-      clone.style.display = 'block';
-      
-      // Force tighter spacing for PDF
-      const sections = clone.querySelectorAll('section');
-      sections.forEach(s => {
-        (s as HTMLElement).style.marginBottom = '12px';
-      });
-      
-      const headers = clone.querySelectorAll('h2');
-      headers.forEach(h => {
-        (h as HTMLElement).style.marginBottom = '6px';
-        (h as HTMLElement).style.fontSize = '14px';
-      });
-
-      // Ensure images are loaded
-      const images = clone.querySelectorAll('img');
-      await Promise.all(Array.from(images).map(img => {
-        if (img.complete) return Promise.resolve();
-        return new Promise(resolve => {
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      }));
-
-      // Wait a bit for the clone to be ready in the DOM
-      await new Promise(resolve => setTimeout(resolve, 500));
-
       const opt = {
-        margin: [0, 0, 0, 0] as [number, number, number, number],
+        margin: 10,
         filename: `Johnny_Nkunku_CV_${language.toUpperCase()}.pdf`,
-        image: { type: 'jpeg' as const, quality: 1.0 },
-        html2canvas: { 
-          scale: 3, 
-          useCORS: true,
-          letterRendering: true,
-          scrollY: 0,
-          windowWidth: 1024,
-          logging: false,
-          backgroundColor: '#ffffff'
-        },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        image: { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
       };
 
-      await html2pdf().set(opt).from(clone).save();
-      
-      // Cleanup
-      document.body.removeChild(clone);
+      await html2pdf().set(opt).from(element).save();
     } catch (error) {
       console.error('PDF generation error:', error);
       window.print();
@@ -177,9 +123,6 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           </div>
           
           <div className="relative z-10 text-center md:text-left flex-1 w-full">
-            <div className="inline-block px-3 py-1 bg-brand-500/20 border border-brand-500/30 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-brand-400 mb-4">
-              {t.hero.status}
-            </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-2 tracking-tighter leading-none">Johnny Nkunku</h1>
             <p className="text-slate-400 text-lg md:text-xl font-medium max-w-xl">
               {language === 'ar' ? 'مهندس تقنية معلومات ومبرمج شامل' : 
@@ -379,14 +322,11 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               </div>
             </section>
 
-            {/* Footer / Signature Area */}
+            {/* Footer Area */}
             <div className="pt-8 mt-8 border-t border-slate-100">
               <div className="flex justify-between items-center opacity-40 grayscale">
                 <div className="text-[8px] font-black uppercase tracking-[0.3em] text-slate-400">
-                  Digital Document ID: JN-{new Date().getFullYear()}-CV
-                </div>
-                <div className="w-12 h-12 border border-slate-300 rounded flex items-center justify-center text-slate-300">
-                  <div className="w-8 h-8 border-t-2 border-l-2 border-slate-300" />
+                  CV - {new Date().getFullYear()}
                 </div>
               </div>
             </div>
