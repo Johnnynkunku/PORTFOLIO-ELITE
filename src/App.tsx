@@ -104,6 +104,13 @@ const Navbar = ({
               </button>
             ))}
           </div>
+
+          <button 
+            onClick={onShowCV}
+            className="px-5 py-2 bg-white text-slate-950 hover:bg-brand-500 hover:text-white rounded-full text-xs font-bold transition-all shadow-lg shadow-white/5"
+          >
+            {t.nav.resume}
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -608,6 +615,7 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isBottomArrowVisible, setIsBottomArrowVisible] = useState(false);
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const footerArrowRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -802,7 +810,7 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-slate-900/30 relative overflow-x-hidden">
+      <section id="testimonials" className="py-16 bg-slate-900/30 relative overflow-hidden no-scrollbar">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="container mx-auto px-6 relative z-10">
@@ -810,20 +818,34 @@ export default function App() {
         </div>
 
         {/* Horizontal Marquee */}
-        <div className="relative mt-12 py-12">
-          <div className="flex gap-6 px-6 w-max animate-marquee hover:[animation-play-state:paused] cursor-pointer">
+        <div 
+          className="relative mt-4 py-12 overflow-hidden no-scrollbar"
+          onMouseEnter={() => setIsMarqueePaused(true)}
+          onMouseLeave={() => setIsMarqueePaused(false)}
+          onTouchStart={() => setIsMarqueePaused(true)}
+          onTouchEnd={() => setIsMarqueePaused(false)}
+        >
+          <div className={cn(
+            "flex gap-6 px-6 w-max animate-marquee cursor-pointer transition-all duration-500",
+            isMarqueePaused && "pause"
+          )}>
             {/* Double the list for seamless loop */}
             {[...t.testimonials.list, ...t.testimonials.list].map((testimonial: any, i: number) => (
-              <div
+              <motion.div
                 key={i}
-                className="glass p-8 rounded-[32px] border border-white/10 relative group/card hover:border-brand-500 hover:bg-white/5 hover:shadow-[0_20px_60px_-12px_rgba(26,46,255,0.5)] transition-all duration-500 flex flex-col w-[320px] sm:w-[450px] shrink-0 hover:scale-105 hover:-translate-y-4 cursor-default z-10 hover:z-20"
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -16,
+                  transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
+                }}
+                className="glass p-6 rounded-[32px] border border-white/10 relative group/card hover:border-brand-500/50 hover:bg-slate-900/90 hover:shadow-[0_10px_25px_-8px_rgba(51,84,255,0.4)] transition-all duration-500 flex flex-col w-[320px] sm:w-[450px] shrink-0 cursor-default z-10 hover:z-20"
               >
                 <div className="absolute top-6 right-8 text-brand-500/5 group-hover/card:text-brand-500/20 group-hover/card:scale-110 transition-all duration-500">
-                  <Quote size={56} fill="currentColor" />
+                  <Quote size={48} fill="currentColor" />
                 </div>
                 
                 {/* Author Info */}
-                <div className="flex items-center gap-4 mb-6 relative z-10">
+                <div className="flex items-center gap-4 mb-4 relative z-10">
                   <div className="relative shrink-0">
                     <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white/10 group-hover/card:border-brand-500/50 transition-colors duration-500 shadow-inner bg-slate-800">
                       <img 
@@ -847,11 +869,11 @@ export default function App() {
                   </div>
                 </div>
 
-                <p className="text-slate-300 text-sm sm:text-base italic leading-relaxed relative z-10 tracking-tight flex-1 mb-8 group-hover/card:text-white transition-colors">
+                <p className="text-slate-300 text-sm sm:text-base italic leading-relaxed relative z-10 tracking-tight flex-1 mb-4 group-hover/card:text-white transition-colors">
                   "{testimonial.content}"
                 </p>
 
-                <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
+                <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
                   {/* 6-Star Rating System */}
                   <div className="flex gap-1">
                     {[...Array(6)].map((_, index) => (
@@ -862,14 +884,14 @@ export default function App() {
                           "transition-all duration-500",
                           index < testimonial.rating 
                             ? "text-yellow-400 fill-yellow-400 scale-110" 
-                            : "text-slate-800 fill-transparent opacity-30"
+                            : "text-white/10 fill-transparent"
                         )} 
                       />
                     ))}
                   </div>
                   <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest group-hover/card:text-brand-500 transition-colors">Verified Feedback</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           

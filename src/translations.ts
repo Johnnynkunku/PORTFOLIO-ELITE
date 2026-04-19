@@ -137,7 +137,7 @@ export const translations = {
           name: "Fatoumata S.",
           role: "Senior UX Designer",
           content: "C'est rare de trouver un développeur qui a autant de respect pour le design. Johnny ne se contente pas de reproduire une maquette, il l'anime et lui donne vie avec une fluidité incroyable. Travailler avec lui est un gain de temps énorme pour toute l'équipe créative.",
-          rating: 6,
+          rating: 4,
           image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
@@ -158,7 +158,7 @@ export const translations = {
           name: "Binta D.",
           role: "Directrice de Projet",
           content: "Johnny possède une vision 360° du produit. Il ne se contente pas de livrer des fonctionnalités, il propose des améliorations UX qui boostent réellement l'engagement utilisateur.",
-          rating: 6,
+          rating: 4,
           image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
@@ -300,7 +300,7 @@ export const translations = {
           name: "Fatoumata S.",
           role: "Senior UX Designer",
           content: "It's rare to find a developer who has so much respect for design. Johnny doesn't just replicate a mockup; he animates it and brings it to life with incredible fluidity. Working with him is a huge time-saver for the entire creative team.",
-          rating: 6,
+          rating: 4,
           image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
@@ -321,7 +321,7 @@ export const translations = {
           name: "Binta D.",
           role: "Project Director",
           content: "Johnny has a 360° vision of the product. He doesn't just deliver features; he suggests UX improvements that truly boost user engagement.",
-          rating: 6,
+          rating: 4,
           image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
@@ -463,7 +463,7 @@ export const translations = {
           name: "فطوماتا س.",
           role: "مصممة تجربة مستخدم أولى",
           content: "من النادر العثور على مطور يحترم التصميم بهذا القدر. جوني لا يكتفي بنسخ النموذج الأولي؛ بل يحركه ويبعث فيه الحياة بسيولة مذهلة. العمل معه يوفر الكثير من الوقت للفريق الإبداعي بأكمله.",
-          rating: 6,
+          rating: 4,
           image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
@@ -484,7 +484,7 @@ export const translations = {
           name: "بينتا د.",
           role: "مديرة مشروع",
           content: "يمتلك جوني رؤية 360 درجة للمنتج. لا يكتفي بتقديم الميزات فحسب، بل يقترح تحسينات في تجربة المستخدم تعزز حقًا تفاعل المستخدم.",
-          rating: 6,
+          rating: 4,
           image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
