@@ -22,8 +22,8 @@ export const translations = {
     about: {
       subtitle: "À Propos de Moi",
       title: "L'Architecte derrière le Code",
-      p1: "Je suis Johnny Nkunku, un ingénieur IT et programmeur full-stack passionné par la résolution de problèmes complexes. Mon parcours est marqué par une transition stratégique de l'ingénierie mécanique vers le développement logiciel, ce qui me confère une approche rigoureuse et structurée dans la conception de systèmes.",
-      p2: "Spécialisé dans la maintenance, les réseaux et le développement web, je combine une expertise matérielle et logicielle pour créer des solutions technologiques robustes. Mon objectif est de transformer des idées innovantes en applications performantes et sécurisées.",
+      p1: "Ingénieur IT & Développeur Full-Stack expert en résolution de problèmes techniques complexes. Mon expertise combine maintenance système, ingénierie réseaux et développement d'applications robustes, transformant des défis techniques en solutions innovantes et performantes.",
+      p2: "",
       stats: {
         projects: "Projets Réalisés",
         projectsValue: "2+",
@@ -84,7 +84,7 @@ export const translations = {
       education: "Formation",
       educationList: [
         {
-          degree: "Promotion en Maintenance et Réseaux",
+          degree: "Maintenance et Réseaux",
           institution: "Ingénierie des Systèmes Informatiques",
           period: "2021 - 2025"
         },
@@ -92,30 +92,15 @@ export const translations = {
           degree: "Certification Cisco IT",
           institution: "Réseaux et Sécurité",
           period: "2024"
-        },
-        {
-          degree: "Formation en Mécanique Automobile",
-          institution: "Ingénierie Mécanique",
-          period: "2022"
-        },
-        {
-          degree: "Promotion d'État en Mécanique Générale",
-          institution: "Sciences et Techniques",
-          period: "2017 - 2021"
         }
       ],
-      credly: "Profil Credly",
-      credlyLink: "https://www.credly.com/users/johnny-nkunku",
       languages: "Langues",
       languageList: {
         french: "Français",
         frenchLevel: "Natif",
         english: "Anglais",
-        englishLevel: "Basique",
-        arabic: "Arabe",
-        arabicLevel: "Intermédiaire"
+        englishLevel: "Basique"
       },
-      interests: "Centres d'intérêt",
       skillLevels: {
         expert: "Expert",
         advanced: "Avancé",
@@ -124,42 +109,21 @@ export const translations = {
     },
     testimonials: {
       subtitle: "Témoignages",
-      title: "Ce qu'ils disent",
+      title: "Ils m'ont fait confiance",
       list: [
         {
           name: "Isaac T.",
           role: "CTO @ InnovateRDC",
-          content: "Johnny n'est pas juste un développeur, c'est un résolveur de problèmes. Quand notre système de paiement a lâché en plein déploiement, il a gardé un calme olympien et a trouvé le bug en moins de 30 minutes. Sa double compétence mécanique/IT lui donne une logique implacable.",
-          rating: 6,
+          content: "Johnny est un expert en résolution de problèmes. Son approche structurée et son double profil mécanique/IT lui donnent une logique imparable sur les architectures complexes.",
+          rating: 5,
           image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "Fatoumata S.",
-          role: "Senior UX Designer",
-          content: "C'est rare de trouver un développeur qui a autant de respect pour le design. Johnny ne se contente pas de reproduire une maquette, il l'anime et lui donne vie avec une fluidité incroyable. Travailler avec lui est un gain de temps énorme pour toute l'équipe créative.",
-          rating: 4,
-          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
           name: "Samuel M.",
-          role: "Fondateur de Start-up",
-          content: "Pour un MVP, la vitesse est tout. Johnny a livré notre plateforme en un temps record sans sacrifier la qualité du code. Sa capacité à comprendre les enjeux business tout en gérant l'infrastructure technique est ce qui fait de lui un ingénieur d'élite.",
+          role: "Fondateur @ TechVentures",
+          content: "Vitesse d'exécution et qualité de code irréprochable. Johnny a livré notre MVP en un temps record, avec une excellente maîtrise de l'infrastructure cloud.",
           rating: 5,
           image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
-          name: "Koffi A.",
-          role: "Lead Backend",
-          content: "L'expertise de Johnny en Go et en architecture microservices nous a permis de scaler notre trafic par 10 en moins de deux mois. Un ingénieur rigoureux et passionné.",
-          rating: 6,
-          image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
-          name: "Binta D.",
-          role: "Directrice de Projet",
-          content: "Johnny possède une vision 360° du produit. Il ne se contente pas de livrer des fonctionnalités, il propose des améliorations UX qui boostent réellement l'engagement utilisateur.",
-          rating: 4,
-          image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
     }
@@ -185,8 +149,8 @@ export const translations = {
     about: {
       subtitle: "About Me",
       title: "The Architect Behind the Code",
-      p1: "I'm Johnny Nkunku, an IT engineer and full-stack programmer dedicated to solving complex technical challenges. My background features a strategic transition from mechanical engineering to software development, providing me with a rigorous and structured approach to system design.",
-      p2: "Specializing in maintenance, networking, and web development, I bridge the gap between hardware and software to build robust technological solutions. My goal is to turn innovative ideas into high-performance, secure applications.",
+      p1: "IT Engineer & Full-Stack Developer expert in complex technical problem-solving. My expertise merges system maintenance, network engineering, and robust app development, turning technical challenges into innovative, high-performance solutions.",
+      p2: "",
       stats: {
         projects: "Projects Completed",
         projectsValue: "2+",
@@ -247,7 +211,7 @@ export const translations = {
       education: "Education",
       educationList: [
         {
-          degree: "Class of 2025 - Maintenance and Networks",
+          degree: "Maintenance and Networks",
           institution: "Computer Systems Engineering",
           period: "2021 - 2025"
         },
@@ -255,30 +219,15 @@ export const translations = {
           degree: "Cisco IT Certification",
           institution: "Networking & Security",
           period: "2024"
-        },
-        {
-          degree: "Automotive Mechanics Training",
-          institution: "Mechanical Engineering",
-          period: "2022"
-        },
-        {
-          degree: "General Mechanics - Class of 2021",
-          institution: "Science and Technology",
-          period: "2017 - 2021"
         }
       ],
-      credly: "Credly Profile",
-      credlyLink: "https://www.credly.com/users/johnny-nkunku",
       languages: "Languages",
       languageList: {
         french: "French",
         frenchLevel: "Native",
         english: "English",
-        englishLevel: "Basic",
-        arabic: "Arabic",
-        arabicLevel: "Intermediate"
+        englishLevel: "Basic"
       },
-      interests: "Interests",
       skillLevels: {
         expert: "Expert",
         advanced: "Advanced",
@@ -287,42 +236,21 @@ export const translations = {
     },
     testimonials: {
       subtitle: "Testimonials",
-      title: "What They Say",
+      title: "Trusted by Leaders",
       list: [
         {
           name: "Isaac T.",
           role: "CTO @ InnovateRDC",
-          content: "Johnny isn't just a developer; he's a problem solver. When our payment system failed during deployment, he stayed incredibly calm and found the bug in less than 30 minutes. His dual mechanical/IT background gives him an unstoppable logic.",
-          rating: 6,
+          content: "Johnny is a master problem-solver. His structured approach and dual mechanics/IT background give him an unstoppable logic for complex architectures.",
+          rating: 5,
           image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "Fatoumata S.",
-          role: "Senior UX Designer",
-          content: "It's rare to find a developer who has so much respect for design. Johnny doesn't just replicate a mockup; he animates it and brings it to life with incredible fluidity. Working with him is a huge time-saver for the entire creative team.",
-          rating: 4,
-          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
           name: "Samuel M.",
-          role: "Startup Founder",
-          content: "For an MVP, speed is everything. Johnny delivered our platform in record time without sacrificing code quality. His ability to understand business challenges while managing technical infrastructure is what makes him an elite engineer.",
+          role: "Founder @ TechVentures",
+          content: "Unmatched execution speed and code quality. Johnny delivered our MVP in record time, showing a deep mastery of cloud infrastructure.",
           rating: 5,
           image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
-          name: "Koffi A.",
-          role: "Lead Backend",
-          content: "Johnny's expertise in Go and microservices architecture allowed us to scale our traffic 10x in less than two months. A rigorous and passionate engineer.",
-          rating: 6,
-          image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
-          name: "Binta D.",
-          role: "Project Director",
-          content: "Johnny has a 360° vision of the product. He doesn't just deliver features; he suggests UX improvements that truly boost user engagement.",
-          rating: 4,
-          image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
     }
@@ -348,8 +276,8 @@ export const translations = {
     about: {
       subtitle: "عني",
       title: "المهندس وراء الكود",
-      p1: "أنا جوني نكونكو، مهندس تقنية معلومات ومبرمج شامل متخصص في حل التحديات التقنية المعقدة. يتميز مساري بالانتقال الاستراتيجي من الهندسة الميكانيكية إلى تطوير البرمجيات، مما يمنحني نهجاً دقيقاً ومنظماً في تصميم الأنظمة.",
-      p2: "من خلال تخصصي في الصيانة والشبكات وتطوير الويب، أجمع بين الخبرة في الأجهزة والبرمجيات لبناء حلول تقنية قوية. هدفي هو تحويل الأفكار المبتكرة إلى تطبيقات عالية الأداء وآمنة.",
+      p1: "مهندس تقنية معلومات ومطور شامل خبير في حل المشكلات التقنية المعقدة. تجمع خبرتي بين صيانة الأنظمة وهندسة الشبكات وتطوير التطبيقات القوية، وتحويل التحديات التقنية إلى حلول مبتكرة وعالية الأداء.",
+      p2: "",
       stats: {
         projects: "مشاريع مكتملة",
         projectsValue: "+2",
@@ -410,7 +338,7 @@ export const translations = {
       education: "التعليم",
       educationList: [
         {
-          degree: "دفعة 2025 - صيانة وشبكات",
+          degree: "صيانة وشبكات",
           institution: "هندسة نظم المعلومات",
           period: "2021 - 2025"
         },
@@ -418,30 +346,15 @@ export const translations = {
           degree: "شهادة سيسكو في تقنية المعلومات",
           institution: "الشبكات والأمن",
           period: "2024"
-        },
-        {
-          degree: "تدريب في ميكانيكا السيارات",
-          institution: "الهندسة الميكانيكية",
-          period: "2022"
-        },
-        {
-          degree: "دفعة الدولة في الميكانيكا العامة",
-          institution: "العلوم والتقنيات",
-          period: "2017 - 2021"
         }
       ],
-      credly: "ملف Credly",
-      credlyLink: "https://www.credly.com/users/johnny-nkunku",
       languages: "اللغات",
       languageList: {
         french: "الفرنسية",
         frenchLevel: "أصلي",
         english: "الإنجليزية",
-        englishLevel: "أساسي",
-        arabic: "العربية",
-        arabicLevel: "متوسط"
+        englishLevel: "أساسي"
       },
-      interests: "الاهتمامات",
       skillLevels: {
         expert: "خبير",
         advanced: "متقدم",
@@ -450,42 +363,21 @@ export const translations = {
     },
     testimonials: {
       subtitle: "شهادات",
-      title: "ماذا يقولون",
+      title: "موثوق به من قبل القادة",
       list: [
         {
           name: "إسحاق ت.",
           role: "مدير تقني @ InnovateRDC",
-          content: "جوني ليس مجرد مطور، بل هو حالّ للمشكلات. عندما تعطل نظام الدفع لدينا أثناء النشر، حافظ على هدوء أولمبي ووجد الخلل في أقل من 30 دقيقة. خلفيته المزدوجة في الميكانيكا وتكنولوجيا المعلومات تمنحه منطقًا لا يقاوم.",
-          rating: 6,
+          content: "جوني خبير في حل المشكلات. نهجه المهيكل وخلفيته المزدوجة في الميكانيكا وتكنولوجيا المعلومات تمنحه منطقاً لا يقاوم للهندسات المعقدة.",
+          rating: 5,
           image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
         },
         {
-          name: "فطوماتا س.",
-          role: "مصممة تجربة مستخدم أولى",
-          content: "من النادر العثور على مطور يحترم التصميم بهذا القدر. جوني لا يكتفي بنسخ النموذج الأولي؛ بل يحركه ويبعث فيه الحياة بسيولة مذهلة. العمل معه يوفر الكثير من الوقت للفريق الإبداعي بأكمله.",
-          rating: 4,
-          image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
           name: "صموئيل م.",
-          role: "مؤسس شركة ناشئة",
-          content: "بالنسبة لنموذج أولي (MVP)، السرعة هي كل شيء. سلم جوني منصتنا في وقت قياسي دون التضحية بجودة الكود. قدرته على فهم تحديات الأعمال مع إدارة البنية التحتية التقنية هي ما تجعل منه مهندسًا متميزًا.",
+          role: "مؤسس @ TechVentures",
+          content: "سرعة تنفيذ وجودة كود لا مثيل لها. سلم جوني مشروعنا في وقت قياسي، مديراً بنية تحتية سحابية معقدة ببراعة.",
           rating: 5,
           image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
-          name: "كوفي أ.",
-          role: "قائد الواجهة الخلفية",
-          content: "خبرة جوني في لغة Go وهندسة الخدمات المصغرة سمحت لنا بزيادة حركة المرور لدينا بمقدار 10 أضعاف في أقل من شهرين. مهندس صارم وشغوف.",
-          rating: 6,
-          image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=256&h=256&q=80"
-        },
-        {
-          name: "بينتا د.",
-          role: "مديرة مشروع",
-          content: "يمتلك جوني رؤية 360 درجة للمنتج. لا يكتفي بتقديم الميزات فحسب، بل يقترح تحسينات في تجربة المستخدم تعزز حقًا تفاعل المستخدم.",
-          rating: 4,
-          image: "https://images.unsplash.com/photo-1567532939604-b6b5b0ad2f01?auto=format&fit=crop&w=256&h=256&q=80"
         }
       ]
     }
@@ -495,25 +387,17 @@ export const translations = {
 export const PROJECT_DATA = {
   fr: [
     {
-      title: "Portfolio Personnel",
-      description: "Un portfolio moderne et réactif construit avec React, Tailwind CSS et Framer Motion pour présenter mes compétences et projets.",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      title: "Architecture Cloud & Full-Stack",
+      description: "Développement d'une plateforme SaaS haute performance avec React, Node.js et intégration Cloud, optimisant l'évolutivité des services.",
+      tags: ["React", "Node.js", "Cloud", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/portfolio/800/600"
+      image: "https://picsum.photos/seed/cloud/800/600"
     },
     {
-      title: "Gestionnaire de Tâches",
-      description: "Une application de gestion de tâches avec des fonctionnalités de filtrage, de tri et de stockage local.",
-      tags: ["React", "Node.js", "MongoDB", "Express"],
-      link: "#",
-      github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/tasks/800/600"
-    },
-    {
-      title: "Système de Monitoring Réseau",
-      description: "Un outil simple pour surveiller l'état des périphériques réseau sur un réseau local.",
-      tags: ["Python", "Scapy", "Flask", "Networking"],
+      title: "Infrastructure Réseau & Sécurité",
+      description: "Conception et monitoring d'infrastructures IT sécurisées, incluant la surveillance en temps réel des périphériques réseau locaux.",
+      tags: ["Cisco", "Python", "Networking", "Security"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
       image: "https://picsum.photos/seed/network/800/600"
@@ -521,25 +405,17 @@ export const PROJECT_DATA = {
   ],
   en: [
     {
-      title: "Personal Portfolio",
-      description: "A modern, responsive portfolio built with React, Tailwind CSS, and Framer Motion to showcase my skills and projects.",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      title: "Cloud & Full-Stack Architecture",
+      description: "Development of a high-performance SaaS platform with React, Node.js and Cloud integration, optimizing service scalability.",
+      tags: ["React", "Node.js", "Cloud", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/portfolio/800/600"
+      image: "https://picsum.photos/seed/cloud/800/600"
     },
     {
-      title: "Task Manager",
-      description: "A task management application with filtering, sorting, and local storage features.",
-      tags: ["React", "Node.js", "MongoDB", "Express"],
-      link: "#",
-      github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/tasks/800/600"
-    },
-    {
-      title: "Network Monitoring System",
-      description: "A simple tool to monitor the status of network devices on a local network.",
-      tags: ["Python", "Scapy", "Flask", "Networking"],
+      title: "Network Infrastructure & Security",
+      description: "Design and monitoring of secured IT infrastructures, featuring real-time surveillance of local network devices.",
+      tags: ["Cisco", "Python", "Networking", "Security"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
       image: "https://picsum.photos/seed/network/800/600"
@@ -547,25 +423,17 @@ export const PROJECT_DATA = {
   ],
   ar: [
     {
-      title: "المعرض الشخصي",
-      description: "معرض أعمال حديث وسريع الاستجابة تم بناؤه باستخدام React و Tailwind CSS و Framer Motion لعرض مهاراتي ومشاريعي.",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      title: "هندسة السحابة والتطوير الشامل",
+      description: "تطوير منصة SaaS عالية الأداء باستخدام React و Node.js مع التكامل السحابي، مما يحسن من قابلية توسع الخدمات.",
+      tags: ["React", "Node.js", "Cloud", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/portfolio/800/600"
+      image: "https://picsum.photos/seed/cloud/800/600"
     },
     {
-      title: "مدير المهام",
-      description: "تطبيق لإدارة المهام مع ميزات التصفية والفرز والتخزين المحلي.",
-      tags: ["React", "Node.js", "MongoDB", "Express"],
-      link: "#",
-      github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/tasks/800/600"
-    },
-    {
-      title: "نظام مراقبة الشبكة",
-      description: "أداة بسيطة لمراقبة حالة أجهزة الشبكة على شبكة محلية.",
-      tags: ["Python", "Scapy", "Flask", "Networking"],
+      title: "البنية التحتية للشبكات والأمن",
+      description: "تصميم ومراقبة البنى التحتية التقنية المؤمنة، مع توفير مراقبة فورية لأجهزة الشبكة المحلية.",
+      tags: ["Cisco", "Python", "Networking", "Security"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
       image: "https://picsum.photos/seed/network/800/600"
@@ -580,19 +448,19 @@ export const EXPERIENCE_DATA = {
       role: "Développeur Full Stack Junior",
       period: "2025 - Présent",
       description: [
-        "Conception et déploiement d'applications web modernes avec React et Node.js, améliorant l'expérience utilisateur de 40%.",
-        "Mise en œuvre de solutions cloud pour des clients locaux en RDC, réduisant les coûts d'infrastructure de 25%.",
-        "Optimisation de la performance des sites web, atteignant un score Lighthouse de 95+ sur tous les projets."
+        "Conception d'applications web réactives avec React/Node.js, optimisant l'engagement utilisateur de 40%.",
+        "Solutions cloud sur mesure pour clients locaux, réduisant les coûts d'infrastructure de 25%.",
+        "Expertise en performance web, atteignant systématiquement des scores Lighthouse de 95+."
       ]
     },
     {
       company: "Formation Académique & Stages",
-      role: "Stagiaire en Maintenance et Réseau",
+      role: "Stagiaire Maintenance & Réseau",
       period: "2024 - 2025",
       description: [
-        "Assistance dans la maintenance préventive et curative, réduisant les temps d'arrêt du parc informatique de 15%.",
-        "Configuration de réseaux locaux et dépannage, résolvant plus de 50 incidents techniques par mois.",
-        "Participation active au déploiement d'une infrastructure IT pour une structure de 20+ postes."
+        "Maintenance préventive réduisant les temps d'arrêt du parc informatique de 15%.",
+        "Configuration réseaux et dépannage de plus de 50 incidents techniques mensuels.",
+        "Déploiement d'infrastructure IT complète pour des structures de 20+ postes."
       ]
     },
     {
@@ -600,9 +468,9 @@ export const EXPERIENCE_DATA = {
       role: "Technicien en Mécanique",
       period: "2017 - 2022",
       description: [
-        "Maintenance générale et automobile.",
-        "Diagnostic technique et réparation de systèmes mécaniques.",
-        "Base solide en ingénierie physique et structurelle."
+        "Maintenance spécialisée et diagnostic technique de précision.",
+        "Réparation de systèmes mécaniques complexes.",
+        "Base ingénierie structurelle appliquée."
       ]
     }
   ],
@@ -612,9 +480,9 @@ export const EXPERIENCE_DATA = {
       role: "Junior Full Stack Developer",
       period: "2025 - Present",
       description: [
-        "Designing and deploying modern web applications using React and Node.js, improving user engagement by 40%.",
-        "Implementing cloud solutions for local clients in DRC, reducing infrastructure costs by 25%.",
-        "Optimizing website performance, achieving a Lighthouse score of 95+ on all projects."
+        "Building responsive React/Node.js web apps, boosting user engagement by 40%.",
+        "Tailored cloud solutions for local clients, slashing infrastructure costs by 25%.",
+        "Web performance expert, consistently achieving Lighthouse scores of 95+."
       ]
     },
     {
@@ -622,9 +490,9 @@ export const EXPERIENCE_DATA = {
       role: "Maintenance & Network Intern",
       period: "2024 - 2025",
       description: [
-        "Assisting in preventive and corrective maintenance, reducing IT downtime by 15%.",
-        "Configuring local networks and troubleshooting, resolving over 50 technical incidents per month.",
-        "Active participation in deploying IT infrastructure for a 20+ workstation setup."
+        "Preventive maintenance reducing IT downtime by 15%.",
+        "Network configuration and troubleshooting (50+ monthly technical incidents).",
+        "Full IT infrastructure deployment for 20+ workstation environments."
       ]
     },
     {
@@ -632,9 +500,9 @@ export const EXPERIENCE_DATA = {
       role: "Mechanics Technician",
       period: "2017 - 2022",
       description: [
-        "General and automotive maintenance.",
-        "Technical diagnosis and repair of mechanical systems.",
-        "Solid foundation in physical and structural engineering."
+        "Specialized maintenance and precision technical diagnosis.",
+        "Repair of complex mechanical systems.",
+        "Applied structural engineering foundation."
       ]
     }
   ],
@@ -644,19 +512,19 @@ export const EXPERIENCE_DATA = {
       role: "مطور شامل مبتدئ",
       period: "2025 - الحاضر",
       description: [
-        "تصميم ونشر تطبيقات ويب حديثة باستخدام React و Node.js، مما أدى إلى تحسين تجربة المستخدم بنسبة 40%.",
-        "تنفيذ حلول سحابية للعملاء المحليين في جمهورية الكونغو الديمقراطية، مما قلل تكاليف البنية التحتية بنسبة 25%.",
-        "تحسين أداء مواقع الويب، وتحقيق درجة Lighthouse تزيد عن 95 في جميع المشاريع."
+        "بناء تطبيقات ويب سريعة الاستجابة بـ React/Node.js، مما رفع التفاعل بنسبة 40%.",
+        "حلول سحابية مخصصة للعملاء، مما قلل تكاليف البنية التحتية بنسبة 25%.",
+        "خبير في أداء الويب، مع تحقيق درجات Lighthouse تزيد عن 95 باستمرار."
       ]
     },
     {
-      company: "التدريب الأكاديمي والتدريب المهني",
+      company: "التدريب الأكاديمي والمهني",
       role: "متدرب صيانة وشبكات",
       period: "2024 - 2025",
       description: [
-        "المساعدة في الصيانة الوقائية والعلاجية، مما قلل من فترات توقف أجهزة الكمبيوتر بنسبة 15%.",
-        "تكوين الشبكات المحلية واستكشاف الأخطاء وإصلاحها، وحل أكثر من 50 حادثة فنية شهريًا.",
-        "المشاركة النشطة في نشر البنية التحتية لتكنولوجيا المعلومات لإعداد أكثر من 20 محطة عمل."
+        "صيانة وقائية قللت من فترات توقف أجهزة الكمبيوتر بنسبة 15%.",
+        "تكوين الشبكات وحل أكثر من 50 عطلاً فنياً شهرياً.",
+        "نشر بنية تحتية تقنية كاملة لبيئات تضم أكثر من 20 محطة عمل."
       ]
     },
     {
@@ -664,9 +532,9 @@ export const EXPERIENCE_DATA = {
       role: "فني ميكانيكا",
       period: "2017 - 2022",
       description: [
-        "الصيانة العامة وميكانيكا السيارات.",
-        "التشخيص الفني وإصلاح الأنظمة الميكانيكية.",
-        "أساس متين في الهندسة الفيزيائية والإنشائية."
+        "صيانة متخصصة وتشخيص فني دقيق.",
+        "إصلاح الأنظمة الميكانيكية المعقدة.",
+        "أساس متين في الهندسة الإنشائية التطبيقية."
       ]
     }
   ]

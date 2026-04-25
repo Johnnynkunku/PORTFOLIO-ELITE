@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award, Printer, Terminal, Languages } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award, Terminal, Languages } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
 import { cn } from '../lib/utils';
 // @ts-ignore
@@ -12,14 +12,16 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
   const componentRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
 
+  const [isExporting, setIsExporting] = useState(false);
+
   const onDownload = async () => {
     if (!componentRef.current || isDownloading) return;
     
     setIsDownloading(true);
+    setIsExporting(true);
     try {
       const element = componentRef.current;
       
-      // Use the simplest possible configuration for html2pdf
       const worker = html2pdf();
       await worker.set({
         margin: 5,
@@ -29,185 +31,160 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           scale: 3, 
           useCORS: true, 
           letterRendering: true,
-          logging: false
+          logging: false,
+          windowWidth: 1200 
         },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(element).save();
     } catch (error) {
       console.error('PDF generation error:', error);
-      // Fallback to simple print
       window.print();
     } finally {
       setIsDownloading(false);
+      setIsExporting(false);
     }
   };
 
-  const onPrint = () => {
-    try {
-      // Use a cleaner print approach that works better in iframes
-      const isIframe = window.self !== window.top;
-      if (isIframe) {
-        window.print();
-      } else {
-        window.print();
-      }
-    } catch (e) {
-      console.error("Print error:", e);
-      window.print();
+  // Professional A4 Optimized Styles
+  const getEliteStyles = (p: string) => `
+    ${p} .cv-page-wrapper { min-height: 0 !important; background: white !important; padding: 0 !important; }
+    ${p} .max-w-4xl { 
+      max-width: 800px !important; 
+      width: 800px !important; 
+      margin: 0 auto !important;
+      border: none !important; 
+      box-shadow: none !important; 
+      border-radius: 0 !important;
+      overflow: visible !important;
     }
-  };
+    ${p} .cv-header {
+      background-color: #020617 !important;
+      color: white !important;
+      padding: 10px 20px !important;
+      margin-bottom: 8px !important;
+      display: grid !important;
+      grid-template-columns: 60px 1.2fr 1fr !important;
+      align-items: center !important;
+      gap: 12px !important;
+      border-radius: 0 !important;
+      height: auto !important;
+    }
+    ${p} .cv-profile-img { 
+      width: 60px !important; 
+      height: 60px !important; 
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      border-radius: 8px !important;
+    }
+    ${p} .cv-header h1 { 
+      font-size: 1.5rem !important; 
+      line-height: 1 !important; 
+      margin-bottom: 1px !important;
+      text-align: left !important;
+    }
+    ${p} .cv-header p { 
+      font-size: 0.75rem !important; 
+      opacity: 0.8 !important;
+      text-align: left !important;
+    }
+    ${p} .cv-header .grid { 
+      display: grid !important; 
+      grid-template-columns: 1fr 1fr !important;
+      column-gap: 8px !important;
+      row-gap: 1px !important; 
+      margin: 0 !important;
+    }
+    ${p} .cv-header .flex { 
+      justify-content: flex-start !important; 
+      font-size: 7.2pt !important;
+      gap: 4px !important;
+    }
+    ${p} .cv-header .w-8, ${p} .cv-header .h-8 { display: none !important; }
+    ${p} .cv-main-content { 
+      display: flex !important; 
+      flex-direction: row !important; 
+      gap: 12px !important;
+      padding: 0 20px !important;
+      width: 100% !important;
+    }
+    ${p} .cv-left-col { 
+      flex: 1 !important; 
+      padding: 0 !important; 
+      border: none !important; 
+      background: transparent !important; 
+    }
+    ${p} .cv-right-col { 
+      width: 190px !important; 
+      padding: 0 10px 0 0 !important; 
+      border: none !important; 
+      background: transparent !important; 
+      flex-shrink: 0 !important;
+    }
+    ${p} h2 { 
+      font-size: 0.85rem !important; 
+      border-bottom: 1px solid #f1f5f9 !important; 
+      padding-bottom: 2px !important;
+      margin-bottom: 5px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+      color: #0f172a !important;
+    }
+    ${p} h3 { font-size: 0.8rem !important; margin-bottom: 1px !important; font-weight: 800 !important; }
+    ${p} .font-bold { font-weight: 700 !important; font-size: 7.2pt !important; }
+    ${p} section { margin-bottom: 8px !important; break-inside: avoid !important; }
+    ${p} .space-y-12, ${p} .space-y-10, ${p} .space-y-8, ${p} .space-y-6, ${p} .space-y-4 { margin-top: 0 !important; }
+    ${p} .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 5px !important; }
+    ${p} .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 3px !important; }
+    ${p} .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 2px !important; }
+    ${p} .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 1px !important; }
+    ${p} .relative.pl-8 { padding-left: 8px !important; border-left: 1.5px solid #f1f5f9 !important; break-inside: avoid !important; }
+    ${p} .absolute.-left-\\[9px\\] { display: none !important; }
+    ${p} .mb-4 { margin-bottom: 1px !important; }
+    ${p} ul { margin-top: 1px !important; }
+    ${p} ul li { 
+      margin-bottom: 1px !important; 
+      font-size: 7.2pt !important; 
+      line-height: 1.15 !important; 
+      break-inside: avoid !important;
+      orphans: 3;
+      widows: 3;
+    }
+    ${p} .cv-right-col .p-4 { padding: 4px 8px !important; border-radius: 6px !important; margin-bottom: 4px !important; }
+    ${p} .cv-right-col .w-12 { width: 22px !important; height: 22px !important; }
+    ${p} .cv-right-col .mb-8 { margin-bottom: 4px !important; }
+    ${isRtl ? `
+      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 60px !important; text-align: right !important; }
+      ${p} .cv-header h1, ${p} .cv-header p { text-align: right !important; }
+      ${p} .cv-main-content { flex-direction: row-reverse !important; }
+      ${p} .cv-right-col { padding: 0 0 0 10px !important; }
+      ${p} .relative.pl-8 { padding-left: 0 !important; padding-right: 8px !important; border-left: none !important; border-right: 1.5px solid #f1f5f9 !important; }
+    ` : ''}
+    ${p} .pt-8.mt-8.border-t, ${p} .absolute.inset-0.opacity-10 { display: none !important; }
+  `;
 
   return (
-    <div className="min-h-screen bg-[#ffffff] text-[#0f172a] p-4 md:p-8 lg:p-12 font-sans cv-page-wrapper" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className={cn(
+        "min-h-screen bg-[#ffffff] text-[#0f172a] p-4 md:p-8 lg:p-12 font-sans cv-page-wrapper",
+        isExporting && "is-exporting"
+      )} 
+      dir={isRtl ? 'rtl' : 'ltr'}
+    >
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          @page { margin: 5mm; size: A4 portrait; }
-          body { 
-            background: white !important; 
-            font-size: 8pt !important; 
-            line-height: 1.15 !important;
-            -webkit-print-color-adjust: exact; 
-            print-color-adjust: exact; 
-            color: #0f172a !important; 
-          }
-          .print\\:hidden { display: none !important; }
-          .cv-page-wrapper { min-height: 0 !important; background: white !important; padding: 0 !important; }
-          
-          /* CRITICAL: Force a fixed layout width for print to prevent mobile responsive columns from breaking the A4 layout */
-          .max-w-4xl { 
-            max-width: 800px !important; 
-            width: 800px !important; 
-            margin: 0 auto !important;
-            border: none !important; 
-            box-shadow: none !important; 
-            border-radius: 0 !important;
-            overflow: visible !important;
-          }
-          
-          /* Compact Elite Header */
-          .cv-header {
-            background-color: #020617 !important;
-            color: white !important;
-            padding: 15px 20px !important;
-            margin-bottom: 10px !important;
-            display: grid !important;
-            grid-template-columns: 70px 1.2fr 1fr !important;
-            align-items: center !important;
-            gap: 15px !important;
-            border-radius: 0 !important;
-            height: auto !important;
-          }
-          .cv-profile-img { 
-            width: 70px !important; 
-            height: 70px !important; 
-            border: 1px solid rgba(255,255,255,0.2) !important;
-            border-radius: 10px !important;
-          }
-          .cv-header h1 { 
-            font-size: 1.8rem !important; 
-            line-height: 1 !important; 
-            margin-bottom: 2px !important;
-            text-align: left !important;
-          }
-          .cv-header p { 
-            font-size: 0.85rem !important; 
-            opacity: 0.8 !important;
-            text-align: left !important;
-          }
-          /* Contact info in 2 columns in header to save height */
-          .cv-header .grid { 
-            display: grid !important; 
-            grid-template-columns: 1fr 1fr !important;
-            column-gap: 10px !important;
-            row-gap: 2px !important; 
-            margin: 0 !important;
-          }
-          .cv-header .flex { 
-            justify-content: flex-start !important; 
-            font-size: 7.2pt !important;
-            gap: 4px !important;
-          }
-          .cv-header .w-8, .cv-header .h-8 { display: none !important; }
-          
-          /* Compact Content Layout */
-          .cv-main-content { 
-            display: flex !important; 
-            flex-direction: row !important; 
-            gap: 15px !important;
-            padding: 0 20px !important;
-            width: 100% !important;
-          }
-          .cv-left-col { 
-            flex: 1 !important; 
-            padding: 0 !important; 
-            border: none !important; 
-            background: transparent !important; 
-          }
-          .cv-right-col { 
-            width: 220px !important; 
-            padding: 0 15px 0 0 !important; 
-            border: none !important; 
-            background: transparent !important; 
-            flex-shrink: 0 !important;
-          }
-          
-          h2 { 
-            font-size: 0.95rem !important; 
-            border-bottom: 1px solid #f1f5f9 !important; 
-            padding-bottom: 3px !important;
-            margin-bottom: 8px !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
-            color: #0f172a !important;
-          }
-          h3 { font-size: 0.85rem !important; margin-bottom: 1px !important; font-weight: 800 !important; }
-          .font-bold { font-weight: 700 !important; font-size: 7.5pt !important; }
-          
-          section { margin-bottom: 10px !important; break-inside: avoid !important; }
-          .space-y-12, .space-y-10, .space-y-8, .space-y-6, .space-y-4 { margin-top: 0 !important; }
-          .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 8px !important; }
-          .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 5px !important; }
-          .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 3px !important; }
-          .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 2px !important; }
-          
-          /* Experience Items */
-          .relative.pl-8 { padding-left: 10px !important; border-left: 2px solid #f1f5f9 !important; }
-          .absolute.-left-\\[9px\\] { display: none !important; }
-          .mb-4 { margin-bottom: 2px !important; }
-          ul { margin-top: 2px !important; }
-          ul li { margin-bottom: 1px !important; font-size: 7.5pt !important; line-height: 1.2 !important; }
-          
-          /* Sidebar Adjustments */
-          .cv-right-col .p-4 { padding: 4px 8px !important; border-radius: 6px !important; margin-bottom: 5px !important; }
-          .cv-right-col .w-12 { width: 24px !important; height: 24px !important; }
-          .cv-right-col .mb-8 { margin-bottom: 6px !important; }
-          
-          /* RTL Fixes */
-          ${isRtl ? `
-            .cv-header { grid-template-columns: 1fr 1.2fr 70px !important; text-align: right !important; }
-            .cv-header h1, .cv-header p { text-align: right !important; }
-            .cv-main-content { flex-direction: row-reverse !important; }
-            .cv-right-col { padding: 0 0 0 15px !important; }
-            .relative.pl-8 { padding-left: 0 !important; padding-right: 10px !important; border-left: none !important; border-right: 2px solid #f1f5f9 !important; }
-          ` : ''}
-          
-          /* Hide Footer & Dots */
-          .pt-8.mt-8.border-t, .absolute.inset-0.opacity-10 { display: none !important; }
+          body { background: white !important; font-size: 7.5pt !important; line-height: 1.15 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #0f172a !important; }
+          ${getEliteStyles("")}
         }
+        .is-exporting { 
+          background: white !important; font-size: 7.5pt !important; line-height: 1.15 !important; color: #0f172a !important;
+        }
+        ${getEliteStyles(".is-exporting")}
+        /* Hide some elements on export */
+        .is-exporting .print\\:hidden { display: none !important; }
       `}} />
       <div className="max-w-4xl mx-auto mb-6 md:mb-8 flex flex-wrap justify-between items-center gap-4 print:hidden">
         <button onClick={onBack} className="flex items-center gap-2 text-[#475569] hover:text-[#1a2eff] transition-colors text-xs sm:text-sm md:text-base font-medium">
           <ArrowLeft size={16} className={isRtl ? "rotate-180" : ""} /> {t.cv.back}
         </button>
         <div className="flex items-center gap-2 sm:gap-3">
-          <button 
-            onClick={onPrint}
-            className="flex items-center gap-2 bg-[#f1f5f9] text-[#0f172a] px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#e2e8f0] active:scale-95 transition-all shadow-sm text-[10px] sm:text-xs md:text-sm font-bold relative z-20"
-            aria-label="Print CV"
-          >
-            <Printer size={16} />
-            {language === 'ar' ? 'طباعة' : language === 'en' ? 'Print' : 'Imprimer'}
-          </button>
           <button 
             onClick={onDownload} 
             disabled={isDownloading}
@@ -304,7 +281,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               </div>
               <div className="text-slate-600 text-sm md:text-base leading-relaxed space-y-4" style={{ color: '#475569' }}>
                 <p>{t.about.p1}</p>
-                <p>{t.about.p2}</p>
+                {t.about.p2 && <p>{t.about.p2}</p>}
               </div>
             </section>
 
@@ -399,16 +376,6 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
                     ))}
                   </div>
                 </div>
-                <div>
-                  <div className="text-[9px] font-black uppercase tracking-[0.2em] mb-3" style={{ color: '#94a3b8' }}>{language === 'ar' ? 'الميكانيكا' : 'Mécanique'}</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {['Maintenance', 'Diagnostic', 'Ingénierie'].map(skill => (
-                      <span key={skill} className="px-2 py-1 rounded border text-[9px] font-black uppercase tracking-wider" style={{ backgroundColor: '#ffffff', color: '#94a3b8', borderColor: '#e2e8f0' }}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
             </section>
 
@@ -421,8 +388,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               <div className="grid grid-cols-1 gap-4">
                 {[
                   { name: (t.cv as any).languageList.french, level: (t.cv as any).languageList.frenchLevel, percentage: 100, color: '#1a2eff' },
-                  { name: (t.cv as any).languageList.english, level: (t.cv as any).languageList.englishLevel, percentage: 45, color: '#3354ff' },
-                  { name: (t.cv as any).languageList.arabic, level: (t.cv as any).languageList.arabicLevel, percentage: 70, color: '#5c84ff' }
+                  { name: (t.cv as any).languageList.english, level: (t.cv as any).languageList.englishLevel, percentage: 45, color: '#3354ff' }
                 ].map((lang, i) => (
                   <div key={i} className="p-4 rounded-2xl border shadow-sm group transition-all duration-300" style={{ backgroundColor: '#ffffff', borderColor: '#f1f5f9' }}>
                     <div className="flex items-center gap-4">

@@ -800,12 +800,11 @@ export default function App() {
       {/* Skills Section */}
       <section id="skills" className="py-24 container mx-auto px-6">
         <SectionTitle title={t.skills.title} subtitle={t.skills.subtitle} language={language} />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <SkillCategory title={t.skills.categories.frontend} skills={['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion']} icon={Globe} />
           <SkillCategory title={t.skills.categories.backend} skills={['Node.js', 'Go', 'Python', 'PostgreSQL', 'Redis']} icon={Server} />
           <SkillCategory title={t.skills.categories.infrastructure} skills={['Docker', 'Kubernetes', 'AWS', 'Terraform', 'CI/CD']} icon={Cloud} />
           <SkillCategory title={t.skills.categories.systems} skills={['Git', 'Linux', 'Nginx', 'Grafana', 'Prometheus']} icon={Cpu} />
-          <SkillCategory title={language === 'ar' ? 'الميكانيكا' : 'Mécanique'} skills={['Maintenance Auto', 'Diagnostic', 'Ingénierie', 'Réparation']} icon={Settings} />
         </div>
       </section>
 
