@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, Suspense, lazy, FormEvent } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useAnimationControls } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import profileImg from './assets/profile.png';
@@ -758,14 +758,21 @@ export default function App() {
             >
               <div className="relative group">
                 {/* Main Image Frame */}
-                <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl bg-brand-500/10 group-hover:bg-brand-500/20 transition-colors duration-700">
+                <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl bg-brand-500/10 group-hover:bg-brand-500/20 transition-colors duration-700 flex items-center justify-center">
                   <img 
                     src={profileImg} 
                     alt="Johnny Nkunku" 
                     className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/800/1000";
+                      (e.target as HTMLImageElement).style.display = 'none';
+                      const parent = (e.target as HTMLElement).parentElement;
+                      if (parent) {
+                        const fallback = document.createElement('div');
+                        fallback.className = 'absolute inset-0 flex items-center justify-center text-6xl font-black text-white/20 bg-linear-to-br from-brand-600/20 to-purple-600/20';
+                        fallback.innerText = 'JN';
+                        parent.appendChild(fallback);
+                      }
                     }}
                   />
                   {/* Background Glow inside the frame */}
@@ -876,12 +883,6 @@ export default function App() {
                         alt={testimonial.name} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                         loading="eager"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          // Use a reliable fallback if Unsplash fails
-                          target.src = `https://picsum.photos/seed/${testimonial.name}/200/200`;
-                          target.onerror = null; // Prevent infinite loops
-                        }}
                       />
                     </div>
                   </div>

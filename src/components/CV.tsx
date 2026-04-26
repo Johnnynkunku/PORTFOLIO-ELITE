@@ -35,7 +35,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           logging: false,
           width: 1000
         },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }
       }).from(element).save();
     } catch (error) {
       console.error('PDF generation error:', error);
@@ -62,86 +62,82 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       border-radius: 0 !important;
       overflow: visible !important;
     }
-    ${p} section { break-inside: avoid !important; margin-bottom: 10px !important; }
+    ${p} section { break-inside: avoid !important; margin-bottom: 15px !important; }
     ${p} .cv-header {
       background-color: #020617 !important;
       color: white !important;
-      padding: 12px 40px !important;
-      margin-bottom: 8px !important;
+      padding: 15px 40px !important;
+      margin-bottom: 12px !important;
       display: grid !important;
-      grid-template-columns: 55px 1.2fr 1fr !important;
+      grid-template-columns: 60px 1.2fr 1fr !important;
       align-items: center !important;
-      gap: 15px !important;
+      gap: 20px !important;
       border-radius: 0 !important;
     }
     ${p} .cv-main-content { 
       display: flex !important; 
       flex-direction: row !important; 
-      gap: 30px !important;
-      padding: 10px 40px !important;
+      gap: 40px !important;
+      padding: 20px 40px !important;
       width: 100% !important;
       background-color: white !important;
-      min-height: 0 !important;
+      min-height: 800px !important;
     }
     ${p} .cv-left-col { 
       flex: 1 !important; 
-      padding-right: 20px !important;
+      padding-right: 25px !important;
       border: none !important;
     }
     ${p} .cv-right-col { 
-      width: 220px !important; 
-      padding-left: 15px !important; 
+      width: 240px !important; 
+      padding-left: 20px !important; 
       flex-shrink: 0 !important;
       background-color: #f8fafc !important;
     }
     ${p} h2 { 
-      font-size: 0.85rem !important; 
+      font-size: 0.95rem !important; 
       border-bottom: 2px solid #1a2eff !important; 
-      padding-bottom: 3px !important;
-      margin-bottom: 8px !important;
+      padding-bottom: 5px !important;
+      margin-bottom: 12px !important;
       text-transform: uppercase !important;
       color: #0f172a !important;
       font-weight: 800 !important;
     }
-    ${p} h3 { font-size: 0.8rem !important; margin-bottom: 2px !important; font-weight: 800 !important; }
-    ${p} .font-bold { font-weight: 700 !important; font-size: 7.2pt !important; }
-    ${p} .space-y-12, ${p} .space-y-10, ${p} .space-y-8, ${p} .space-y-6, ${p} .space-y-4 { margin-top: 0 !important; }
-    ${p} .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 5px !important; }
-    ${p} .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 3px !important; }
-    ${p} .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 2px !important; }
-    ${p} .relative.pl-8, ${p} .relative.pl-10 { 
-      padding-left: 20px !important; 
+    ${p} h3 { font-size: 0.9rem !important; margin-bottom: 4px !important; font-weight: 800 !important; }
+    ${p} .font-bold { font-weight: 700 !important; font-size: 8pt !important; }
+    ${p} .relative.pl-8 { 
+      padding-left: 25px !important; 
       border-left: 2px solid #cbd5e1 !important; 
       margin-left: 5px !important;
-      margin-bottom: 12px !important;
+      margin-bottom: 20px !important;
       break-inside: avoid !important; 
     }
     ${p} .absolute.-left-\\[9px\\] { 
       display: block !important; 
-      width: 10px !important; 
-      height: 10px !important; 
-      left: -6px !important; 
-      top: 5px !important;
+      width: 12px !important; 
+      height: 12px !important; 
+      left: -7px !important; 
+      top: 6px !important;
       background-color: #1a2eff !important; 
       border: 2px solid white !important;
       border-radius: 50% !important;
       box-shadow: 0 0 0 1px #1a2eff !important;
     }
     ${p} ul li { 
-      margin-bottom: 3px !important; 
-      font-size: 7.2pt !important; 
-      line-height: 1.3 !important; 
+      margin-bottom: 5px !important; 
+      font-size: 8pt !important; 
+      line-height: 1.4 !important; 
     }
-    ${p} .cv-right-col .p-4 { padding: 6px 8px !important; border-radius: 8px !important; margin-bottom: 6px !important; }
-    ${p} .cv-right-col .w-12 { width: 20px !important; height: 20px !important; }
-    ${p} .cv-right-col circle { stroke-width: 4 !important; }
+    ${p} .cv-right-col .p-4 { padding: 8px 10px !important; border-radius: 10px !important; margin-bottom: 8px !important; }
+    ${p} .cv-right-col .w-12 { width: 22px !important; height: 22px !important; }
+    ${p} .cv-right-col circle { stroke-width: 5 !important; }
     ${isRtl ? `
-      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 55px !important; text-align: right !important; }
+      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 60px !important; text-align: right !important; }
       ${p} .cv-main-content { flex-direction: row-reverse !important; }
-      ${p} .cv-left-col { padding-right: 0 !important; padding-left: 20px !important; }
-      ${p} .cv-right-col { padding-left: 0 !important; padding-right: 15px !important; }
-      ${p} .relative.pl-8, ${p} .relative.pl-10 { padding-left: 0 !important; padding-right: 20px !important; border-left: none !important; border-right: 2px solid #cbd5e1 !important; margin-left: 0 !important; margin-right: 5px !important; }
-      ${p} .absolute.-left-\\[9px\\] { left: auto !important; right: -6px !important; }
+      ${p} .cv-left-col { padding-right: 0 !important; padding-left: 25px !important; }
+      ${p} .cv-right-col { padding-left: 0 !important; padding-right: 20px !important; }
+      ${p} .relative.pl-8 { padding-left: 0 !important; padding-right: 25px !important; border-left: none !important; border-right: 2px solid #cbd5e1 !important; margin-left: 0 !important; margin-right: 5px !important; }
+      ${p} .absolute.-left-\\[9px\\] { left: auto !important; right: -7px !important; }
     ` : ''}
     ${p} .pt-8.mt-8.border-t { display: none !important; }
   `;
@@ -213,12 +209,22 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           </div>
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full -mr-48 -mt-48 blur-3xl print:hidden" style={{ backgroundColor: 'rgba(51, 84, 255, 0.1)' }} />
           
-          <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
+          <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32 flex items-center justify-center bg-slate-800" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
             <img 
               src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+                const parent = (e.target as HTMLElement).parentElement;
+                if (parent) {
+                  const fallback = document.createElement('div');
+                  fallback.className = 'absolute inset-0 flex items-center justify-center text-4xl font-black text-white/20 bg-slate-800 uppercase';
+                  fallback.innerText = 'JN';
+                  parent.appendChild(fallback);
+                }
+              }}
             />
           </div>
           
