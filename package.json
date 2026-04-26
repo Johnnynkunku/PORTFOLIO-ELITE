@@ -1,9 +1,9 @@
 {
-  "name": "johnnynkunku-portfolio",
+  "name": "PORTFOLIO-ELITE",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://johnnynkunku.github.io/johnnynkunku-portfolio",
+  "homepage": "https://johnnynkunku.github.io/PORTFOLIO-ELITE",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
