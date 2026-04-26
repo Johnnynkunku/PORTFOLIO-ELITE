@@ -22,8 +22,8 @@ export const translations = {
     about: {
       subtitle: "À Propos de Moi",
       title: "L'Architecte derrière le Code",
-      p1: "Ingénieur IT & Développeur Full-Stack expert en résolution de problèmes techniques complexes. Mon expertise combine maintenance système, ingénierie réseaux et développement d'applications robustes, transformant des défis techniques en solutions innovantes et performantes.",
-      p2: "",
+      p1: "Ingénieur IT & Développeur Full-Stack, expert en infrastructures systèmes, réseaux et développement web moderne (React/Node.js).",
+      p2: "Passionné par l'innovation technique, je transforme vos défis complexes en solutions numériques performantes et scalables.",
       stats: {
         projects: "Projets Réalisés",
         projectsValue: "2+",
@@ -99,7 +99,9 @@ export const translations = {
         french: "Français",
         frenchLevel: "Natif",
         english: "Anglais",
-        englishLevel: "Basique"
+        englishLevel: "Basique",
+        arabic: "Arabe",
+        arabicLevel: "Compétent"
       },
       skillLevels: {
         expert: "Expert",
@@ -149,8 +151,8 @@ export const translations = {
     about: {
       subtitle: "About Me",
       title: "The Architect Behind the Code",
-      p1: "IT Engineer & Full-Stack Developer expert in complex technical problem-solving. My expertise merges system maintenance, network engineering, and robust app development, turning technical challenges into innovative, high-performance solutions.",
-      p2: "",
+      p1: "IT Engineer & Full-Stack Developer, expert in system infrastructure, networking, and modern web development (React/Node.js).",
+      p2: "Passionate about technical innovation, I transform complex challenges into high-performance, scalable digital solutions.",
       stats: {
         projects: "Projects Completed",
         projectsValue: "2+",
@@ -226,7 +228,9 @@ export const translations = {
         french: "French",
         frenchLevel: "Native",
         english: "English",
-        englishLevel: "Basic"
+        englishLevel: "Basic",
+        arabic: "Arabic",
+        arabicLevel: "Competent"
       },
       skillLevels: {
         expert: "Expert",
@@ -276,8 +280,8 @@ export const translations = {
     about: {
       subtitle: "عني",
       title: "المهندس وراء الكود",
-      p1: "مهندس تقنية معلومات ومطور شامل خبير في حل المشكلات التقنية المعقدة. تجمع خبرتي بين صيانة الأنظمة وهندسة الشبكات وتطوير التطبيقات القوية، وتحويل التحديات التقنية إلى حلول مبتكرة وعالية الأداء.",
-      p2: "",
+      p1: "مهندس تقنية معلومات ومطور شامل، خبير في البنية التحتية والشبكات وتطوير الويب الحديث (React/Node.js).",
+      p2: "شغوف بالابتكار التقني، أحول التحديات المعقدة إلى حلول رقمية عالية الأداء وقابلة للتوسع.",
       stats: {
         projects: "مشاريع مكتملة",
         projectsValue: "+2",
@@ -353,7 +357,9 @@ export const translations = {
         french: "الفرنسية",
         frenchLevel: "أصلي",
         english: "الإنجليزية",
-        englishLevel: "أساسي"
+        englishLevel: "أساسي",
+        arabic: "العربية",
+        arabicLevel: "متمكن"
       },
       skillLevels: {
         expert: "خبير",
@@ -448,29 +454,19 @@ export const EXPERIENCE_DATA = {
       role: "Développeur Full Stack Junior",
       period: "2025 - Présent",
       description: [
-        "Conception d'applications web réactives avec React/Node.js, optimisant l'engagement utilisateur de 40%.",
-        "Solutions cloud sur mesure pour clients locaux, réduisant les coûts d'infrastructure de 25%.",
-        "Expertise en performance web, atteignant systématiquement des scores Lighthouse de 95+."
+        "Conception d'apps React/Node.js performantes (Lighthouse 95+).",
+        "Solutions Cloud sur mesure réduisant les coûts de 25%.",
+        "Optimisation de l'engagement utilisateur (+40%)."
       ]
     },
     {
-      company: "Formation Académique & Stages",
+      company: "Formation & Stages IT",
       role: "Stagiaire Maintenance & Réseau",
       period: "2024 - 2025",
       description: [
-        "Maintenance préventive réduisant les temps d'arrêt du parc informatique de 15%.",
-        "Configuration réseaux et dépannage de plus de 50 incidents techniques mensuels.",
-        "Déploiement d'infrastructure IT complète pour des structures de 20+ postes."
-      ]
-    },
-    {
-      company: "INPP & ITP Banana",
-      role: "Technicien en Mécanique",
-      period: "2017 - 2022",
-      description: [
-        "Maintenance spécialisée et diagnostic technique de précision.",
-        "Réparation de systèmes mécaniques complexes.",
-        "Base ingénierie structurelle appliquée."
+        "Maintenance préventive du parc informatique (-15% de downtime).",
+        "Configuration réseaux et support technique (50+ incidents/mois).",
+        "Déploiement d'infrastructures IT (20+ postes)."
       ]
     }
   ],
@@ -480,29 +476,19 @@ export const EXPERIENCE_DATA = {
       role: "Junior Full Stack Developer",
       period: "2025 - Present",
       description: [
-        "Building responsive React/Node.js web apps, boosting user engagement by 40%.",
-        "Tailored cloud solutions for local clients, slashing infrastructure costs by 25%.",
-        "Web performance expert, consistently achieving Lighthouse scores of 95+."
+        "Building high-perf React/Node.js apps (Lighthouse 95+).",
+        "Custom Cloud solutions reducing costs by 25%.",
+        "Boosting user engagement by 40%."
       ]
     },
     {
-      company: "Academic Training & Internships",
+      company: "IT Training & Internships",
       role: "Maintenance & Network Intern",
       period: "2024 - 2025",
       description: [
-        "Preventive maintenance reducing IT downtime by 15%.",
-        "Network configuration and troubleshooting (50+ monthly technical incidents).",
-        "Full IT infrastructure deployment for 20+ workstation environments."
-      ]
-    },
-    {
-      company: "INPP & ITP Banana",
-      role: "Mechanics Technician",
-      period: "2017 - 2022",
-      description: [
-        "Specialized maintenance and precision technical diagnosis.",
-        "Repair of complex mechanical systems.",
-        "Applied structural engineering foundation."
+        "Preventive IT maintenance (-15% downtime).",
+        "Network configuration and technical support (50+ incidents/mo).",
+        "IT infrastructure deployment (20+ workstations)."
       ]
     }
   ],
@@ -512,29 +498,19 @@ export const EXPERIENCE_DATA = {
       role: "مطور شامل مبتدئ",
       period: "2025 - الحاضر",
       description: [
-        "بناء تطبيقات ويب سريعة الاستجابة بـ React/Node.js، مما رفع التفاعل بنسبة 40%.",
-        "حلول سحابية مخصصة للعملاء، مما قلل تكاليف البنية التحتية بنسبة 25%.",
-        "خبير في أداء الويب، مع تحقيق درجات Lighthouse تزيد عن 95 باستمرار."
+        "بناء تطبيقات React/Node.js عالية الأداء (Lighthouse 95+).",
+        "حلول سحابية مخصصة لتقليل التكاليف بنسبة 25%.",
+        "رفع تفاعل المستخدمين بنسبة 40%."
       ]
     },
     {
-      company: "التدريب الأكاديمي والمهني",
+      company: "التدريب والتدريب المهني تقنية المعلومات",
       role: "متدرب صيانة وشبكات",
       period: "2024 - 2025",
       description: [
-        "صيانة وقائية قللت من فترات توقف أجهزة الكمبيوتر بنسبة 15%.",
-        "تكوين الشبكات وحل أكثر من 50 عطلاً فنياً شهرياً.",
-        "نشر بنية تحتية تقنية كاملة لبيئات تضم أكثر من 20 محطة عمل."
-      ]
-    },
-    {
-      company: "INPP & ITP Banana",
-      role: "فني ميكانيكا",
-      period: "2017 - 2022",
-      description: [
-        "صيانة متخصصة وتشخيص فني دقيق.",
-        "إصلاح الأنظمة الميكانيكية المعقدة.",
-        "أساس متين في الهندسة الإنشائية التطبيقية."
+        "صيانة وقائية قللت من فترات التوقف بنسبة 15%.",
+        "تكوين الشبكات والدعم الفني (أكثر من 50 عطلاً شهرياً).",
+        "نشر بنية تحتية تقنية (أكثر من 20 محطة عمل)."
       ]
     }
   ]

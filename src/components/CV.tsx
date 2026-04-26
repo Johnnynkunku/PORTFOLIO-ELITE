@@ -62,10 +62,11 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       border-radius: 0 !important;
       overflow: visible !important;
     }
+    ${p} section { break-inside: avoid !important; margin-bottom: 20px !important; }
     ${p} .cv-header {
       background-color: #020617 !important;
       color: white !important;
-      padding: 10px 20px !important;
+      padding: 10px 24px !important;
       margin-bottom: 8px !important;
       display: grid !important;
       grid-template-columns: 60px 1.2fr 1fr !important;
@@ -108,7 +109,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       display: flex !important; 
       flex-direction: row !important; 
       gap: 12px !important;
-      padding: 0 20px !important;
+      padding: 0 24px !important;
       width: 100% !important;
     }
     ${p} .cv-left-col { 
@@ -232,7 +233,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           
           <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
             <img 
-              src={profileImg} 
+              src={new URL('../assets/profile.png', import.meta.url).href} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
               onError={(e) => {
@@ -401,6 +402,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               <div className="grid grid-cols-1 gap-4">
                 {[
                   { name: (t.cv as any).languageList.french, level: (t.cv as any).languageList.frenchLevel, percentage: 100, color: '#1a2eff' },
+                  { name: (t.cv as any).languageList.arabic, level: (t.cv as any).languageList.arabicLevel, percentage: 100, color: '#1a2eff' },
                   { name: (t.cv as any).languageList.english, level: (t.cv as any).languageList.englishLevel, percentage: 45, color: '#3354ff' }
                 ].map((lang, i) => (
                   <div key={i} className="p-4 rounded-2xl border shadow-sm group transition-all duration-300" style={{ backgroundColor: '#ffffff', borderColor: '#f1f5f9' }}>
