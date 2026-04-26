@@ -231,7 +231,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           
           <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
             <img 
-              src="profile.png" 
+              src={`${import.meta.env.BASE_URL}profile.png`} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
               onError={(e) => {
