@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, FormEvent } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useAnimationControls } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { 
@@ -27,7 +27,8 @@ import {
 } from 'lucide-react';
 import { cn } from './lib/utils';
 import { Language, translations, PROJECT_DATA, EXPERIENCE_DATA } from './translations';
-import CV from './components/CV';
+
+const CV = lazy(() => import('./components/CV'));
 
 // --- Components ---
 
@@ -46,7 +47,7 @@ const Navbar = ({
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -181,8 +182,8 @@ const Hero = ({ language }: { language: Language }) => {
     <section className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-brand-500/15 rounded-full blur-[80px]" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-[80px]" />
+        <div className="absolute top-1/4 -left-20 w-72 h-72 md:w-96 md:h-96 bg-brand-500/15 rounded-full blur-[40px] md:blur-[80px]" />
+        <div className="absolute bottom-1/4 -right-20 w-72 h-72 md:w-96 md:h-96 bg-purple-500/10 rounded-full blur-[40px] md:blur-[80px]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50 contrast-150" />
       </div>
@@ -314,7 +315,8 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -10 }}
-      className="group relative glass rounded-3xl overflow-hidden border border-white/5 hover:border-brand-500/30 transition-all duration-500"
+      className="group relative glass rounded-3xl overflow-hidden border border-white/5 hover:border-brand-500/30 transition-all duration-500 will-change-transform"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 400px' }}
     >
       <div className="aspect-video overflow-hidden relative">
         <img 
@@ -359,7 +361,8 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: s
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     whileHover={{ y: -5 }}
-    className="glass p-5 sm:p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group"
+    className="glass p-5 sm:p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group will-change-transform"
+    style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 200px' }}
   >
     <div className="w-12 h-12 bg-brand-500/10 rounded-2xl flex items-center justify-center mb-6 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500">
       <Icon size={24} />
@@ -378,28 +381,36 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: s
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Only show custom cursor on devices that support hover
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    if (!canHover) return;
+
+    setIsVisible(true);
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('button') || target.closest('a')) {
+      if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('button') || target.closest('a') || target.classList.contains('interactive')) {
         setIsHovering(true);
       } else {
         setIsHovering(false);
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mouseover', handleMouseOver, { passive: true });
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, []);
+
+  if (!isVisible) return null;
 
   return (
     <motion.div
@@ -603,7 +614,7 @@ const ContactForm = ({ language, t }: { language: Language, t: any }) => {
 export default function App() {
   const [language, setLanguage] = useState<Language>('fr');
   const [showCV, setShowCV] = useState(false);
-  const t = translations[language];
+  const t = useMemo(() => translations[language], [language]);
   const isRtl = language === 'ar';
 
   const scrollProgress = useSpring(useScroll().scrollYProgress, {
@@ -634,7 +645,7 @@ export default function App() {
       observer.observe(footerArrowRef.current);
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
@@ -648,7 +659,18 @@ export default function App() {
   };
 
   if (showCV) {
-    return <CV language={language} onBack={() => setShowCV(false)} />;
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+          <div className="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      }>
+        <CV 
+          language={language as 'fr' | 'en' | 'ar'} 
+          onBack={() => setShowCV(false)} 
+        />
+      </Suspense>
+    );
   }
 
   return (
@@ -656,7 +678,7 @@ export default function App() {
       <CustomCursor />
       {/* Progress Bar */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-brand-500 z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-500 z-[60] origin-left will-change-transform"
         style={{ scaleX: scrollProgress }}
       />
 

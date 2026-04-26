@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award, Terminal, Languages } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award, Printer, Terminal, Languages } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
 import { cn } from '../lib/utils';
 // @ts-ignore
@@ -43,6 +43,10 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       setIsDownloading(false);
       setIsExporting(false);
     }
+  };
+
+  const onPrint = () => {
+    window.print();
   };
 
   // Professional A4 Optimized Styles
@@ -185,6 +189,14 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           <ArrowLeft size={16} className={isRtl ? "rotate-180" : ""} /> {t.cv.back}
         </button>
         <div className="flex items-center gap-2 sm:gap-3">
+          <button 
+            onClick={onPrint}
+            className="hidden md:flex items-center gap-2 bg-[#f1f5f9] text-[#0f172a] px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#e2e8f0] active:scale-95 transition-all shadow-sm text-[10px] sm:text-xs md:text-sm font-bold relative z-20"
+            aria-label="Print CV"
+          >
+            <Printer size={16} />
+            {language === 'ar' ? 'طباعة' : language === 'en' ? 'Print' : 'Imprimer'}
+          </button>
           <button 
             onClick={onDownload} 
             disabled={isDownloading}
