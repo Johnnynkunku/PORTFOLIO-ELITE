@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useAnimationControls } from 'motion/react';
 import emailjs from '@emailjs/browser';
-import profileImg from '../public/profile.png';
 import { 
   Github, 
   Linkedin, 
@@ -760,7 +759,7 @@ export default function App() {
                 {/* Main Image Frame */}
                 <div className="relative z-10 aspect-[4/5] rounded-[40px] overflow-hidden glass p-4 border border-white/10 shadow-2xl bg-brand-500/10 group-hover:bg-brand-500/20 transition-colors duration-700">
                   <img 
-                    src={profileImg} 
+                    src={`${import.meta.env.BASE_URL}profile.png`} 
                     alt="Johnny Nkunku" 
                     className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
                     referrerPolicy="no-referrer"
