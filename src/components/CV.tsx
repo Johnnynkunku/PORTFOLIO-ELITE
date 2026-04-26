@@ -27,15 +27,15 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       await worker.set({
         margin: 5,
         filename: `Johnny_Nkunku_CV_${language.toUpperCase()}.pdf`,
-        image: { type: 'jpeg', quality: 1 },
+        image: { type: 'jpeg', quality: 0.95 },
         html2canvas: { 
-          scale: 3, 
+          scale: 2, 
           useCORS: true, 
-          letterRendering: true,
+          letterRendering: false,
           logging: false,
-          windowWidth: 1200 
+          width: 1000
         },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }
       }).from(element).save();
     } catch (error) {
       console.error('PDF generation error:', error);
@@ -62,109 +62,104 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       border-radius: 0 !important;
       overflow: visible !important;
     }
-    ${p} section { break-inside: avoid !important; margin-bottom: 20px !important; }
+    ${p} section { break-inside: avoid !important; margin-bottom: 12px !important; }
     ${p} .cv-header {
       background-color: #020617 !important;
       color: white !important;
-      padding: 10px 24px !important;
+      padding: 12px 30px !important;
       margin-bottom: 8px !important;
       display: grid !important;
-      grid-template-columns: 60px 1.2fr 1fr !important;
+      grid-template-columns: 50px 1.2fr 1fr !important;
       align-items: center !important;
-      gap: 12px !important;
+      gap: 15px !important;
       border-radius: 0 !important;
-      height: auto !important;
     }
     ${p} .cv-profile-img { 
-      width: 60px !important; 
-      height: 60px !important; 
+      width: 50px !important; 
+      height: 50px !important; 
       border: 1px solid rgba(255,255,255,0.2) !important;
-      border-radius: 8px !important;
+      border-radius: 6px !important;
     }
     ${p} .cv-header h1 { 
-      font-size: 1.5rem !important; 
+      font-size: 1.4rem !important; 
       line-height: 1 !important; 
-      margin-bottom: 1px !important;
-      text-align: left !important;
+      margin-bottom: 2px !important;
     }
     ${p} .cv-header p { 
       font-size: 0.75rem !important; 
-      opacity: 0.8 !important;
-      text-align: left !important;
+      opacity: 0.9 !important;
     }
     ${p} .cv-header .grid { 
       display: grid !important; 
       grid-template-columns: 1fr 1fr !important;
-      column-gap: 8px !important;
-      row-gap: 1px !important; 
+      gap: 5px !important;
       margin: 0 !important;
     }
     ${p} .cv-header .flex { 
       justify-content: flex-start !important; 
-      font-size: 7.2pt !important;
+      font-size: 6.5pt !important;
       gap: 4px !important;
     }
     ${p} .cv-header .w-8, ${p} .cv-header .h-8 { display: none !important; }
+    ${p} .cv-header .absolute.inset-0.opacity-10 { display: none !important; }
     ${p} .cv-main-content { 
       display: flex !important; 
       flex-direction: row !important; 
-      gap: 12px !important;
-      padding: 0 24px !important;
+      gap: 20px !important;
+      padding: 0 30px !important;
       width: 100% !important;
+      background-color: white !important;
     }
     ${p} .cv-left-col { 
       flex: 1 !important; 
       padding: 0 !important; 
-      border: none !important; 
-      background: transparent !important; 
+      border: none !important;
     }
     ${p} .cv-right-col { 
-      width: 190px !important; 
-      padding: 0 10px 0 0 !important; 
-      border: none !important; 
-      background: transparent !important; 
+      width: 180px !important; 
+      padding: 0 !important; 
       flex-shrink: 0 !important;
     }
     ${p} h2 { 
       font-size: 0.85rem !important; 
-      border-bottom: 1px solid #f1f5f9 !important; 
-      padding-bottom: 2px !important;
-      margin-bottom: 5px !important;
+      border-bottom: 2px solid #1a2eff !important; 
+      padding-bottom: 3px !important;
+      margin-bottom: 8px !important;
       text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
       color: #0f172a !important;
     }
-    ${p} h3 { font-size: 0.8rem !important; margin-bottom: 1px !important; font-weight: 800 !important; }
-    ${p} .font-bold { font-weight: 700 !important; font-size: 7.2pt !important; }
-    ${p} section { margin-bottom: 8px !important; break-inside: avoid !important; }
-    ${p} .space-y-12, ${p} .space-y-10, ${p} .space-y-8, ${p} .space-y-6, ${p} .space-y-4 { margin-top: 0 !important; }
-    ${p} .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 5px !important; }
-    ${p} .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 3px !important; }
-    ${p} .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 2px !important; }
-    ${p} .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 1px !important; }
-    ${p} .relative.pl-8 { padding-left: 8px !important; border-left: 1.5px solid #f1f5f9 !important; break-inside: avoid !important; }
-    ${p} .absolute.-left-\\[9px\\] { display: none !important; }
-    ${p} .mb-4 { margin-bottom: 1px !important; }
-    ${p} ul { margin-top: 1px !important; }
-    ${p} ul li { 
-      margin-bottom: 1px !important; 
-      font-size: 7.2pt !important; 
-      line-height: 1.15 !important; 
-      break-inside: avoid !important;
-      orphans: 3;
-      widows: 3;
+    ${p} h3 { font-size: 0.8rem !important; margin-bottom: 2px !important; font-weight: 800 !important; }
+    ${p} .font-bold { font-weight: 700 !important; font-size: 7pt !important; }
+    ${p} .relative.pl-8 { 
+      padding-left: 15px !important; 
+      border-left: 2px solid #e2e8f0 !important; 
+      break-inside: avoid !important; 
     }
-    ${p} .cv-right-col .p-4 { padding: 4px 8px !important; border-radius: 6px !important; margin-bottom: 4px !important; }
-    ${p} .cv-right-col .w-12 { width: 22px !important; height: 22px !important; }
-    ${p} .cv-right-col .mb-8 { margin-bottom: 4px !important; }
+    ${p} .absolute.-left-\\[9px\\] { 
+      display: block !important; 
+      width: 10px !important; 
+      height: 10px !important; 
+      left: -6px !important; 
+      top: 5px !important;
+      background-color: #1a2eff !important; 
+      border: 1px solid white !important;
+      border-radius: 50% !important;
+    }
+    ${p} ul li { 
+      margin-bottom: 3px !important; 
+      font-size: 7.2pt !important; 
+      line-height: 1.25 !important; 
+    }
+    ${p} .cv-right-col .p-4 { padding: 6px 8px !important; border-radius: 8px !important; margin-bottom: 6px !important; }
+    ${p} .cv-right-col .w-12 { width: 20px !important; height: 20px !important; }
+    ${p} .cv-right-col circle { stroke-width: 4 !important; }
     ${isRtl ? `
-      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 60px !important; text-align: right !important; }
-      ${p} .cv-header h1, ${p} .cv-header p { text-align: right !important; }
+      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 50px !important; text-align: right !important; }
       ${p} .cv-main-content { flex-direction: row-reverse !important; }
-      ${p} .cv-right-col { padding: 0 0 0 10px !important; }
-      ${p} .relative.pl-8 { padding-left: 0 !important; padding-right: 8px !important; border-left: none !important; border-right: 1.5px solid #f1f5f9 !important; }
+      ${p} .relative.pl-8 { padding-left: 0 !important; padding-right: 15px !important; border-left: none !important; border-right: 2px solid #e2e8f0 !important; }
+      ${p} .absolute.-left-\\[9px\\] { left: auto !important; right: -6px !important; }
     ` : ''}
-    ${p} .pt-8.mt-8.border-t, ${p} .absolute.inset-0.opacity-10 { display: none !important; }
+    ${p} .pt-8.mt-8.border-t { display: none !important; }
   `;
 
   return (
@@ -176,11 +171,11 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
     >
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          body { background: white !important; font-size: 7.5pt !important; line-height: 1.15 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #0f172a !important; }
+          body { background: white !important; font-size: 7pt !important; line-height: 1.15 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #0f172a !important; }
           ${getEliteStyles("")}
         }
         .is-exporting { 
-          background: white !important; font-size: 7.5pt !important; line-height: 1.15 !important; color: #0f172a !important;
+          background: white !important; font-size: 7pt !important; line-height: 1.15 !important; color: #0f172a !important;
         }
         ${getEliteStyles(".is-exporting")}
         /* Hide some elements on export */
@@ -233,9 +228,10 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           
           <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
             <img 
-              src={new URL('../assets/profile.png', import.meta.url).href} 
+              src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
               }}
