@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense, lazy, FormEvent } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useAnimationControls } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import profileImg from './assets/profile.png';

@@ -35,7 +35,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           logging: false,
           width: 1000
         },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(element).save();
     } catch (error) {
       console.error('PDF generation error:', error);
@@ -62,63 +62,37 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       border-radius: 0 !important;
       overflow: visible !important;
     }
-    ${p} section { break-inside: avoid !important; margin-bottom: 12px !important; }
+    ${p} section { break-inside: avoid !important; margin-bottom: 10px !important; }
     ${p} .cv-header {
       background-color: #020617 !important;
       color: white !important;
-      padding: 12px 30px !important;
+      padding: 12px 40px !important;
       margin-bottom: 8px !important;
       display: grid !important;
-      grid-template-columns: 50px 1.2fr 1fr !important;
+      grid-template-columns: 55px 1.2fr 1fr !important;
       align-items: center !important;
       gap: 15px !important;
       border-radius: 0 !important;
     }
-    ${p} .cv-profile-img { 
-      width: 50px !important; 
-      height: 50px !important; 
-      border: 1px solid rgba(255,255,255,0.2) !important;
-      border-radius: 6px !important;
-    }
-    ${p} .cv-header h1 { 
-      font-size: 1.4rem !important; 
-      line-height: 1 !important; 
-      margin-bottom: 2px !important;
-    }
-    ${p} .cv-header p { 
-      font-size: 0.75rem !important; 
-      opacity: 0.9 !important;
-    }
-    ${p} .cv-header .grid { 
-      display: grid !important; 
-      grid-template-columns: 1fr 1fr !important;
-      gap: 5px !important;
-      margin: 0 !important;
-    }
-    ${p} .cv-header .flex { 
-      justify-content: flex-start !important; 
-      font-size: 6.5pt !important;
-      gap: 4px !important;
-    }
-    ${p} .cv-header .w-8, ${p} .cv-header .h-8 { display: none !important; }
-    ${p} .cv-header .absolute.inset-0.opacity-10 { display: none !important; }
     ${p} .cv-main-content { 
       display: flex !important; 
       flex-direction: row !important; 
-      gap: 20px !important;
-      padding: 0 30px !important;
+      gap: 30px !important;
+      padding: 10px 40px !important;
       width: 100% !important;
       background-color: white !important;
+      min-height: 0 !important;
     }
     ${p} .cv-left-col { 
       flex: 1 !important; 
-      padding: 0 !important; 
+      padding-right: 20px !important;
       border: none !important;
     }
     ${p} .cv-right-col { 
-      width: 180px !important; 
-      padding: 0 !important; 
+      width: 220px !important; 
+      padding-left: 15px !important; 
       flex-shrink: 0 !important;
+      background-color: #f8fafc !important;
     }
     ${p} h2 { 
       font-size: 0.85rem !important; 
@@ -127,12 +101,19 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       margin-bottom: 8px !important;
       text-transform: uppercase !important;
       color: #0f172a !important;
+      font-weight: 800 !important;
     }
     ${p} h3 { font-size: 0.8rem !important; margin-bottom: 2px !important; font-weight: 800 !important; }
-    ${p} .font-bold { font-weight: 700 !important; font-size: 7pt !important; }
-    ${p} .relative.pl-8 { 
-      padding-left: 15px !important; 
-      border-left: 2px solid #e2e8f0 !important; 
+    ${p} .font-bold { font-weight: 700 !important; font-size: 7.2pt !important; }
+    ${p} .space-y-12, ${p} .space-y-10, ${p} .space-y-8, ${p} .space-y-6, ${p} .space-y-4 { margin-top: 0 !important; }
+    ${p} .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 5px !important; }
+    ${p} .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 3px !important; }
+    ${p} .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 2px !important; }
+    ${p} .relative.pl-8, ${p} .relative.pl-10 { 
+      padding-left: 20px !important; 
+      border-left: 2px solid #cbd5e1 !important; 
+      margin-left: 5px !important;
+      margin-bottom: 12px !important;
       break-inside: avoid !important; 
     }
     ${p} .absolute.-left-\\[9px\\] { 
@@ -142,21 +123,24 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       left: -6px !important; 
       top: 5px !important;
       background-color: #1a2eff !important; 
-      border: 1px solid white !important;
+      border: 2px solid white !important;
       border-radius: 50% !important;
+      box-shadow: 0 0 0 1px #1a2eff !important;
     }
     ${p} ul li { 
       margin-bottom: 3px !important; 
       font-size: 7.2pt !important; 
-      line-height: 1.25 !important; 
+      line-height: 1.3 !important; 
     }
     ${p} .cv-right-col .p-4 { padding: 6px 8px !important; border-radius: 8px !important; margin-bottom: 6px !important; }
     ${p} .cv-right-col .w-12 { width: 20px !important; height: 20px !important; }
     ${p} .cv-right-col circle { stroke-width: 4 !important; }
     ${isRtl ? `
-      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 50px !important; text-align: right !important; }
+      ${p} .cv-header { grid-template-columns: 1fr 1.2fr 55px !important; text-align: right !important; }
       ${p} .cv-main-content { flex-direction: row-reverse !important; }
-      ${p} .relative.pl-8 { padding-left: 0 !important; padding-right: 15px !important; border-left: none !important; border-right: 2px solid #e2e8f0 !important; }
+      ${p} .cv-left-col { padding-right: 0 !important; padding-left: 20px !important; }
+      ${p} .cv-right-col { padding-left: 0 !important; padding-right: 15px !important; }
+      ${p} .relative.pl-8, ${p} .relative.pl-10 { padding-left: 0 !important; padding-right: 20px !important; border-left: none !important; border-right: 2px solid #cbd5e1 !important; margin-left: 0 !important; margin-right: 5px !important; }
       ${p} .absolute.-left-\\[9px\\] { left: auto !important; right: -6px !important; }
     ` : ''}
     ${p} .pt-8.mt-8.border-t { display: none !important; }
@@ -219,7 +203,10 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
         <div className="absolute top-0 left-0 w-full h-2 bg-[#1a2eff]" />
         
         {/* Header Section */}
-        <div className="bg-[#020617] text-white p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden cv-header print:p-6 print:flex-row print:gap-8">
+        <div className={cn(
+          "bg-[#020617] text-white p-8 md:p-12 lg:p-16 flex flex-col items-center gap-10 relative overflow-hidden cv-header print:p-6 print:flex-row print:gap-8",
+          isRtl ? "md:flex-row-reverse" : "md:flex-row"
+        )}>
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10 pointer-events-none print:hidden">
             <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -232,9 +219,6 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
-              }}
             />
           </div>
           
@@ -276,9 +260,12 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
         </div>
 
         {/* Main Content Body */}
-        <div className="flex flex-col lg:flex-row cv-main-content">
+        <div className={cn("flex flex-col md:flex-row cv-main-content", isRtl && "md:flex-row-reverse")}>
           {/* Left Column: Profile & Experience */}
-          <div className="flex-1 p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-slate-100 cv-left-col" style={{ borderColor: '#f1f5f9' }}>
+          <div className={cn(
+            "flex-1 p-8 md:p-12 border-b md:border-b-0 cv-left-col",
+            isRtl ? "md:border-l border-slate-100 text-right" : "md:border-r border-slate-100 text-left"
+          )} style={{ borderColor: '#f1f5f9' }}>
             {/* Profile Summary */}
             <section className="mb-12">
               <div className="flex items-center gap-4 mb-6">
@@ -305,8 +292,14 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               
               <div className="space-y-12">
                 {EXPERIENCE_DATA[language].map((exp, i) => (
-                  <div key={i} className="relative pl-8 border-l-2 last:border-transparent" style={{ borderColor: '#f1f5f9' }}>
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-brand-500" style={{ backgroundColor: '#ffffff', borderColor: '#3354ff' }} />
+                  <div key={i} className={cn(
+                    "relative border-slate-100 last:border-transparent",
+                    isRtl ? "pr-10 border-r-2" : "pl-10 border-l-2"
+                  )} style={{ borderColor: '#f1f5f9' }}>
+                    <div className={cn(
+                      "absolute top-0 w-4 h-4 rounded-full bg-white border-2 border-brand-500",
+                      isRtl ? "-right-[9px]" : "-left-[9px]"
+                    )} style={{ backgroundColor: '#ffffff', borderColor: '#3354ff' }} />
                     <div className="mb-4">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                         <h3 className="text-lg font-black text-slate-900" style={{ color: '#0f172a' }}>{exp.role}</h3>
@@ -331,7 +324,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           </div>
 
           {/* Right Column: Education, Skills, Languages */}
-          <div className="w-full lg:w-[320px] p-8 md:p-12 space-y-12 cv-right-col" style={{ backgroundColor: 'rgba(248, 250, 252, 0.5)' }}>
+          <div className="w-full md:w-[320px] p-8 md:p-12 space-y-12 cv-right-col" style={{ backgroundColor: 'rgba(248, 250, 252, 0.5)' }}>
             {/* Education */}
             <section>
               <div className="flex items-center gap-3 mb-8">
