@@ -323,9 +323,15 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
         <img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          loading="lazy"
-          decoding="async"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+          loading="eager"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            if (!target.src.includes('picsum.photos')) {
+              target.src = `https://picsum.photos/seed/${encodeURIComponent(project.title)}/800/600`;
+            }
+          }}
         />
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>

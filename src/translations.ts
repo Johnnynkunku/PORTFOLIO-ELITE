@@ -118,14 +118,14 @@ export const translations = {
           role: "CTO @ InnovateRDC",
           content: "Johnny est un expert en résolution de problèmes. Son approche structurée et son double profil mécanique/IT lui donnent une logique imparable sur les architectures complexes.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
         },
         {
           name: "Samuel M.",
           role: "Fondateur @ TechVentures",
           content: "Vitesse d'exécution et qualité de code irréprochable. Johnny a livré notre MVP en un temps record, avec une excellente maîtrise de l'infrastructure cloud.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=200"
         }
       ]
     }
@@ -247,14 +247,14 @@ export const translations = {
           role: "CTO @ InnovateRDC",
           content: "Johnny is a master problem-solver. His structured approach and dual mechanics/IT background give him an unstoppable logic for complex architectures.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
         },
         {
           name: "Samuel M.",
           role: "Founder @ TechVentures",
           content: "Unmatched execution speed and code quality. Johnny delivered our MVP in record time, showing a deep mastery of cloud infrastructure.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=200"
         }
       ]
     }
@@ -376,14 +376,14 @@ export const translations = {
           role: "مدير تقني @ InnovateRDC",
           content: "جوني خبير في حل المشكلات. نهجه المهيكل وخلفيته المزدوجة في الميكانيكا وتكنولوجيا المعلومات تمنحه منطقاً لا يقاوم للهندسات المعقدة.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80"
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
         },
         {
           name: "صموئيل م.",
           role: "مؤسس @ TechVentures",
           content: "سرعة تنفيذ وجودة كود لا مثيل لها. سلم جوني مشروعنا في وقت قياسي، مديراً بنية تحتية سحابية معقدة ببراعة.",
           rating: 5,
-          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=256&h=256&q=80"
+          image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=200"
         }
       ]
     }
@@ -398,7 +398,7 @@ export const PROJECT_DATA = {
       tags: ["React", "Node.js", "Cloud", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/cloud/800/600"
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Infrastructure Réseau & Sécurité",
@@ -406,7 +406,7 @@ export const PROJECT_DATA = {
       tags: ["Cisco", "Python", "Networking", "Security"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/network/800/600"
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800"
     }
   ],
   en: [
@@ -416,7 +416,7 @@ export const PROJECT_DATA = {
       tags: ["React", "Node.js", "Cloud", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/cloud/800/600"
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Network Infrastructure & Security",
@@ -424,7 +424,7 @@ export const PROJECT_DATA = {
       tags: ["Cisco", "Python", "Networking", "Security"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/network/800/600"
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800"
     }
   ],
   ar: [
@@ -434,7 +434,7 @@ export const PROJECT_DATA = {
       tags: ["React", "Node.js", "Cloud", "TypeScript"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/cloud/800/600"
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "البنية التحتية للشبكات والأمن",
@@ -442,7 +442,7 @@ export const PROJECT_DATA = {
       tags: ["Cisco", "Python", "Networking", "Security"],
       link: "#",
       github: "https://github.com/Johnnynkunku",
-      image: "https://picsum.photos/seed/network/800/600"
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800"
     }
   ]
 };
