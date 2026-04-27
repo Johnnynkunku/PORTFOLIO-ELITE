@@ -20,65 +20,35 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
     
     setIsDownloading(true);
     setIsExporting(true);
-    
     try {
       const element = componentRef.current;
       
-      // Helper to convert image to base64 to ensure it's captured by html2pdf
-      const getBase64Image = (img: HTMLImageElement): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          if (img.src.startsWith('data:')) {
-            resolve(img.src);
-            return;
-          }
-          const canvas = document.createElement('canvas');
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
-          const ctx = canvas.getContext('2d');
-          if (!ctx) {
-            reject('Could not get canvas context');
-            return;
-          }
-          ctx.drawImage(img, 0, 0);
-          resolve(canvas.toDataURL('image/png'));
+      // Ensure images are loaded and handle local assets securely for PDF
+      const images = element.getElementsByTagName('img');
+      const promises = Array.from(images).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
         });
-      };
+      });
+      await Promise.all(promises);
 
-      // Ensure profile image is converted to base64 before capture
-      const profileImgElement = element.querySelector('.cv-profile-img img') as HTMLImageElement;
-      let originalSrc = '';
-      if (profileImgElement) {
-        originalSrc = profileImgElement.src;
-        try {
-          const base64 = await getBase64Image(profileImgElement);
-          profileImgElement.src = base64;
-        } catch (e) {
-          console.warn('Could not convert image to base64', e);
-        }
-      }
-      
       const worker = html2pdf();
       await worker.set({
         margin: [0, 0, 0, 0],
         filename: `Johnny_Nkunku_CV_${language.toUpperCase()}.pdf`,
-        image: { type: 'jpeg', quality: 1.0 },
+        image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
           scale: 3, 
           useCORS: true, 
           allowTaint: true,
           letterRendering: true,
           logging: false,
-          width: 800,
-          scrollX: 0,
-          scrollY: 0
+          width: 800
         },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(element).save();
-
-      // Restore original src after download
-      if (profileImgElement && originalSrc) {
-        profileImgElement.src = originalSrc;
-      }
     } catch (error) {
       console.error('PDF generation error:', error);
     } finally {
@@ -248,6 +218,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
+              crossOrigin="anonymous"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
               }}
