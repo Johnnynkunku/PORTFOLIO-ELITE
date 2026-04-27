@@ -220,6 +220,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
               loading="eager"
+              fetchPriority="high"
               decoding="sync"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;

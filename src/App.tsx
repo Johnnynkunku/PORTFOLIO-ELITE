@@ -787,6 +787,7 @@ export default function App() {
                     alt="Johnny Nkunku" 
                     className="w-full h-full object-cover rounded-[32px] transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
                     loading="eager"
+                    fetchPriority="high"
                     decoding="sync"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
