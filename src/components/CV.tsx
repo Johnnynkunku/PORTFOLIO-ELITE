@@ -248,7 +248,6 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
-              crossOrigin="anonymous"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
               }}
