@@ -323,19 +323,20 @@ const ProjectCard = React.memo(({ project, index, language }: { project: any; in
       style={{ contentVisibility: 'auto' }}
     >
       <div className="aspect-video overflow-hidden relative">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 will-change-transform"
-          loading="lazy"
-          decoding="async"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            if (!target.src.includes('picsum.photos')) {
-              target.src = `https://picsum.photos/seed/${encodeURIComponent(project.title)}/800/600`;
-            }
-          }}
-        />
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 will-change-transform"
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              if (!target.src.includes('picsum.photos')) {
+                // Ensure a safe fallback if the main image fails
+                target.src = `https://picsum.photos/seed/${encodeURIComponent(project.title)}/800/600`;
+              }
+            }}
+          />
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
       <div className="p-5 sm:p-8">
@@ -786,7 +787,7 @@ export default function App() {
                     alt="Johnny Nkunku" 
                     className="w-full h-full object-cover rounded-[32px] transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
                     loading="eager"
-                    decoding="async"
+                    decoding="sync"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       if (!target.src.includes('picsum.photos')) {
