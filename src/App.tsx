@@ -324,8 +324,8 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
           src={project.image} 
           alt={project.title} 
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          referrerPolicy="no-referrer"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
@@ -762,10 +762,14 @@ export default function App() {
                   <img 
                     src={profileImg} 
                     alt="Johnny Nkunku" 
-                    className="w-full h-full object-cover rounded-[32px] brightness-110 contrast-110 grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
-                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover rounded-[32px] transition-all duration-700 relative z-10 active:scale-[0.98] md:active:scale-100"
+                    loading="eager"
+                    decoding="async"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/800/1000";
+                      const target = e.target as HTMLImageElement;
+                      if (!target.src.includes('picsum.photos')) {
+                        target.src = "https://picsum.photos/seed/johnny/800/1000";
+                      }
                     }}
                   />
                   {/* Background Glow inside the frame */}
@@ -875,12 +879,13 @@ export default function App() {
                         src={testimonial.image} 
                         alt={testimonial.name} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
-                        loading="eager"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          // Use a reliable fallback if Unsplash fails
-                          target.src = `https://picsum.photos/seed/${testimonial.name}/200/200`;
-                          target.onerror = null; // Prevent infinite loops
+                          if (!target.src.includes('picsum.photos')) {
+                            target.src = `https://picsum.photos/seed/${testimonial.name}/200/200`;
+                          }
                         }}
                       />
                     </div>

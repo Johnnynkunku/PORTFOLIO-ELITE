@@ -219,9 +219,13 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="async"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
+                const target = e.target as HTMLImageElement;
+                if (!target.src.includes('picsum.photos')) {
+                  target.src = "https://picsum.photos/seed/johnny/600/600";
+                }
               }}
             />
           </div>
