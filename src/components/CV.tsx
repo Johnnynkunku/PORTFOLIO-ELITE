@@ -25,7 +25,8 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       
       // Ensure images are loaded and handle local assets securely for PDF
       const images = element.getElementsByTagName('img');
-      const promises = Array.from(images).map(img => {
+      const promises = Array.from(images).map((imgTag) => {
+        const img = imgTag as HTMLImageElement;
         if (img.complete) return Promise.resolve();
         return new Promise(resolve => {
           img.onload = resolve;
@@ -218,7 +219,7 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
               src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
-              crossOrigin="anonymous"
+              referrerPolicy="no-referrer"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
               }}
