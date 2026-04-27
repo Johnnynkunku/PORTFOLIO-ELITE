@@ -182,13 +182,13 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           <button 
             onClick={onDownload} 
             disabled={isDownloading}
-            className="flex items-center gap-2 bg-[#1a2eff] text-white px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#0011ff] active:scale-95 transition-all shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] text-[10px] sm:text-xs md:text-sm font-bold disabled:opacity-70 disabled:cursor-not-allowed"
-            aria-label="Download CV as PDF"
+            className="flex items-center gap-2 bg-[#1a2eff] text-white px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#0011ff] active:scale-95 transition-all shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] text-[10px] sm:text-xs md:text-sm font-bold disabled:opacity-70 disabled:cursor-not-allowed group"
+            aria-label={isDownloading ? "Downloading CV..." : "Download CV as PDF"}
           >
             {isDownloading ? (
               <Loader2 size={16} className="animate-spin" />
             ) : (
-              <Download size={16} />
+              <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
             )}
             {isDownloading ? (language === 'ar' ? 'جاري التحميل...' : 'Downloading...') : t.cv.download}
           </button>
@@ -238,28 +238,28 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
                'Ingénieur IT & Programmeur Full-Stack'}
             </p>
             
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-400 print:mt-4 print:grid-cols-2 print:gap-y-2">
-              <div className="flex items-center gap-3 justify-center md:justify-start">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
-                  <Mail size={14} />
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-400 print:mt-4 print:grid-cols-2 print:gap-y-2" aria-label="Contact Information">
+              <div className="flex items-center gap-3 justify-center md:justify-start group/contact">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0 group-hover/contact:bg-[#1a2eff]/10 transition-colors" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
+                  <Mail size={14} aria-hidden="true" />
                 </div>
                 <a href="mailto:johnnynkunku@gmail.com" className="break-all hover:text-white transition-colors" style={{ color: '#94a3b8' }}>johnnynkunku@gmail.com</a>
               </div>
-              <div className="flex items-center gap-3 justify-center md:justify-start">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
-                  <Phone size={14} />
+              <div className="flex items-center gap-3 justify-center md:justify-start group/contact">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0 group-hover/contact:bg-[#1a2eff]/10 transition-colors" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
+                  <Phone size={14} aria-hidden="true" />
                 </div>
                 <a href={`tel:${t.contact.phoneValue}`} className="hover:text-white transition-colors" style={{ color: '#94a3b8' }}>{t.contact.phoneValue}</a>
               </div>
-              <div className="flex items-center gap-3 justify-center md:justify-start">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
-                  <MapPin size={14} />
+              <div className="flex items-center gap-3 justify-center md:justify-start group/contact">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0 group-hover/contact:bg-[#1a2eff]/10 transition-colors" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
+                  <MapPin size={14} aria-hidden="true" />
                 </div>
                 <span style={{ color: '#94a3b8' }}>Kinshasa, RDC</span>
               </div>
-              <div className="flex items-center gap-3 justify-center md:justify-start">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
-                  <Linkedin size={14} />
+              <div className="flex items-center gap-3 justify-center md:justify-start group/contact">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-400 shrink-0 group-hover/contact:bg-[#1a2eff]/10 transition-colors" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#5c84ff' }}>
+                  <Linkedin size={14} aria-hidden="true" />
                 </div>
                 <a href="https://linkedin.com/in/johnny-nkunku" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" style={{ color: '#94a3b8' }}>linkedin.com/in/johnny-nkunku</a>
               </div>

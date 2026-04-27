@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, Suspense, lazy, FormEvent } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback, Suspense, lazy, FormEvent } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useAnimationControls } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import profileImg from './assets/profile.png';
@@ -33,7 +33,7 @@ const CV = lazy(() => import('./components/CV'));
 
 // --- Components ---
 
-const Navbar = ({ 
+const Navbar = React.memo(({ 
   language, 
   setLanguage, 
   onShowCV 
@@ -44,21 +44,24 @@ const Navbar = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const t = translations[language];
+  const t = useMemo(() => translations[language], [language]);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 50;
+      setIsScrolled(prev => prev !== scrolled ? scrolled : prev);
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { name: t.nav.about, href: '#about' },
     { name: t.nav.projects, href: '#projects' },
     { name: t.nav.experience, href: '#experience' },
     { name: t.nav.skills, href: '#skills' },
     { name: t.nav.contact, href: '#contact' },
-  ];
+  ], [t]);
 
   return (
     <nav className={cn(
@@ -92,7 +95,7 @@ const Navbar = ({
           </div>
           
           {/* Language Switcher */}
-          <div className="flex items-center gap-2 bg-white/5 p-1 rounded-full border border-white/10">
+          <div className="flex items-center gap-2 bg-white/5 p-1 rounded-full border border-white/10" role="group" aria-label="Language selector">
             {(['fr', 'en', 'ar'] as Language[]).map((l) => (
               <button
                 key={l}
@@ -101,6 +104,7 @@ const Navbar = ({
                   "px-3 py-1 text-[10px] font-bold rounded-full transition-all",
                   language === l ? "bg-brand-500 text-white" : "text-slate-400 hover:text-white"
                 )}
+                aria-pressed={language === l}
               >
                 {l.toUpperCase()}
               </button>
@@ -109,7 +113,7 @@ const Navbar = ({
 
           <button 
             onClick={onShowCV}
-            className="px-5 py-2 bg-white text-slate-950 hover:bg-brand-500 hover:text-white rounded-full text-xs font-bold transition-all shadow-lg shadow-white/5"
+            className="px-5 py-2 bg-white text-slate-950 hover:bg-brand-500 hover:text-white rounded-full text-xs font-bold transition-all shadow-lg shadow-white/5 whitespace-nowrap"
           >
             {t.nav.resume}
           </button>
@@ -171,13 +175,13 @@ const Navbar = ({
       </AnimatePresence>
     </nav>
   );
-};
+});
 
-const Hero = ({ language }: { language: Language }) => {
+const Hero = React.memo(({ language }: { language: Language }) => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const scrollOpacity = useTransform(scrollYProgress, [0, 0.03], [1, 0]);
-  const t = translations[language];
+  const t = useMemo(() => translations[language], [language]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
@@ -262,8 +266,8 @@ const Hero = ({ language }: { language: Language }) => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap justify-start gap-4"
           >
-            <a href="#contact" className="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2">
-              {t.hero.contactMe} <ChevronRight size={18} />
+            <a href="#contact" className="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2 group/btn">
+              {t.hero.contactMe} <ChevronRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
             </a>
             <a href="#projects" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full font-bold transition-all">
               {t.hero.viewProjects}
@@ -284,7 +288,7 @@ const Hero = ({ language }: { language: Language }) => {
       </motion.div>
     </section>
   );
-};
+});
 
 const SectionTitle = ({ title, subtitle, id, language }: { title: string, subtitle: string, id?: string, language: Language }) => (
   <div className="mb-16" id={id}>
@@ -307,25 +311,24 @@ const SectionTitle = ({ title, subtitle, id, language }: { title: string, subtit
   </div>
 );
 
-const ProjectCard = ({ project, index, language }: { project: any; index: number; language: Language; key?: string | number }) => {
-  const t = translations[language];
+const ProjectCard = React.memo(({ project, index, language }: { project: any; index: number; language: Language }) => {
+  const t = useMemo(() => translations[language], [language]);
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -10 }}
-      className="group relative glass rounded-3xl overflow-hidden border border-white/5 hover:border-brand-500/30 transition-all duration-500 will-change-transform"
-      style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 400px' }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      className="group relative glass rounded-3xl overflow-hidden border border-white/5 hover:border-brand-500/30 transition-all duration-700"
+      style={{ contentVisibility: 'auto' }}
     >
       <div className="aspect-video overflow-hidden relative">
         <img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-          loading="eager"
-          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 will-change-transform"
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             if (!target.src.includes('picsum.photos')) {
@@ -348,11 +351,22 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
           {project.description}
         </p>
         <div className="flex items-center gap-4">
-          <a href={project.link} className="px-4 py-2 bg-white/5 hover:bg-brand-500 text-white rounded-full transition-all flex items-center gap-2 text-xs font-bold border border-white/10 hover:border-brand-500">
+          <a 
+            href={project.link} 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-white/5 hover:bg-brand-500 text-white rounded-full transition-all flex items-center gap-2 text-xs font-bold border border-white/10 hover:border-brand-500 active:scale-95"
+          >
             {t.projects.liveDemo} <ExternalLink size={14} />
           </a>
           {project.github && (
-            <a href={project.github} className="p-2 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-full transition-all border border-white/10">
+            <a 
+              href={project.github} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-full transition-all border border-white/10 active:scale-90"
+              aria-label="View Source on GitHub"
+            >
               <Github size={18} />
             </a>
           )}
@@ -360,16 +374,15 @@ const ProjectCard = ({ project, index, language }: { project: any; index: number
       </div>
     </motion.div>
   );
-};
+});
 
-const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: string[]; icon: any; key?: string | number }) => (
+const SkillCategory = React.memo(({ title, skills, icon: Icon }: { title: string; skills: string[]; icon: any }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    whileHover={{ y: -5 }}
-    className="glass p-5 sm:p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group will-change-transform"
-    style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 200px' }}
+    viewport={{ once: true, margin: "-50px" }}
+    className="glass p-5 sm:p-8 rounded-3xl border border-white/5 hover:border-brand-500/30 transition-all duration-500 group"
+    style={{ contentVisibility: 'auto' }}
   >
     <div className="w-12 h-12 bg-brand-500/10 rounded-2xl flex items-center justify-center mb-6 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-all duration-500">
       <Icon size={24} />
@@ -383,7 +396,7 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: s
       ))}
     </div>
   </motion.div>
-);
+));
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -659,11 +672,14 @@ export default function App() {
     };
   }, []);
 
-  const copyEmail = () => {
+  const handleShowCV = useCallback(() => setShowCV(true), []);
+  const handleHideCV = useCallback(() => setShowCV(false), []);
+  const handleSetLanguage = useCallback((l: Language) => setLanguage(l), []);
+  const copyEmail = useCallback(() => {
     navigator.clipboard.writeText('johnnynkunku@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
+  }, []);
 
   if (showCV) {
     return (
@@ -674,14 +690,14 @@ export default function App() {
       }>
         <CV 
           language={language as 'fr' | 'en' | 'ar'} 
-          onBack={() => setShowCV(false)} 
+          onBack={handleHideCV} 
         />
       </Suspense>
     );
   }
 
   return (
-    <div className={cn("relative", isRtl ? "font-sans" : "font-sans")} dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className={cn("relative min-h-screen text-slate-100 selection:bg-brand-500/30", isRtl ? "font-sans" : "font-sans")} dir={isRtl ? 'rtl' : 'ltr'}>
       <CustomCursor />
       {/* Progress Bar */}
       <motion.div 
@@ -689,7 +705,7 @@ export default function App() {
         style={{ scaleX: scrollProgress }}
       />
 
-      <Navbar language={language} setLanguage={setLanguage} onShowCV={() => setShowCV(true)} />
+      <Navbar language={language} setLanguage={handleSetLanguage} onShowCV={handleShowCV} />
       
       <Hero language={language} />
 
@@ -744,12 +760,12 @@ export default function App() {
                 </div>
               </div>
 
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowCV(true)}
-                className="px-10 py-5 bg-white text-slate-950 hover:bg-brand-500 hover:text-white rounded-full font-black uppercase tracking-widest text-sm transition-all flex items-center gap-3 shadow-xl shadow-white/5"
-              >
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleShowCV}
+                  className="px-10 py-5 bg-white text-slate-950 hover:bg-brand-500 hover:text-white rounded-full font-black uppercase tracking-widest text-sm transition-all flex items-center gap-3 shadow-xl shadow-white/5 active:scale-95"
+                >
                 <Download size={20} />
                 {t.nav.resume}
               </motion.button>
