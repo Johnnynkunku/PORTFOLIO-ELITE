@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award, Printer, Terminal, Languages } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Download, ArrowLeft, Phone, ExternalLink, GraduationCap, Loader2, Award, Terminal, Languages } from 'lucide-react';
 import { Language, translations, EXPERIENCE_DATA } from '../translations';
 import { cn } from '../lib/utils';
 import profileImg from '../assets/profile.png';
@@ -20,34 +20,71 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
     
     setIsDownloading(true);
     setIsExporting(true);
+    
     try {
       const element = componentRef.current;
       
+      // Helper to convert image to base64 to ensure it's captured by html2pdf
+      const getBase64Image = (img: HTMLImageElement): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          if (img.src.startsWith('data:')) {
+            resolve(img.src);
+            return;
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            reject('Could not get canvas context');
+            return;
+          }
+          ctx.drawImage(img, 0, 0);
+          resolve(canvas.toDataURL('image/png'));
+        });
+      };
+
+      // Ensure profile image is converted to base64 before capture
+      const profileImgElement = element.querySelector('.cv-profile-img img') as HTMLImageElement;
+      let originalSrc = '';
+      if (profileImgElement) {
+        originalSrc = profileImgElement.src;
+        try {
+          const base64 = await getBase64Image(profileImgElement);
+          profileImgElement.src = base64;
+        } catch (e) {
+          console.warn('Could not convert image to base64', e);
+        }
+      }
+      
       const worker = html2pdf();
       await worker.set({
-        margin: 5,
+        margin: [0, 0, 0, 0],
         filename: `Johnny_Nkunku_CV_${language.toUpperCase()}.pdf`,
-        image: { type: 'jpeg', quality: 0.95 },
+        image: { type: 'jpeg', quality: 1.0 },
         html2canvas: { 
-          scale: 2, 
+          scale: 3, 
           useCORS: true, 
-          letterRendering: false,
+          allowTaint: true,
+          letterRendering: true,
           logging: false,
-          width: 1000
+          width: 800,
+          scrollX: 0,
+          scrollY: 0
         },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true }
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(element).save();
+
+      // Restore original src after download
+      if (profileImgElement && originalSrc) {
+        profileImgElement.src = originalSrc;
+      }
     } catch (error) {
       console.error('PDF generation error:', error);
-      window.print();
     } finally {
       setIsDownloading(false);
       setIsExporting(false);
     }
-  };
-
-  const onPrint = () => {
-    window.print();
   };
 
   // Professional A4 Optimized Styles
@@ -62,12 +99,12 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       border-radius: 0 !important;
       overflow: visible !important;
     }
-    ${p} section { break-inside: avoid !important; margin-bottom: 15px !important; }
+    ${p} section { break-inside: avoid !important; margin-bottom: 20px !important; }
     ${p} .cv-header {
       background-color: #020617 !important;
       color: white !important;
-      padding: 15px 40px !important;
-      margin-bottom: 12px !important;
+      padding: 15px 45px !important;
+      margin-bottom: 10px !important;
       display: grid !important;
       grid-template-columns: 60px 1.2fr 1fr !important;
       align-items: center !important;
@@ -78,38 +115,43 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       display: flex !important; 
       flex-direction: row !important; 
       gap: 40px !important;
-      padding: 20px 40px !important;
+      padding: 20px 45px !important;
       width: 100% !important;
       background-color: white !important;
-      min-height: 800px !important;
+      min-height: 0 !important;
     }
     ${p} .cv-left-col { 
       flex: 1 !important; 
-      padding-right: 25px !important;
+      padding-right: 30px !important;
       border: none !important;
     }
     ${p} .cv-right-col { 
-      width: 240px !important; 
+      width: 250px !important; 
       padding-left: 20px !important; 
       flex-shrink: 0 !important;
       background-color: #f8fafc !important;
+      border-radius: 0 !important;
     }
     ${p} h2 { 
-      font-size: 0.95rem !important; 
+      font-size: 0.9rem !important; 
       border-bottom: 2px solid #1a2eff !important; 
-      padding-bottom: 5px !important;
+      padding-bottom: 4px !important;
       margin-bottom: 12px !important;
       text-transform: uppercase !important;
       color: #0f172a !important;
       font-weight: 800 !important;
     }
-    ${p} h3 { font-size: 0.9rem !important; margin-bottom: 4px !important; font-weight: 800 !important; }
+    ${p} h3 { font-size: 0.85rem !important; margin-bottom: 3px !important; font-weight: 800 !important; }
     ${p} .font-bold { font-weight: 700 !important; font-size: 8pt !important; }
-    ${p} .relative.pl-8 { 
+    ${p} .space-y-12, ${p} .space-y-10, ${p} .space-y-8, ${p} .space-y-6, ${p} .space-y-4 { margin-top: 0 !important; }
+    ${p} .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 15px !important; }
+    ${p} .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 10px !important; }
+    ${p} .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 5px !important; }
+    ${p} .relative.pl-8, ${p} .relative.pl-10 { 
       padding-left: 25px !important; 
       border-left: 2px solid #cbd5e1 !important; 
       margin-left: 5px !important;
-      margin-bottom: 20px !important;
+      margin-bottom: 15px !important;
       break-inside: avoid !important; 
     }
     ${p} .absolute.-left-\\[9px\\] { 
@@ -128,15 +170,15 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
       font-size: 8pt !important; 
       line-height: 1.4 !important; 
     }
-    ${p} .cv-right-col .p-4 { padding: 8px 10px !important; border-radius: 10px !important; margin-bottom: 8px !important; }
+    ${p} .cv-right-col .p-4 { padding: 10px 12px !important; border-radius: 12px !important; margin-bottom: 10px !important; }
     ${p} .cv-right-col .w-12 { width: 22px !important; height: 22px !important; }
     ${p} .cv-right-col circle { stroke-width: 5 !important; }
     ${isRtl ? `
       ${p} .cv-header { grid-template-columns: 1fr 1.2fr 60px !important; text-align: right !important; }
       ${p} .cv-main-content { flex-direction: row-reverse !important; }
-      ${p} .cv-left-col { padding-right: 0 !important; padding-left: 25px !important; }
+      ${p} .cv-left-col { padding-right: 0 !important; padding-left: 30px !important; }
       ${p} .cv-right-col { padding-left: 0 !important; padding-right: 20px !important; }
-      ${p} .relative.pl-8 { padding-left: 0 !important; padding-right: 25px !important; border-left: none !important; border-right: 2px solid #cbd5e1 !important; margin-left: 0 !important; margin-right: 5px !important; }
+      ${p} .relative.pl-8, ${p} .relative.pl-10 { padding-left: 0 !important; padding-right: 25px !important; border-left: none !important; border-right: 2px solid #cbd5e1 !important; margin-left: 0 !important; margin-right: 5px !important; }
       ${p} .absolute.-left-\\[9px\\] { left: auto !important; right: -7px !important; }
     ` : ''}
     ${p} .pt-8.mt-8.border-t { display: none !important; }
@@ -166,14 +208,6 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           <ArrowLeft size={16} className={isRtl ? "rotate-180" : ""} /> {t.cv.back}
         </button>
         <div className="flex items-center gap-2 sm:gap-3">
-          <button 
-            onClick={onPrint}
-            className="hidden md:flex items-center gap-2 bg-[#f1f5f9] text-[#0f172a] px-3 sm:px-5 md:px-6 py-2 rounded-full hover:bg-[#e2e8f0] active:scale-95 transition-all shadow-sm text-[10px] sm:text-xs md:text-sm font-bold relative z-20"
-            aria-label="Print CV"
-          >
-            <Printer size={16} />
-            {language === 'ar' ? 'طباعة' : language === 'en' ? 'Print' : 'Imprimer'}
-          </button>
           <button 
             onClick={onDownload} 
             disabled={isDownloading}
@@ -209,21 +243,14 @@ export default function CV({ language, onBack }: { language: Language; onBack: (
           </div>
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full -mr-48 -mt-48 blur-3xl print:hidden" style={{ backgroundColor: 'rgba(51, 84, 255, 0.1)' }} />
           
-          <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32 flex items-center justify-center bg-slate-800" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
+            <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 border-4 border-white/10 shadow-2xl cv-profile-img print:w-32 print:h-32" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
             <img 
               src={profileImg} 
               alt="Johnny Nkunku" 
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
+              crossOrigin="anonymous"
               onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-                const parent = (e.target as HTMLElement).parentElement;
-                if (parent) {
-                  const fallback = document.createElement('div');
-                  fallback.className = 'absolute inset-0 flex items-center justify-center text-4xl font-black text-white/20 bg-slate-800 uppercase';
-                  fallback.innerText = 'JN';
-                  parent.appendChild(fallback);
-                }
+                (e.target as HTMLImageElement).src = "https://picsum.photos/seed/johnny/600/600";
               }}
             />
           </div>
